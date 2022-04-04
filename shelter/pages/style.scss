@@ -15,6 +15,7 @@ body {
     max-width: 100%;
     overflow-x: hidden;
     background-color: #F6F6F6;
+    color: #4C4C4C;
     font-family: Arial, sans-serif;
     font-size: 15px;
     line-height: 160%;
@@ -34,6 +35,10 @@ a {
     padding: 0 40px;
     margin: 0 auto;
     box-sizing: border-box;
+}
+
+.section {
+    padding: 80px 0px 100px 0px;
 }
 
 .button {
@@ -59,6 +64,25 @@ a {
             background-color: #FDDCC4;
         }
     }
+}
+
+.img-wrapper {
+    position: relative;
+}
+
+.img {
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+}
+
+.heading {
+    font-family: 'Georgia';
+    font-size: 35px;
+    line-height: 130%;
+    font-weight: 400;
+    color: #545454;
+    letter-spacing: 0.06em;
 }
 
 .header {
@@ -107,9 +131,6 @@ a {
         justify-content: space-between;
     }
 
-    &__item {
-    }
-
     &__link {
         padding-bottom: 3px;
         &:hover {
@@ -127,7 +148,6 @@ a {
     background: url('../assets/gradient/noise_transparent@2x.png'), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%);
     &__container {
         display: flex;    
-        flex-wrap: wrap;
         align-items: flex-end;
     }
 
@@ -157,13 +177,45 @@ a {
         position: relative;
         width: 698px;
         height: 728px;
-    }
-
-    &__puppy-img {
-        max-width: 100%;
-        max-height: 100%;
-        position: absolute;
-        right: 0;
-        bottom: 0;
+        
+        & .img {
+            bottom: 0;
+            right: 0;
+        }
     }
 }
+
+.about {
+
+    &__container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap-reverse;
+    }
+
+    &__pets {
+        margin-right: 120px;
+        width: 300px;
+        height: 408px;
+        
+        & .img {
+            top: -12px;
+        }
+    }
+    
+    &__description {
+        width: 430px;
+    }
+
+    &__heading {
+        margin-top: 14px;
+        max-width: 370px;
+        margin-bottom: 25px;
+    }
+    
+    &__subheading:not(last-child) {
+        margin-bottom: 25px;
+    }
+
+}
+
