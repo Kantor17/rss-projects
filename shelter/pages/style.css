@@ -57,6 +57,7 @@ a {
   padding-bottom: 15px;
   border-radius: 100px;
   border: 2px solid #F1CDB3;
+  background-color: inherit;
   font-family: Georgia;
   font-size: 17px;
   line-height: 130%;
