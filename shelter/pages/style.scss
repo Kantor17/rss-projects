@@ -11,10 +11,11 @@ html {
 }
 
 body {
+    cursor: url('../assets/icons/cursor.svg'), auto;
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
-    background-color: #F6F6F6;
+    background-color: #FFFFFF;
     color: #4C4C4C;
     font-family: Arial, sans-serif;
     font-size: 15px;
@@ -28,6 +29,7 @@ ul {
 a {
     color: inherit;
     text-decoration: none;
+    cursor: url('../assets/icons/cursor-pointer.svg'), pointer;
 }
 
 .container {
@@ -44,6 +46,7 @@ a {
 .button {
     display: block;
     box-sizing: border-box;
+    cursor: url('../assets/icons/cursor-pointer.svg'), pointer;
     width: 207px;
     height: 52px;
     text-align: center;
@@ -59,15 +62,39 @@ a {
     
     &._colored {
         background-color: #F1CDB3;
-        
-        &:hover {
-            background-color: #FDDCC4;
-        }
+    }
+
+    &:hover {
+        background-color: #FDDCC4;
+    }
+    
+    &._small {
+        width: 187px;
+    }
+    
+    &._big {
+        width: 261px;
+    }
+
+    &._round {
+        width: 52px;
+        height: 52px;
+    }
+
+    &._arrow {
+        background-image: url('../assets/icons/arrow.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    &.arrow_left {
+        transform: rotateY(180deg);
     }
 }
 
 .img-wrapper {
     position: relative;
+    object-fit: cover;
 }
 
 .img {
@@ -186,7 +213,6 @@ a {
 }
 
 .about {
-
     &__container {
         display: flex;
         justify-content: center;
@@ -197,10 +223,6 @@ a {
         margin-right: 120px;
         width: 300px;
         height: 408px;
-        
-        & .img {
-            top: -12px;
-        }
     }
     
     &__description {
@@ -213,9 +235,84 @@ a {
         margin-bottom: 25px;
     }
     
-    &__subheading:not(last-child) {
+    &__subheading:not(:last-child) {
+        margin-bottom: 25px;
+    }
+}
+
+.friends {
+    background-color: #F6F6F6;
+    &__heading {
+        width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 60px;
+        text-align: center;
+    }
+
+    &__cards {
+        position: relative;
+        gap: 7.5%;
+        height: 435px;
+        overflow-y: hidden;
+        margin-bottom: 60px;
+    }
+
+   &__arrow-right, &__arrow-left {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+   }
+   &__arrow-left {
+        transform: rotateY(180deg) translateY(-50%);
+        left: 0;
+   }
+   &__arrow-right {
+       right: 0;
+   }
+
+   &__button {
+       margin: 0 auto;
+   }
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 270px;
+    background-color: #FAFAFA;
+    padding-bottom: 30px;
+    border-radius: 9px;
+    &__image {
+        width: 100%;
+        height: 270px;
         margin-bottom: 25px;
     }
 
+    &__name {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    &__button {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &:hover {
+        cursor: url('../assets/icons/cursor-pointer.svg'), pointer;
+        background-color: #FFFFFF;
+        
+        & .button {
+            background-color: #FDDCC4;
+        }
+    }
 }
+
+
 
