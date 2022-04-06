@@ -461,4 +461,65 @@ a {
   font-style: italic;
   color: #B2B2B2;
 }
+
+.footer {
+  background: url("../assets/gradient/noise_transparent@2x.png"), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%);
+  color: #F1CDB3;
+  font-family: Georgia, sans-serif;
+  font-size: 20px;
+  padding-top: 56px;
+}
+
+.footer__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 120px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.footer__heading {
+  max-width: 280px;
+  color: #FFFFFF;
+  margin-bottom: 37px;
+}
+
+.footer__heading._location {
+  margin-bottom: 32px;
+}
+
+.footer__mail, .footer__phone, .footer__adress {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+}
+
+.footer__mail:not(:last-child), .footer__phone:not(:last-child), .footer__adress:not(:last-child) {
+  margin-bottom: 43px;
+}
+
+.footer__mail:not(:last-child)._location, .footer__phone:not(:last-child)._location, .footer__adress:not(:last-child)._location {
+  margin-bottom: 33px;
+}
+
+.footer__mail-icon, .footer__phone-icon, .footer__marker-icon {
+  margin-right: 20px;
+  height: 32px;
+}
+
+.footer__adress address {
+  display: inline;
+  text-decoration: none;
+  font-style: normal;
+  max-width: 260px;
+}
 /*# sourceMappingURL=style.css.map */
