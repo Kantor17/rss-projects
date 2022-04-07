@@ -65,7 +65,7 @@ a {
         background-color: #F1CDB3;
     }
 
-    &:hover {
+    &:not(._disabled):hover {
         background-color: #FDDCC4;
     }
     
@@ -88,8 +88,17 @@ a {
         background-position: center;
     }
 
-    &.arrow_left {
+    &._left {
         transform: rotateY(180deg);
+    }
+
+    &._disabled {
+        color: #CDCDCD;
+        border-color: #CDCDCD;
+
+        &._disabled {
+            cursor: url('../assets/icons/cursor.svg'), auto;
+        }
     }
 }
 
@@ -293,13 +302,13 @@ a {
     &__image {
         width: 100%;
         height: 270px;
-        margin-bottom: 25px;
+        margin-bottom: 27px;
     }
 
     &__name {
         font-size: 20px;
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 28px;
     }
 
     &__button {
@@ -461,7 +470,7 @@ a {
     }
 }
 
-.friends__header {
+.full-friends__header {
     position: relative;
     top: 0;
     height: auto;
@@ -480,10 +489,35 @@ a {
     & .header__subtitle, & .header__link:hover {
         color: #292929;;   
     }
-
-
 }
 
+.full-friends {
+    
+    &__cards {
+        column-gap: 3.33%;
+        row-gap: 32px;
+        padding-bottom: 15px;
+        margin-bottom: 45px;
+    }
+
+    &__button {
+        padding: 0;
+        letter-spacing: 0.06em;
+        font-size: 20px;
+        line-height: 115%;
+    }
+
+    &__controls {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+    
+    &__pagenum {
+       background-color: #F1CDB3;
+       pointer-events: none;
+    }
+}
 
 
 
