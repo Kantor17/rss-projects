@@ -93,7 +93,7 @@ a {
   background-position: center;
 }
 
-.button._left {
+.button .arrow__left {
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
 }
