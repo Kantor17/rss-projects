@@ -165,11 +165,12 @@ a {
         &:hover {
             color: #FAFAFA;
         }
-        &.active {
+        &._active {
             color: #FAFAFA;
             border-bottom: 3px solid #F1CDB3;;
         }
     }
+
 }
 
 .hero { 
@@ -451,32 +452,37 @@ a {
         margin-right: 20px;
         height: 32px;
     }
-
-    &__phone {
-    }
-
-    &__phone-icon {
-    }
-
-    &__location {
-    }
-
+    
     &__adress address{
         display: inline;
         text-decoration: none;
         font-style: normal;
         max-width: 260px;
     }
-
-    &__marker-icon {
-    }
-
-    &__image {
-  
-    }
 }
 
+.friends__header {
+    position: relative;
+    top: 0;
+    height: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: #545454;
 
+    & .header__title{
+        color: #545454;   
+    }
+
+    & .header__link._active {
+        color: #545454;  
+    }
+
+    & .header__subtitle, & .header__link:hover {
+        color: #292929;;   
+    }
+
+
+}
 
 
 

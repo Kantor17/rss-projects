@@ -185,7 +185,7 @@ a {
   color: #FAFAFA;
 }
 
-.header__link.active {
+.header__link._active {
   color: #FAFAFA;
   border-bottom: 3px solid #F1CDB3;
 }
@@ -521,5 +521,26 @@ a {
   text-decoration: none;
   font-style: normal;
   max-width: 260px;
+}
+
+.friends__header {
+  position: relative;
+  top: 0;
+  height: auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  color: #545454;
+}
+
+.friends__header .header__title {
+  color: #545454;
+}
+
+.friends__header .header__link._active {
+  color: #545454;
+}
+
+.friends__header .header__subtitle, .friends__header .header__link:hover {
+  color: #292929;
 }
 /*# sourceMappingURL=style.css.map */
