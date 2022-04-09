@@ -38,6 +38,10 @@ a {
     padding: 0 40px;
     margin: 0 auto;
     box-sizing: border-box;
+
+    @media(max-width: 768px) {
+        padding: 0 30px;
+    }
 }
 
 .section {
@@ -104,8 +108,6 @@ a {
 }
 
 .img-wrapper {
-    width: auto;
-    height: auto;
     position: relative;
     object-fit: cover;
 }
@@ -181,6 +183,9 @@ a {
         }
     }
 
+    @media(max-width: 768px) {
+        top: 30px;
+    }
 }
 
 .hero { 
@@ -188,14 +193,22 @@ a {
     background: url('../assets/gradient/noise_transparent@2x.png'), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%);
     &__container {
         display: flex;    
+        justify-content: center;
         align-items: flex-end;
+        @media(max-width: 768px) {
+            flex-wrap: wrap;
+        }
     }
 
     &__text {
         padding-top: 343px;
         padding-bottom: 243px;
-        margin-right: 42px;
         max-width: 460px;
+        
+        @media(max-width: 768px) {
+            padding-top: 150px;
+            padding-bottom: 100px;
+        }
     }
 
     &__heading {
@@ -213,14 +226,19 @@ a {
         margin-bottom: 42px;
     }
 
+    &__button {
+        @media(max-width: 768px) {
+            margin: 0 auto;
+        }
+    }
+
     &__puppy {
-        position: relative;
-        width: 698px;
-        height: 728px;
-        
-        & .img {
-            bottom: 0;
-            right: 0;
+       max-width: 698px;
+       max-height: 728px;
+       margin-left: auto;
+        @media(max-width: 768px) {
+            max-width: 569px;
+            max-height: 593px;
         }
     }
 }
