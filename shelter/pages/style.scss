@@ -248,20 +248,24 @@ a {
         display: flex;
         justify-content: center;
         flex-wrap: wrap-reverse;
+        column-gap: 120px;
+        row-gap: 80px;
     }
 
     &__pets {
-        margin-right: 120px;
         width: 300px;
         height: 408px;
     }
     
     &__description {
         width: 430px;
+        padding-top: 14px;
+        @media(max-width: 768px) {
+            padding-top: 0;
+        }
     }
 
     &__heading {
-        margin-top: 14px;
         max-width: 370px;
         margin-bottom: 25px;
     }
@@ -283,7 +287,7 @@ a {
 
     &__cards {
         position: relative;
-        gap: 7.5%;
+        gap: 7%;
         height: 435px;
         overflow-y: hidden;
         margin-bottom: 60px;
@@ -361,10 +365,16 @@ a {
         flex-wrap: wrap;
         column-gap: 10%;
         row-gap: 55px;
+        @media(max-width:768px) {
+            column-gap: 60px;
+        }
     }
 
     &__item {
         text-align: center;
+        @media(max-width:768px) {
+            width: 170px;
+        }
     }
 
     &__img {
@@ -380,26 +390,35 @@ a {
 }
 
 .donation {
+    padding-bottom: 94px;
     background-color: #F6F6F6;
     &__container {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        column-gap: 30px;
+        row-gap: 60px;
         align-items: center;
     }
 
     &__image {
-        top: 4px;
-        margin-right: 30px;
+        @media(max-width:768px) {
+            order: 2;   
+        }
     }
 
     &__content {
         max-width: 380px;
+        @media(max-width:768px) {
+            padding-top: 4px;
+            order: 1;   
+        }
     }
 
     &__heading {
         max-width: 300px;
         margin-bottom: 20px;
+        
     }
 
     &__bank-info {
@@ -446,11 +465,19 @@ a {
     font-family: Georgia, sans-serif;
     font-size: 20px;
     padding-top: 56px;
+    @media(max-width:768px) {
+        padding-top: 25px;   
+    }
     &__container {
         display: flex; 
-        justify-content: space-between;  
-        gap: 120px;
+        justify-content: center;
+        column-gap: 13%;
+        row-gap: 65px;
         flex-wrap: wrap;
+        @media(max-width:768px) {
+            column-gap: 8.5%;
+            // margin-top: 5px;
+        }
     }  
 
     &__heading {
