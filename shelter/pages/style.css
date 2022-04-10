@@ -560,12 +560,13 @@ a {
   color: #F1CDB3;
   font-family: Georgia, sans-serif;
   font-size: 20px;
-  padding-top: 56px;
+  padding-top: 40px;
+  overflow-y: hidden;
 }
 
 @media (max-width: 768px) {
   .footer {
-    padding-top: 30px;
+    padding-top: 15px;
   }
 }
 
@@ -588,6 +589,10 @@ a {
     -webkit-column-gap: 8.5%;
             column-gap: 8.5%;
   }
+}
+
+.footer__contacts, .footer__location {
+  margin-top: 16px;
 }
 
 .footer__heading {
@@ -629,6 +634,14 @@ a {
   text-decoration: none;
   font-style: normal;
   max-width: 260px;
+}
+
+.footer__image {
+  max-width: 300px;
+  max-height: 310px;
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
 }
 
 .full-friends__header {

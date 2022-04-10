@@ -484,14 +484,14 @@ a {
 
 .footer {
     background: url('../assets/gradient/noise_transparent@2x.png'),
-        radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%);
+    radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%);
     color: #F1CDB3;
     font-family: Georgia, sans-serif;
     font-size: 20px;
-    padding-top: 56px;
-
+    padding-top: 40px;
+    overflow-y: hidden;
     @media(max-width:768px) {
-        padding-top: 30px;
+        padding-top: 15px;
     }
 
     &__container {
@@ -504,6 +504,10 @@ a {
         @media(max-width:768px) {
             column-gap: 8.5%;
         }
+    }
+
+    &__contacts, &__location {
+        margin-top: 16px;
     }
 
     &__heading {
@@ -545,6 +549,12 @@ a {
         text-decoration: none;
         font-style: normal;
         max-width: 260px;
+    }
+
+    &__image {
+        max-width: 300px;
+        max-height: 310px;
+        align-self: end;
     }
 }
 
