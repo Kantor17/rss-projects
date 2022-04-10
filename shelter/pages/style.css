@@ -334,10 +334,16 @@ a {
 
 .friends__cards {
   position: relative;
-  gap: 7%;
+  gap: 7.5%;
   height: 435px;
   overflow-y: hidden;
   margin-bottom: 60px;
+}
+
+@media (max-width: 768px) {
+  .friends__cards {
+    gap: 40px;
+  }
 }
 
 .friends__arrow-right, .friends__arrow-left {
@@ -441,6 +447,7 @@ a {
 @media (max-width: 768px) {
   .help__item {
     width: 170px;
+    height: 113px;
   }
 }
 
@@ -456,8 +463,14 @@ a {
 }
 
 .donation {
-  padding-bottom: 94px;
   background-color: #F6F6F6;
+}
+
+@media (max-width: 768px) {
+  .donation {
+    padding-top: 79px;
+    padding-bottom: 95px;
+  }
 }
 
 .donation__container {
@@ -471,7 +484,7 @@ a {
           justify-content: center;
   -webkit-column-gap: 30px;
           column-gap: 30px;
-  row-gap: 60px;
+  row-gap: 55px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -491,7 +504,6 @@ a {
 
 @media (max-width: 768px) {
   .donation__content {
-    padding-top: 4px;
     -webkit-box-ordinal-group: 2;
         -ms-flex-order: 1;
             order: 1;
@@ -553,7 +565,7 @@ a {
 
 @media (max-width: 768px) {
   .footer {
-    padding-top: 25px;
+    padding-top: 30px;
   }
 }
 
@@ -600,7 +612,7 @@ a {
 }
 
 .footer__mail:not(:last-child), .footer__phone:not(:last-child), .footer__adress:not(:last-child) {
-  margin-bottom: 43px;
+  margin-bottom: 40px;
 }
 
 .footer__mail:not(:last-child)._location, .footer__phone:not(:last-child)._location, .footer__adress:not(:last-child)._location {
@@ -636,8 +648,25 @@ a {
   color: #545454;
 }
 
-.full-friends__header .header__subtitle, .full-friends__header .header__link:hover {
+.full-friends__header .header__subtitle,
+.full-friends__header .header__link:hover {
   color: #292929;
+}
+
+@media (max-width: 768px) {
+  .full-friends {
+    padding-bottom: 76px;
+  }
+}
+
+.full-friends__heading {
+  margin-bottom: 60px;
+}
+
+@media (max-width: 768px) {
+  .full-friends__heading {
+    margin-bottom: 30px;
+  }
 }
 
 .full-friends__cards {
@@ -646,6 +675,16 @@ a {
   row-gap: 32px;
   padding-bottom: 15px;
   margin-bottom: 45px;
+}
+
+@media (max-width: 768px) {
+  .full-friends__cards {
+    max-height: 1365px;
+    overflow-y: hidden;
+    -webkit-column-gap: 40px;
+            column-gap: 40px;
+    margin-bottom: 40px;
+  }
 }
 
 .full-friends__button {
