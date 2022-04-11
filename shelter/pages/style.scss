@@ -255,9 +255,6 @@ a {
             max-width: 569px;
             max-height: 593px;
         }
-        & .img {
-    
-        }
     }
 }
 
@@ -589,7 +586,10 @@ a {
     padding-top: 30px;
     padding-bottom: 30px;
     color: #545454;
-
+    @media(max-width: 1279.5px) {
+        position: fixed;
+        background-color: #fff;
+    }
     & .header__title {
         color: #545454;
     }
@@ -607,6 +607,7 @@ a {
 .full-friends {
 
     @media(max-width: 1279.5px) {
+        padding-top: 200px;
         padding-bottom: 76px;
     }
 

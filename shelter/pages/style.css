@@ -683,6 +683,13 @@ a {
   color: #545454;
 }
 
+@media (max-width: 1279.5px) {
+  .full-friends__header {
+    position: fixed;
+    background-color: #fff;
+  }
+}
+
 .full-friends__header .header__title {
   color: #545454;
 }
@@ -698,6 +705,7 @@ a {
 
 @media (max-width: 1279.5px) {
   .full-friends {
+    padding-top: 200px;
     padding-bottom: 76px;
   }
 }
