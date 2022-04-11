@@ -39,7 +39,7 @@ a {
     margin: 0 auto;
     box-sizing: border-box;
 
-    @media(max-width: 768px) {
+    @media(max-width: 1279.5px) {
         padding: 0 30px;
     }
 }
@@ -65,17 +65,19 @@ a {
     line-height: 130%;
     letter-spacing: 0.06em;
     color: #292929;
-
     &._colored {
         background-color: #F1CDB3;
     }
 
     &:not(._disabled):hover {
+        border-color: #FDDCC4;
         background-color: #FDDCC4;
     }
 
     &._small {
         width: 187px;
+        padding-top: 12px;
+        padding-bottom: 12px;
     }
 
     &._big {
@@ -187,7 +189,7 @@ a {
         }
     }
 
-    @media(max-width: 768px) {
+    @media(max-width: 1279.5px) {
         top: 30px;
     }
 }
@@ -199,10 +201,14 @@ a {
     &__container {
         display: flex;
         justify-content: center;
-        align-items: flex-end;
-
-        @media(max-width: 768px) {
+        @media(max-width: 1279.5px) {
             flex-wrap: wrap;
+        }
+    }
+
+    &__content {
+        @media(max-width: 1279.5px) {
+            flex-basis: 100%;
         }
     }
 
@@ -211,9 +217,11 @@ a {
         padding-bottom: 243px;
         max-width: 460px;
 
-        @media(max-width: 768px) {
+        @media(max-width: 1279.5px) {
             padding-top: 150px;
             padding-bottom: 100px;
+            margin-left: auto;
+            margin-right: auto;
         }
     }
 
@@ -233,19 +241,22 @@ a {
     }
 
     &__button {
-        @media(max-width: 768px) {
+        @media(max-width: 1279.5px) {
             margin: 0 auto;
         }
     }
 
     &__puppy {
+        align-self: flex-end;
+        margin-left: auto;
         max-width: 698px;
         max-height: 728px;
-        margin-left: auto;
-
-        @media(max-width: 768px) {
+        @media(max-width: 1279.5px) {
             max-width: 569px;
             max-height: 593px;
+        }
+        & .img {
+    
         }
     }
 }
@@ -260,15 +271,18 @@ a {
     }
 
     &__pets {
-        width: 300px;
-        height: 408px;
+        max-height: 408px;
+        @media(max-width: 1279.5px) {
+            flex-basis: 100%;
+            text-align: center;
+        }
     }
 
     &__description {
         width: 430px;
         padding-top: 14px;
 
-        @media(max-width: 768px) {
+        @media(max-width: 1279.5px) {
             padding-top: 0;
         }
     }
@@ -290,7 +304,7 @@ a {
         width: 400px;
         margin-left: auto;
         margin-right: auto;
-        margin-bottom: 60px;
+        margin-bottom: 58px;
         text-align: center;
     }
 
@@ -301,7 +315,10 @@ a {
         overflow-y: hidden;
         margin-bottom: 60px;
 
-        @media(max-width: 768px) {
+        @media(max-width: 1279.5px) {
+            max-width: 708px;
+            margin-left: auto;
+            margin-right: auto;
             gap: 40px;
         }
     }
@@ -335,6 +352,7 @@ a {
 
 .card {
     width: 270px;
+    height: 435px;
     background-color: #FAFAFA;
     padding-bottom: 30px;
     border-radius: 9px;
@@ -342,13 +360,13 @@ a {
     &__image {
         width: 100%;
         height: 270px;
-        margin-bottom: 27px;
+        margin-bottom: 30px;
     }
 
     &__name {
         font-size: 20px;
         text-align: center;
-        margin-bottom: 28px;
+        margin-bottom: 30px;
     }
 
     &__button {
@@ -383,16 +401,16 @@ a {
         column-gap: 10%;
         row-gap: 55px;
 
-        @media(max-width:768px) {
-            column-gap: 60px;
+        @media(max-width: 1279.5px) {
+            column-gap: 0px;
         }
     }
 
     &__item {
         text-align: center;
 
-        @media(max-width:768px) {
-            width: 170px;
+        @media(max-width: 1279.5px) {
+            flex-basis: 32.5%;
             height: 113px;
         }
     }
@@ -400,7 +418,7 @@ a {
     &__img {
         width: 100%;
         height: 60px;
-        margin-bottom: 28px;
+        margin-bottom: 30px;
     }
 
     &__name {
@@ -410,7 +428,7 @@ a {
 }
 
 .donation {
-    @media(max-width: 768px) {
+    @media(max-width: 1279.5px) {
         padding-top: 79px;
         padding-bottom: 95px;
     }
@@ -427,7 +445,9 @@ a {
     }
 
     &__image {
-        @media(max-width:768px) {
+        @media(max-width: 1279.5px) {
+            flex-basis: 100%;
+            text-align: center;
             order: 2;
         }
     }
@@ -435,7 +455,7 @@ a {
     &__content {
         max-width: 380px;
 
-        @media(max-width:768px) {
+        @media(max-width: 1279.5px) {
             order: 1;
         }
     }
@@ -484,13 +504,14 @@ a {
 
 .footer {
     background: url('../assets/gradient/noise_transparent@2x.png'),
-    radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%);
+        radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%);
     color: #F1CDB3;
     font-family: Georgia, sans-serif;
     font-size: 20px;
     padding-top: 40px;
     overflow-y: hidden;
-    @media(max-width:768px) {
+
+    @media(max-width: 1279.5px) {
         padding-top: 15px;
     }
 
@@ -501,12 +522,13 @@ a {
         row-gap: 65px;
         flex-wrap: wrap;
 
-        @media(max-width:768px) {
+        @media(max-width: 1279.5px) {
             column-gap: 8.5%;
         }
     }
 
-    &__contacts, &__location {
+    &__contacts,
+    &__location {
         margin-top: 16px;
     }
 
@@ -552,9 +574,11 @@ a {
     }
 
     &__image {
-        max-width: 300px;
         max-height: 310px;
-        align-self: end;
+        @media(max-width: 1279.5px) {
+            flex-basis: 100%;
+            text-align: center;
+        }
     }
 }
 
@@ -582,29 +606,32 @@ a {
 
 .full-friends {
 
-    @media(max-width: 768px) {
+    @media(max-width: 1279.5px) {
         padding-bottom: 76px;
     }
 
     &__heading {
-        margin-bottom: 60px;
+        margin-bottom: 57px;
 
-        @media(max-width: 768px) {
-            margin-bottom: 30px;
+        @media(max-width: 1279.5px) {
+            margin-bottom: 27px;
         }
     }
 
     &__cards {
         column-gap: 3.33%;
-        row-gap: 32px;
+        row-gap: 30px;
         padding-bottom: 15px;
-        margin-bottom: 45px;
+        margin-bottom: 47px;
 
-        @media(max-width: 768px) {
+        @media(max-width: 1279.5px) {
+            max-width: 580px;
             max-height: 1365px;
+            margin-left: auto;
+            margin-right: auto;
             overflow-y: hidden;
             column-gap: 40px;
-            margin-bottom: 40px;
+            margin-bottom: 42px;
         }
     }
 
