@@ -1014,13 +1014,8 @@ a {
   padding-top: 30px;
   padding-bottom: 30px;
   color: #545454;
-}
-
-@media (max-width: 1279.5px) {
-  .full-friends__header {
-    position: fixed;
-    background-color: #fff;
-  }
+  position: fixed;
+  background-color: #fff;
 }
 
 .full-friends__header .header__title {
@@ -1044,9 +1039,12 @@ a {
   background: #000000;
 }
 
+.full-friends {
+  padding-top: 200px;
+}
+
 @media (max-width: 1279.5px) {
   .full-friends {
-    padding-top: 200px;
     padding-bottom: 76px;
   }
 }
