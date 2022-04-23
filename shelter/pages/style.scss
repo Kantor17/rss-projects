@@ -487,7 +487,6 @@ a {
     &__cards {
         column-gap: 7.5%;
         position: relative;
-        flex-wrap: nowrap;
         min-width: 100%;
         @media(max-width: 1279.5px) {
             max-width: 585px;

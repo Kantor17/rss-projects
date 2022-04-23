@@ -8,12 +8,17 @@ const SLIDER = document.querySelector('.friends__slider');
 let createdPets = [];
 
 let currentAmount = 3;
-if(window.screen.width < 1280) {
-    currentAmount = 2;
-}
-if(window.screen.width < 768) {
-    currentAmount = 1;
-}
+window.addEventListener('resize', () => {
+    if(window.screen.width >= 1280) {
+        currentAmount = 3;
+    }
+    if(window.screen.width < 1280) {
+        currentAmount = 2;
+    }
+    if(window.screen.width < 768) {
+        currentAmount = 1;
+    }
+});
 
 function createCardsWrapper(pets, amount) {
     const cardsWrapper = document.createElement('div');
@@ -84,7 +89,6 @@ function createNextCards(pets, amount) {
         cards.append(card);
     }
     createdPets.splice(0, amount);
-    console.log(createdPets);
     return cards.innerHTML;
 }
 

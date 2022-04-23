@@ -569,8 +569,6 @@ a {
   -webkit-column-gap: 7.5%;
           column-gap: 7.5%;
   position: relative;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
   min-width: 100%;
 }
 
