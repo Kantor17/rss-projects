@@ -401,81 +401,8 @@ a {
     }
 }
 
-.friends {
-    background-color: #F6F6F6;
-
-    &__heading {
-        max-width: 400px;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 58px;
-        text-align: center;
-
-        @media(max-width: 767.5px) {
-            margin-bottom: 40px;
-        }
-    }
-
-    &__slider {
-        position: relative;
-
-        @media(max-width: 767.5px) {
-            margin-bottom: 15px;
-        }
-    }
-
-    &__cards {
-        column-gap: 7.5%;
-        height: 435px;
-        overflow-y: hidden;
-        margin-bottom: 60px;
-
-        @media(max-width: 1279.5px) {
-            max-width: 708px;
-            margin-left: auto;
-            margin-right: auto;
-            gap: 40px;
-        }
-
-        @media(max-width: 767.5px) {
-            margin-bottom: 45px;
-            max-width: 270px;
-        }
-    }
-
-    &__controls {
-        @media(max-width: 767.5px) {
-            position: relative;
-            display: flex;
-            column-gap: 80px;
-            justify-content: center;
-        }
-    }
-
-    &__arrow-right,
-    &__arrow-left {
-        @media(max-width: 767.5px) {
-            position: static;
-        }
-
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-
-    }
-
-    &__arrow-left {
-        transform: rotateY(180deg) translateY(-50%);
-        left: 0;
-    }
-
-    &__arrow-right {
-        right: 0;
-    }
-
-    &__button {
-        margin: 0 auto;
-    }
+.cards-wrapper {
+    overflow: hidden;
 }
 
 .cards {
@@ -515,6 +442,137 @@ a {
         & .button {
             background-color: #FDDCC4;
         }
+    }
+}
+
+.friends {
+    background-color: #F6F6F6;
+
+    &__heading {
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 58px;
+        text-align: center;
+
+        @media(max-width: 767.5px) {
+            margin-bottom: 40px;
+        }
+    }
+
+    &__slider {
+        position: relative;
+
+        @media(max-width: 767.5px) {
+            margin-bottom: 15px;
+        }
+    }
+
+    &__cards-wrapper {
+        height: 435px;
+        margin-bottom: 60px;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 955px;
+        display: flex;
+        @media(max-width: 1279.5px) {
+            max-width: 585px;
+        }
+
+        @media(max-width: 767.5px) {
+            max-width: 270px;
+        }
+    }
+
+    &__cards {
+        column-gap: 7.5%;
+        position: relative;
+        flex-wrap: nowrap;
+        min-width: 100%;
+        @media(max-width: 1279.5px) {
+            max-width: 585px;
+            gap: 40px;
+        }
+
+        @media(max-width: 767.5px) {
+            margin-bottom: 45px;
+            max-width: 270px;
+        }
+    }
+    &__previous-cards {
+        right: 100%;
+
+        &.move-right {
+            animation: move-right 2s;
+        }
+    }
+
+    &__current-cards {
+        right: 100%;
+        &.move-left {
+            animation: move-left 2s;
+        }
+
+        &.move-right {
+            animation: move-right 2s;
+        }
+    }
+
+    &__next-cards {
+        right: 100%;
+        &.move-left {
+            animation: move-left 2s;
+        }
+    }
+
+    &__controls {
+        @media(max-width: 767.5px) {
+            position: relative;
+            display: flex;
+            column-gap: 80px;
+            justify-content: center;
+        }
+    }
+
+    &__arrow-right,
+    &__arrow-left {
+        @media(max-width: 767.5px) {
+            position: static;
+        }
+
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+
+    }
+
+    &__arrow-left {
+        transform: rotateY(180deg) translateY(-50%);
+        left: 0;
+    }
+
+    &__arrow-right {
+        right: 0;
+    }
+
+    &__button {
+        margin: 0 auto;
+    }
+}
+
+@keyframes move-left {
+    from{
+        right: 100%;
+    }to{
+        right: 200%;
+    }
+}
+
+@keyframes move-right {
+    from{
+        right: 100%;
+    }to{
+        right: 0;
     }
 }
 
@@ -872,6 +930,7 @@ a {
 
 .full-friends {
     padding-top: 200px;
+
     @media(max-width: 1279.5px) {
         padding-bottom: 76px;
 
