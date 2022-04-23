@@ -10,15 +10,14 @@
     <link rel="stylesheet" href="../normalize.css">
     <link rel="stylesheet" href="../style.css">
 </head>
-
 <body>
     <header class="header full-friends__header">
         <div class="container header__container">
-            <a class="header__logo" href="../main/index.html">
-                <h1 class="header__title">Cozy House</h1>
-                <p class="header__subtitle">Shelter for pets in Boston</p>
-            </a>
             <nav class="header__navbar">
+                <a class="header__logo" href="../main/index.html">
+                    <h1 class="header__title">Cozy House</h1>
+                    <p class="header__subtitle">Shelter for pets in Boston</p>
+                </a>
                 <ul class="header__navlist">
                     <li class="header__item"><a href="../main/index.html#main" class="header__link">About the
                             shelter</a></li>
@@ -28,11 +27,25 @@
                     <li class="header__item"><a href="#contacts" class="header__link">Contacts</a></li>
                 </ul>
             </nav>
+            <div class="header__burger-overlay"></div>
+            <nav class="header__burger-menu">
+                <a class="header__logo">
+                    <h1 class="header__title">Cozy House</h1>
+                    <p class="header__subtitle">Shelter for pets in Boston</p>
+                </a>
+                <ul class="header__burger-list">
+                    <li class="header__item"><a href="../main/index.html#main" class="header__link">About the
+                            shelter</a></li>
+                    <li class="header__item"><a href="#" class="header__link _active">Our pets</a></li>
+                    <li class="header__item"><a href="../main/index.html#help" class="header__link">Help the shelter</a></li>
+                    <li class="header__item"><a href="#contacts" class="header__link">Contacts</a></li>
+                </ul>
+            </nav>
             <button class="header__burger">
                 <span></span>
             </button>
         </div>
-        
+
     </header>
     <main class="main">
         <section class="friends full-friends section">
@@ -149,6 +162,7 @@
             </div>
         </div>
     </footer>
+    <script src="../js/burger.js"></script>
 </body>
 
 </html>
