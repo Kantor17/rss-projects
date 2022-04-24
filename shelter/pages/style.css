@@ -163,6 +163,20 @@ a {
   color: #CDCDCD;
 }
 
+@media (max-width: 1279.5px) {
+  .header {
+    top: 30px;
+  }
+}
+
+@media (max-width: 767.5px) {
+  .header {
+    position: fixed;
+    top: 0px;
+    padding-top: 30px;
+  }
+}
+
 .header__container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -302,12 +316,6 @@ a {
 .header__link._active {
   color: #FAFAFA;
   border-bottom: 3px solid #F1CDB3;
-}
-
-@media (max-width: 1279.5px) {
-  .header {
-    top: 30px;
-  }
 }
 
 .header__burger {
