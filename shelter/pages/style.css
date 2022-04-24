@@ -652,6 +652,7 @@ a {
 @media (max-width: 767.5px) {
   .friends__cards-wrapper {
     max-width: 270px;
+    margin-bottom: 45px;
   }
 }
 
@@ -664,15 +665,7 @@ a {
 
 @media (max-width: 1279.5px) {
   .friends__cards {
-    max-width: 585px;
     gap: 40px;
-  }
-}
-
-@media (max-width: 767.5px) {
-  .friends__cards {
-    margin-bottom: 45px;
-    max-width: 270px;
   }
 }
 

@@ -159,6 +159,7 @@ a {
         top: 0px;
         padding-top: 30px;
     }
+
     &__container {
         display: flex;
         justify-content: space-between;
@@ -239,10 +240,12 @@ a {
         width: 100vw;
         height: 100vh;
         background: rgba(41, 41, 41, 0.6);
+
         &.open {
             display: block;
         }
     }
+
     &__burger-list {
         display: flex;
         flex-direction: column;
@@ -274,6 +277,7 @@ a {
         height: 32px;
         border: 0;
         transition: transform 1.5s;
+
         & span {
             position: absolute;
             top: 50%;
@@ -540,6 +544,7 @@ a {
 
         @media(max-width: 767.5px) {
             max-width: 270px;
+            margin-bottom: 45px;
         }
     }
 
@@ -549,14 +554,9 @@ a {
         min-width: 100%;
 
         @media(max-width: 1279.5px) {
-            max-width: 585px;
             gap: 40px;
         }
 
-        @media(max-width: 767.5px) {
-            margin-bottom: 45px;
-            max-width: 270px;
-        }
     }
 
     &__previous-cards {
@@ -999,7 +999,8 @@ a {
         }
 
         & .header__link {
-            color:#CDCDCD;
+            color: #CDCDCD;
+
             &:hover {
                 color: #FFFFFF;
             }
