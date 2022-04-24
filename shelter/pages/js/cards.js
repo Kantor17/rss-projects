@@ -1,6 +1,7 @@
 import {
     pets
-} from './pets.js';
+}
+from './pets.js';
 
 const BTN_LEFT = document.querySelector('.friends__arrow-left');
 const BTN_RIGHT = document.querySelector('.friends__arrow-right');
@@ -9,13 +10,13 @@ let createdPets = [];
 
 let currentAmount = 3;
 window.addEventListener('resize', () => {
-    if(window.screen.width >= 1280) {
+    if (window.screen.width >= 1280) {
         currentAmount = 3;
     }
-    if(window.screen.width < 1280) {
+    if (window.screen.width < 1280) {
         currentAmount = 2;
     }
-    if(window.screen.width < 768) {
+    if (window.screen.width < 768) {
         currentAmount = 1;
     }
 });
@@ -46,6 +47,33 @@ function createCard(source) {
     cardButton.textContent = 'Learn more';
     card.append(cardButton);
 
+    card.addEventListener('click', () => {
+        showPopup(card);
+
+        const CLOSE_BTN = document.querySelector('.popup__button');
+        CLOSE_BTN.addEventListener('click', () => {
+            closePopup();
+        });
+
+        const OVERLAY = document.querySelector('.popup-overlay');
+        OVERLAY.addEventListener('click', (event) => {
+            if (!event.target.closest('.popup')) {
+                closePopup()
+            }
+        });
+
+        OVERLAY.addEventListener('mouseover', (event) => {
+            if (!event.target.closest('.popup')) {
+                CLOSE_BTN.classList.add('hover');
+            }
+        });
+
+        OVERLAY.addEventListener('mouseout', (event) => {
+            if (!event.target.closest('.popup')) {
+                CLOSE_BTN.classList.remove('hover');
+            }
+        });
+    })
     return card;
 }
 
@@ -111,3 +139,54 @@ SLIDER.addEventListener('animationend', (e) => {
         document.querySelector('.friends__current-cards').replaceChildren(...document.querySelector('.friends__previous-cards').children);
     }
 });
+
+function showPopup(card) {
+    const popupOverlay = document.createElement('div');
+    popupOverlay.classList.add('popup-overlay');
+    const popupWrapper = document.createElement('div');
+    popupWrapper.classList.add('popup-wrapper');
+    const pet = card.pet;
+    popupWrapper.innerHTML = `
+    <button class="popup__button button _round"></button>
+    <div class="popup">
+        <div class="popup__image img-wrapper">
+            <img src="${pet.img}" alt="${pet.breed} ${pet.type}" class="img">
+        </div>
+        <div class="popup__content">
+            <h3 class="popup__name heading">${pet.name}</h3>
+            <p class="popup__type">${pet.type} - ${pet.breed}</p>
+            <p class="popup__description">${pet.description}</p>
+            <ul class="popup__list">
+                <li class="popup__item">
+                    <h4 class="popup__item-heading">Age</h4>
+                    :
+                    ${pet.age}
+                </li>
+                <li class="popup__item">
+                    <h4 class="popup__item-heading">Inoculations</h4>
+                    :
+                    ${pet.inoculations.join(', ')}
+                </li>
+                <li class="popup__item">
+                    <h4 class="popup__item-heading">Diseas</h4>
+                    :
+                    ${pet.diseases.join(', ')}
+                </li>
+                <li class="popup__item">
+                    <h4 class="popup__item-heading">Parasites</h4>
+                    :
+                    ${pet.parasites.join(', ')}
+                </li>
+            </ul>
+        </div>
+    </div>`;
+
+    popupOverlay.append(popupWrapper);
+    document.querySelector('.main').append(popupOverlay);
+    document.documentElement.classList.add('_disable-scroll');
+};
+
+function closePopup() {
+    document.documentElement.classList.remove('_disable-scroll');
+    document.querySelector('.popup-overlay').remove();
+}
