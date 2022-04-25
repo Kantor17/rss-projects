@@ -31,14 +31,11 @@ function createCard(source) {
         showPopup(card);
 
         const CLOSE_BTN = document.querySelector('.popup__button');
-        CLOSE_BTN.addEventListener('click', () => {
-            closePopup();
-        });
-
+        
         const OVERLAY = document.querySelector('.popup-overlay');
         OVERLAY.addEventListener('click', (event) => {
             if (!event.target.closest('.popup')) {
-                closePopup()
+                closePopup();
             }
         });
 
