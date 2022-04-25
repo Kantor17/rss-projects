@@ -14,11 +14,11 @@
 <body>
     <header class="header full-friends__header">
         <div class="container header__container">
-            <a class="header__logo" href="../main/index.html">
-                <h1 class="header__title">Cozy House</h1>
-                <p class="header__subtitle">Shelter for pets in Boston</p>
-            </a>
             <nav class="header__navbar">
+                <a class="header__logo" href="../main/index.html">
+                    <h1 class="header__title">Cozy House</h1>
+                    <p class="header__subtitle">Shelter for pets in Boston</p>
+                </a>
                 <ul class="header__navlist">
                     <li class="header__item"><a href="../main/index.html#main" class="header__link">About the
                             shelter</a></li>
@@ -28,11 +28,26 @@
                     <li class="header__item"><a href="#contacts" class="header__link">Contacts</a></li>
                 </ul>
             </nav>
+            <div class="header__burger-overlay"></div>
+            <nav class="header__burger-menu">
+                <a class="header__logo">
+                    <h1 class="header__title">Cozy House</h1>
+                    <p class="header__subtitle">Shelter for pets in Boston</p>
+                </a>
+                <ul class="header__burger-list">
+                    <li class="header__item"><a href="../main/index.html#main" class="header__link">About the
+                            shelter</a></li>
+                    <li class="header__item"><a href="#" class="header__link _active">Our pets</a></li>
+                    <li class="header__item"><a href="../main/index.html#help" class="header__link">Help the shelter</a>
+                    </li>
+                    <li class="header__item"><a href="#contacts" class="header__link">Contacts</a></li>
+                </ul>
+            </nav>
             <button class="header__burger">
                 <span></span>
             </button>
         </div>
-        
+
     </header>
     <main class="main">
         <section class="friends full-friends section">
@@ -40,72 +55,74 @@
                 <h2 class="friends__heading full-friends__heading heading">
                     Our friends who<br>are looking for a house
                 </h2>
-                <div class="full-friends__cards cards">
-                    <div class="full-friends__card card">
-                        <div class="card__image img-wrapper">
-                            <img src="../../assets/images/pets/pets-katrine.jpg" alt="grey cat" class="img">
+                <div class="full-friends__cards-wrapper">
+                    <!-- <div class="full-friends__page cards">
+                        <div class="full-friends__card card">
+                            <div class="card__image img-wrapper">
+                                <img src="../../assets/images/pets/pets-katrine.jpg" alt="grey cat" class="img">
+                            </div>
+                            <h3 class="card__name heading">Katrine</h3>
+                            <a href="" class="card__button button _small">Learn more</a>
                         </div>
-                        <h3 class="card__name heading">Katrine</h3>
-                        <a href="" class="card__button button _small">Learn more</a>
-                    </div>
-                    <div class="full-friends__card card">
-                        <div class="card__image img-wrapper">
-                            <img src="../../assets/images/pets/pets-jennifer.jpg" alt="white puppy" class="img">
+                        <div class="full-friends__card card">
+                            <div class="card__image img-wrapper">
+                                <img src="../../assets/images/pets/pets-jennifer.jpg" alt="white puppy" class="img">
+                            </div>
+                            <h3 class="card__name heading">Jennifer</h3>
+                            <a href="" class="card__button button _small">Learn more</a>
                         </div>
-                        <h3 class="card__name heading">Jennifer</h3>
-                        <a href="" class="card__button button _small">Learn more</a>
-                    </div>
-                    <div class="full-friends__card card">
-                        <div class="card__image img-wrapper">
-                            <img src="../../assets/images/pets/pets-woody.jpg" alt="godlen retriever" class="img">
+                        <div class="full-friends__card card">
+                            <div class="card__image img-wrapper">
+                                <img src="../../assets/images/pets/pets-woody.jpg" alt="godlen retriever" class="img">
+                            </div>
+                            <h3 class="card__name heading">Woody</h3>
+                            <a href="" class="card__button button _small">Learn more</a>
                         </div>
-                        <h3 class="card__name heading">Woody</h3>
-                        <a href="" class="card__button button _small">Learn more</a>
-                    </div>
-                    <div class="full-friends__card card">
-                        <div class="card__image img-wrapper">
-                            <img src="../../assets/images/pets/pets-sophia.jpg" alt="white puppy" class="img">
+                        <div class="full-friends__card card">
+                            <div class="card__image img-wrapper">
+                                <img src="../../assets/images/pets/pets-sophia.jpg" alt="white puppy" class="img">
+                            </div>
+                            <h3 class="card__name heading">Sophia</h3>
+                            <a href="" class="card__button button _small">Learn more</a>
                         </div>
-                        <h3 class="card__name heading">Sophia</h3>
-                        <a href="" class="card__button button _small">Learn more</a>
-                    </div>
-                    <div class="full-friends__card card">
-                        <div class="card__image img-wrapper">
-                            <img src="../../assets/images/pets/pets-timmy.jpg" alt="grey cat" class="img">
+                        <div class="full-friends__card card">
+                            <div class="card__image img-wrapper">
+                                <img src="../../assets/images/pets/pets-timmy.jpg" alt="grey cat" class="img">
+                            </div>
+                            <h3 class="card__name heading">Timmy</h3>
+                            <a href="" class="card__button button _small">Learn more</a>
                         </div>
-                        <h3 class="card__name heading">Timmy</h3>
-                        <a href="" class="card__button button _small">Learn more</a>
-                    </div>
-                    <div class="full-friends__card card">
-                        <div class="card__image img-wrapper">
-                            <img src="../../assets/images/pets/pets-charly.jpg" alt="white dog with brown head"
-                                class="img">
+                        <div class="full-friends__card card">
+                            <div class="card__image img-wrapper">
+                                <img src="../../assets/images/pets/pets-charly.jpg" alt="white dog with brown head"
+                                    class="img">
+                            </div>
+                            <h3 class="card__name heading">Charly</h3>
+                            <a href="" class="card__button button _small">Learn more</a>
                         </div>
-                        <h3 class="card__name heading">Charly</h3>
-                        <a href="" class="card__button button _small">Learn more</a>
-                    </div>
-                    <div class="full-friends__card card">
-                        <div class="card__image img-wrapper">
-                            <img src="../../assets/images/pets/pets-scarlet.jpg" alt="little white dog with brown head"
-                                class="img">
+                        <div class="full-friends__card card">
+                            <div class="card__image img-wrapper">
+                                <img src="../../assets/images/pets/pets-scarlett.jpg"
+                                    alt="little white dog with brown head" class="img">
+                            </div>
+                            <h3 class="card__name heading">Scarlett</h3>
+                            <a href="" class="card__button button _small">Learn more</a>
                         </div>
-                        <h3 class="card__name heading">Scarlett</h3>
-                        <a href="" class="card__button button _small">Learn more</a>
-                    </div>
-                    <div class="full-friends__card card">
-                        <div class="card__image img-wrapper">
-                            <img src="../../assets/images/pets/pets-freddie.jpg" alt="grey and white" class="img">
+                        <div class="full-friends__card card">
+                            <div class="card__image img-wrapper">
+                                <img src="../../assets/images/pets/pets-freddie.jpg" alt="grey and white" class="img">
+                            </div>
+                            <h3 class="card__name heading">Freddie</h3>
+                            <a href="" class="card__button button _small">Learn more</a>
                         </div>
-                        <h3 class="card__name heading">Freddie</h3>
-                        <a href="" class="card__button button _small">Learn more</a>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="full-friends__controls">
-                    <button class="full-friends__button button _round _disabled">&lt;&lt;</button>
-                    <button class="full-friends__button button _round _disabled">&lt;</button>
+                    <button class="full-friends__button full-friends__first-button button _round _disabled">&lt;&lt;</button>
+                    <button class="full-friends__button full-friends__previous-button button _round _disabled">&lt;</button>
                     <button class="full-friends__button full-friends__pagenum button _round">1</button>
-                    <button class="full-friends__button button _round">&gt;</button>
-                    <button class="full-friends__button button _round">&gt;&gt;</button>
+                    <button class="full-friends__button full-friends__next-button button _round">&gt;</button>
+                    <button class="full-friends__button full-friends__last-button button _round">&gt;&gt;</button>
                 </div>
             </div>
         </section>
@@ -149,6 +166,8 @@
             </div>
         </div>
     </footer>
+    <script src="../js/burger.js"></script>
+    <script type="module" src="../js/pagination.js"></script>
 </body>
 
 </html>

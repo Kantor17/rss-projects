@@ -12,14 +12,66 @@
 </head>
 
 <body>
+    <!-- <div class="popup-overlay"></div>
+    <div class="popup">
+        <button class="popup__button button _round"></button>
+        <div class="popup__image img-wrapper">
+            <img src="../../assets/images/pets/pets-jennifer.jpg" alt="" class="img">
+        </div>
+        <div class="popup__content">
+            <h3 class="popup__name heading">Jennifer</h3>
+            <p class="popup__type">Dog - Labrador</p>
+            <p class="popup__description">Jennifer is a sweet 2 months old Labrador that is patiently waiting to
+                find a
+                new forever home.
+                This girl really enjoys being able to go outside to run and play,
+                but won't hesitate to play up a storm in the house if she has all of her favorite toys.
+            </p>
+            <ul class="popup__list">
+                <li class="popup__item">
+                    <h4 class="popup__item-heading">Age</h4>
+                    :
+                    2 month
+                </li>
+                <li class="popup__item">
+                    <h4 class="popup__item-heading">Inoculations</h4>
+                    :
+                    none
+                </li>
+                <li class="popup__item">
+                    <h4 class="popup__item-heading">Diseas</h4>
+                    :
+                    none
+                </li>
+                <li class="popup__item">
+                    <h4 class="popup__item-heading">Parasites</h4>
+                    :
+                    none
+                </li>
+            </ul>
+        </div>
+    </div> -->
     <header class="header">
         <div class="container header__container">
-            <a class="header__logo" href="">
-                <h1 class="header__title">Cozy House</h1>
-                <p class="header__subtitle">Shelter for pets in Boston</p>
-            </a>
             <nav class="header__navbar">
+                <a class="header__logo" href="">
+                    <h1 class="header__title">Cozy House</h1>
+                    <p class="header__subtitle">Shelter for pets in Boston</p>
+                </a>
                 <ul class="header__navlist">
+                    <li class="header__item"><a href="#main" class="header__link _active">About the shelter</a></li>
+                    <li class="header__item"><a href="../our-pets/index.html" class="header__link">Our pets</a></li>
+                    <li class="header__item"><a href="#help" class="header__link">Help the shelter</a></li>
+                    <li class="header__item"><a href="#contacts" class="header__link">Contacts</a></li>
+                </ul>
+            </nav>
+            <div class="header__burger-overlay"></div>
+            <nav class="header__burger-menu">
+                <a class="header__logo">
+                    <h1 class="header__title">Cozy House</h1>
+                    <p class="header__subtitle">Shelter for pets in Boston</p>
+                </a>
+                <ul class="header__burger-list">
                     <li class="header__item"><a href="#main" class="header__link _active">About the shelter</a></li>
                     <li class="header__item"><a href="../our-pets/index.html" class="header__link">Our pets</a></li>
                     <li class="header__item"><a href="#help" class="header__link">Help the shelter</a></li>
@@ -32,6 +84,7 @@
         </div>
     </header>
     <main class="main" id="main">
+
         <section class="hero">
             <div class="container hero__container">
                 <div class="hero__content">
@@ -74,7 +127,8 @@
                     Our friends who<br>are looking for a house
                 </h2>
                 <div class="friends__slider">
-                    <div class="friends__cards cards">
+
+                    <!-- <div class="friends__cards cards">
                         <div class="friends__card card">
                             <div class="card__image img-wrapper">
                                 <img src="../../assets/images/pets/pets-katrine.jpg" alt="grey cat" class="img">
@@ -96,7 +150,7 @@
                             <h3 class="card__name heading">Woody</h3>
                             <a href="" class="card__button button _small">Learn more</a>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="friends__controls">
                         <button class="friends__arrow-left arrow-left button _round  _arrow"></button>
                         <button class="friends__arrow-right button _round _arrow"></button>
@@ -229,6 +283,8 @@
             </div>
         </div>
     </footer>
+    <script type="module" src="../js/carosuel.js"></script>
+    <script src="../js/burger.js"></script>
 </body>
 
 </html>
