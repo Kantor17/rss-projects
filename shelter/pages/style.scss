@@ -1031,13 +1031,17 @@ a {
             margin-bottom: 39px;
         }
     }
-
-    &__cards {
+    &__cards-wrapper {
+        padding-bottom: 15px;
+        margin-bottom: 45px;
+        @media(max-width: 1279.5px) {
+            padding-bottom: 0;
+            margin-bottom: 40px;
+        }
+    }
+    &__page {
         column-gap: 3.33%;
         row-gap: 30px;
-        padding-bottom: 15px;
-        margin-bottom: 47px;
-
         @media(max-width: 1279.5px) {
             max-width: 580px;
             max-height: 1365px;

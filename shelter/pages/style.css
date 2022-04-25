@@ -1259,16 +1259,26 @@ a {
   }
 }
 
-.full-friends__cards {
-  -webkit-column-gap: 3.33%;
-          column-gap: 3.33%;
-  row-gap: 30px;
+.full-friends__cards-wrapper {
   padding-bottom: 15px;
-  margin-bottom: 47px;
+  margin-bottom: 45px;
 }
 
 @media (max-width: 1279.5px) {
-  .full-friends__cards {
+  .full-friends__cards-wrapper {
+    padding-bottom: 0;
+    margin-bottom: 40px;
+  }
+}
+
+.full-friends__page {
+  -webkit-column-gap: 3.33%;
+          column-gap: 3.33%;
+  row-gap: 30px;
+}
+
+@media (max-width: 1279.5px) {
+  .full-friends__page {
     max-width: 580px;
     max-height: 1365px;
     margin-left: auto;
@@ -1281,7 +1291,7 @@ a {
 }
 
 @media (max-width: 767.5px) {
-  .full-friends__cards {
+  .full-friends__page {
     max-width: 270px;
   }
 }
