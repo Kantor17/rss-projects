@@ -17,13 +17,13 @@ for (let i = 0; i < 6; i++) {
 }
 
 let cardsPerPage;
-if (window.screen.width >= 1280) {
+if (window.innerWidth >= 1280) {
     cardsPerPage = 8;
 }
-if (window.screen.width < 1280) {
+if (window.innerWidth < 1280) {
     cardsPerPage = 6;
 }
-if (window.screen.width < 768) {
+if (window.innerWidth < 768) {
     cardsPerPage = 3;
 }
 const pagesAmount = myPets.length / cardsPerPage;
