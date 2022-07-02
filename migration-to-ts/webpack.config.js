@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -14,8 +15,8 @@ const baseConfig = {
             },
             {
                 test: /\.ts/,
-                use: 'ts-loader'
-            }
+                use: 'ts-loader',
+            },
         ],
     },
     resolve: {
