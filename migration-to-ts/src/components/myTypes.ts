@@ -4,12 +4,12 @@ export type Options = Partial<{
 export type InitOptions = Options & { apiKey: string };
 export type Endpoints = 'everything' | 'top-headlines' | 'sources';
 export type CallBack = (data: Data) => void;
-export type Data = {
+export type Data = Readonly<{
     articles: Article[];
     status: string;
     totalResults: number;
     sources?: SourceType[];
-};
+}>;
 export type Article = {
     author: string;
     content: string;
