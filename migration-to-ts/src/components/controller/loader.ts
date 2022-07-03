@@ -20,8 +20,7 @@ class Loader {
 
     getResp(
         { endpoint, options }: { endpoint: Endpoints; options?: Options },
-        callback: CallBack = (data: Data) => {
-            console.log(data);
+        callback: CallBack = () => {
             console.error('No callback for GET response');
         }
     ) {
