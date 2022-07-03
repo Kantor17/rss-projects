@@ -1,3 +1,5 @@
+import { Article } from '../view/news/news';
+import { SourceType } from '../view/news/news';
 type Options = Partial<{
     [index: string]: string;
 }>;
@@ -5,9 +7,10 @@ type InitOptions = Options & { apiKey: string };
 type Endpoints = 'everything' | 'top-headlines' | 'sources';
 export type CallBack = (data: Data) => void;
 export interface Data {
-    articles: object[];
+    articles: Article[];
     status: string;
     totalResults: number;
+    sources?: SourceType[];
 }
 
 class Loader {
