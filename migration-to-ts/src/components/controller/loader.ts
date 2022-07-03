@@ -4,6 +4,11 @@ import { Endpoints } from '../myTypes';
 import { CallBack } from '../myTypes';
 import { Data } from '../myTypes';
 
+enum statusCode {
+    UNAUTHORIZED = 401,
+    NOT_FOUND = 404,
+}
+
 class Loader {
     baseLink: string;
     options: Options;
@@ -23,7 +28,7 @@ class Loader {
 
     errorHandler(res: Response) {
         if (!res.ok) {
-            if (res.status === 401 || res.status === 404)
+            if (res.status === statusCode.UNAUTHORIZED || res.status === statusCode.NOT_FOUND)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
             throw Error(res.statusText);
         }
