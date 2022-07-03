@@ -1,5 +1,5 @@
 import './sources.css';
-import { SourceType } from '../news/news';
+import { SourceType } from '../../myTypes';
 class Sources {
     draw(data: SourceType[]) {
         const fragment = document.createDocumentFragment();

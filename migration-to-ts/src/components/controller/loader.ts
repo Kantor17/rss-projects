@@ -1,17 +1,8 @@
-import { Article } from '../view/news/news';
-import { SourceType } from '../view/news/news';
-type Options = Partial<{
-    [index: string]: string;
-}>;
-type InitOptions = Options & { apiKey: string };
-type Endpoints = 'everything' | 'top-headlines' | 'sources';
-export type CallBack = (data: Data) => void;
-export interface Data {
-    articles: Article[];
-    status: string;
-    totalResults: number;
-    sources?: SourceType[];
-}
+import { Options } from '../myTypes';
+import { InitOptions } from '../myTypes';
+import { Endpoints } from '../myTypes';
+import { CallBack } from '../myTypes';
+import { Data } from '../myTypes';
 
 class Loader {
     baseLink: string;
