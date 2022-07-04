@@ -35,6 +35,18 @@ class AppController extends AppLoader implements ControllerInterface {
             target = target.parentNode as HTMLElement;
         }
     }
+
+    getHotNews(country: string, callback: CallBack<Data>): void {
+        super.getResp(
+            {
+                endpoint: 'top-headlines',
+                options: {
+                    country: country,
+                },
+            },
+            callback
+        );
+    }
 }
 
 export default AppController;

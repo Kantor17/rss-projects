@@ -11,11 +11,13 @@ class App implements AppInterface {
     }
 
     start(): void {
+        const cb: CallBack<Data> = (data: Data) => this.view.drawNews(data);
         (document.querySelector('.sources') as HTMLElement).addEventListener('click', (e: Event) => {
-            const cb: CallBack<Data> = (data: Data) => this.view.drawNews(data);
             this.controller.getNews(e, cb);
         });
         this.controller.getSources((data: DataSources) => this.view.drawSources(data));
+
+        this.controller.getHotNews('ua', cb);
     }
 }
 
