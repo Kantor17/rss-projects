@@ -8,6 +8,28 @@
     font: 300 1em 'Fira Sans', sans-serif;
 }
 
+.sources::-webkit-scrollbar {
+    height: 12px;
+}
+
+.sources::-webkit-scrollbar-track {
+    background: #70d6ff;
+  }
+  
+.sources::-webkit-scrollbar-thumb {
+    background-color: #3fcc59;
+}
+.sources::-webkit-scrollbar-thumb:hover {
+    background-color: #69db7e;
+ }
+
+
+ @media (hover: none) {
+    .sources::-webkit-scrollbar {
+        height: 3px;
+    }
+ }
+
 .source__item {
     background: none;
     border: 2px solid #30c5ff;
