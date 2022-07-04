@@ -1,7 +1,6 @@
 import './news.css';
-import { Article } from '../../myTypes';
-
-class News {
+import { Article, NewsInterface } from '../../myTypes';
+class News implements NewsInterface {
     draw(data: Article[]) {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 

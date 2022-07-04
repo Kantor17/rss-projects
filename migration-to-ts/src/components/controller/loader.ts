@@ -4,12 +4,13 @@ import { Endpoints } from '../myTypes';
 import { CallBack } from '../myTypes';
 import { Data } from '../myTypes';
 
+import { LoaderInterface } from '../myTypes';
 enum statusCode {
     UNAUTHORIZED = 401,
     NOT_FOUND = 404,
 }
 
-class Loader {
+class Loader implements LoaderInterface {
     baseLink: string;
     options: Options;
     constructor(baseLink: string, options: InitOptions) {

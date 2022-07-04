@@ -1,7 +1,7 @@
 import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
-import { Data } from '../myTypes';
-class App {
+import { Data, AppInterface } from '../myTypes';
+class App implements AppInterface {
     controller: AppController;
     view: AppView;
     constructor() {

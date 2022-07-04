@@ -1,9 +1,9 @@
 import News from './news/news';
 import Sources from './sources/sources';
 import { Data } from '../myTypes';
-import { Article } from '../myTypes';
+import { Article, AppViewInterface } from '../myTypes';
 
-export class AppView {
+export class AppView implements AppViewInterface {
     news: News;
     sources: Sources;
     constructor() {

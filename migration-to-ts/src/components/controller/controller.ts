@@ -1,7 +1,8 @@
 import AppLoader from './appLoader';
 import { CallBack } from '../myTypes';
+import { ControllerInterface } from '../myTypes';
 
-class AppController extends AppLoader {
+class AppController extends AppLoader implements ControllerInterface {
     getSources(callback: CallBack) {
         super.getResp(
             {
