@@ -1,6 +1,6 @@
 import { Data, CallBack, Endpoints, InitOptions, Options } from '../myTypes';
-
 import { LoaderInterface } from '../myTypes';
+
 enum statusCode {
     UNAUTHORIZED = 401,
     NOT_FOUND = 404,
@@ -14,11 +14,11 @@ class Loader implements LoaderInterface {
         callback: CallBack = () => {
             console.error('No callback for GET response');
         }
-    ) {
+    ): void {
         this.load('GET', endpoint, callback, options);
     }
 
-    private errorHandler(res: Response) {
+    private errorHandler(res: Response): Response {
         if (!res.ok) {
             if (res.status === statusCode.UNAUTHORIZED || res.status === statusCode.NOT_FOUND)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
@@ -28,8 +28,11 @@ class Loader implements LoaderInterface {
         return res;
     }
 
-    private makeUrl(endpoint: Endpoints, options?: Options) {
-        const urlOptions = { ...this.options, ...options };
+    private makeUrl(endpoint: Endpoints, options?: Options): string {
+        const urlOptions: {
+            [x: string]: string | undefined;
+            apiKey: string;
+        } = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {
@@ -39,7 +42,7 @@ class Loader implements LoaderInterface {
         return url.slice(0, -1);
     }
 
-    private load(method: 'GET' | 'POST', endpoint: Endpoints, callback: CallBack, options?: Options) {
+    private load(method: 'GET' | 'POST', endpoint: Endpoints, callback: CallBack, options?: Options): void {
         fetch(this.makeUrl(endpoint, options), { method })
             .then(this.errorHandler)
             .then((res) => res.json())

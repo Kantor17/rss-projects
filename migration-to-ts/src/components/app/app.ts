@@ -10,8 +10,8 @@ class App implements AppInterface {
         this.view = new AppView();
     }
 
-    start() {
-        (document.querySelector('.sources') as HTMLElement).addEventListener('click', (e) =>
+    start(): void {
+        (document.querySelector('.sources') as HTMLElement).addEventListener('click', (e: Event) =>
             this.controller.getNews(e, (data: Data) => this.view.drawNews(data))
         );
         this.controller.getSources((data: Data) => this.view.drawSources(data));
