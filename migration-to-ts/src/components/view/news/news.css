@@ -165,7 +165,7 @@
     }
 }
 
-@media(min-width: 1460px) {
+@media (min-width: 1460px) {
     .news {
         display: flex;
         gap: 15px;
