@@ -1,5 +1,4 @@
-import { CallBack, Endpoints, InitOptions, Options } from '../myTypes';
-import { LoaderInterface } from '../myTypes';
+import { CallBack, Endpoints, InitOptions, Options, LoaderInterface } from '../myTypes';
 
 enum statusCode {
     UNAUTHORIZED = 401,
