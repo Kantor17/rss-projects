@@ -1,4 +1,4 @@
-import { Data, CallBack, Endpoints, InitOptions, Options } from '../myTypes';
+import { CallBack, Endpoints, InitOptions, Options } from '../myTypes';
 import { LoaderInterface } from '../myTypes';
 
 enum statusCode {
@@ -9,9 +9,9 @@ enum statusCode {
 class Loader implements LoaderInterface {
     constructor(public baseLink: string, public options: InitOptions) {}
 
-    getResp(
+    getResp<T>(
         { endpoint, options }: { endpoint: Endpoints; options?: Options },
-        callback: CallBack = () => {
+        callback: CallBack<T> = () => {
             console.error('No callback for GET response');
         }
     ): void {
@@ -42,11 +42,11 @@ class Loader implements LoaderInterface {
         return url.slice(0, -1);
     }
 
-    private load(method: 'GET' | 'POST', endpoint: Endpoints, callback: CallBack, options?: Options): void {
+    private load<T>(method: 'GET' | 'POST', endpoint: Endpoints, callback: CallBack<T>, options?: Options): void {
         fetch(this.makeUrl(endpoint, options), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
-            .then((data: Data) => callback(data))
+            .then((data: T) => callback(data))
             .catch((err) => console.error(err));
     }
 }

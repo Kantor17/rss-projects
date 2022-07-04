@@ -3,13 +3,17 @@ export type Options = Partial<{
 }>;
 export type InitOptions = Options & { apiKey: string };
 export type Endpoints = 'everything' | 'top-headlines' | 'sources';
-export type CallBack = (data: Data) => void;
+export interface CallBack<T> {
+    (data: T): void;
+}
 export type Data = Readonly<{
     articles: Article[];
     status: string;
     totalResults: number;
-    sources?: SourceType[];
 }>;
+export type DataSources = Pick<Data, 'status'> & {
+    sources: SourceType[];
+};
 export type Article = {
     author: string;
     content: string;
@@ -31,8 +35,8 @@ export interface LoaderInterface {
     getResp({ endpoint, options }: { endpoint: Endpoints; options?: Options }): void;
 }
 export interface ControllerInterface {
-    getSources(callback: CallBack): void;
-    getNews(e: Event, callback: CallBack): void;
+    getSources(callback: CallBack<DataSources>): void;
+    getNews(e: Event, callback: CallBack<Data>): void;
 }
 export interface NewsInterface {
     draw(data: Article[]): void;
@@ -42,7 +46,7 @@ export interface SourcesInterface {
 }
 export interface AppViewInterface {
     drawNews(data: Data): void;
-    drawSources(data: Pick<Data, 'sources'>): void;
+    drawSources(data: DataSources): void;
 }
 export interface AppInterface {
     start(): void;

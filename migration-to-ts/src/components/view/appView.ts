@@ -1,6 +1,6 @@
 import News from './news/news';
 import Sources from './sources/sources';
-import { Article, AppViewInterface, Data, SourceType } from '../myTypes';
+import { Article, AppViewInterface, Data, DataSources, SourceType } from '../myTypes';
 
 export class AppView implements AppViewInterface {
     private news: News;
@@ -15,7 +15,7 @@ export class AppView implements AppViewInterface {
         this.news.draw(values);
     }
 
-    drawSources(data: Pick<Data, 'sources'>): void {
+    drawSources(data: DataSources): void {
         const values: SourceType[] = data?.sources ? data?.sources : [];
         this.sources.draw(values);
     }
