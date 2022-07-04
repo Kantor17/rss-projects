@@ -1,8 +1,4 @@
-import { Options } from '../myTypes';
-import { InitOptions } from '../myTypes';
-import { Endpoints } from '../myTypes';
-import { CallBack } from '../myTypes';
-import { Data } from '../myTypes';
+import { Data, CallBack, Endpoints, InitOptions, Options } from '../myTypes';
 
 import { LoaderInterface } from '../myTypes';
 enum statusCode {
