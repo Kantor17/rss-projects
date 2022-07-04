@@ -11,12 +11,7 @@ enum statusCode {
 }
 
 class Loader implements LoaderInterface {
-    baseLink: string;
-    options: Options;
-    constructor(baseLink: string, options: InitOptions) {
-        this.baseLink = baseLink;
-        this.options = options;
-    }
+    constructor(public baseLink: string, public options: InitOptions) {}
 
     getResp(
         { endpoint, options }: { endpoint: Endpoints; options?: Options },
@@ -27,7 +22,7 @@ class Loader implements LoaderInterface {
         this.load('GET', endpoint, callback, options);
     }
 
-    errorHandler(res: Response) {
+    private errorHandler(res: Response) {
         if (!res.ok) {
             if (res.status === statusCode.UNAUTHORIZED || res.status === statusCode.NOT_FOUND)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
@@ -37,7 +32,7 @@ class Loader implements LoaderInterface {
         return res;
     }
 
-    makeUrl(endpoint: Endpoints, options?: Options) {
+    private makeUrl(endpoint: Endpoints, options?: Options) {
         const urlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -48,7 +43,7 @@ class Loader implements LoaderInterface {
         return url.slice(0, -1);
     }
 
-    load(method: 'GET' | 'POST', endpoint: Endpoints, callback: CallBack, options?: Options) {
+    private load(method: 'GET' | 'POST', endpoint: Endpoints, callback: CallBack, options?: Options) {
         fetch(this.makeUrl(endpoint, options), { method })
             .then(this.errorHandler)
             .then((res) => res.json())

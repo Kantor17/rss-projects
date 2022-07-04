@@ -1,8 +1,3 @@
-import News from './view/news/news';
-import Sources from './view/sources/sources';
-import AppController from './controller/controller';
-import { AppView } from './view/appView';
-
 export type Options = Partial<{
     [index: string]: string;
 }>;
@@ -34,9 +29,6 @@ export interface LoaderInterface {
     baseLink: string;
     options: Options;
     getResp({ endpoint, options }: { endpoint: Endpoints; options?: Options }): void;
-    errorHandler(res: Response): Response;
-    makeUrl(endpoint: Endpoints, options: Options): string;
-    load(method: 'GET' | 'POST', endpoint: Endpoints, callback: CallBack, options?: Options): void;
 }
 export interface ControllerInterface {
     getSources(callback: CallBack): void;
@@ -49,13 +41,9 @@ export interface SourcesInterface {
     draw(data: SourceType[]): void;
 }
 export interface AppViewInterface {
-    news: News;
-    sources: Sources;
     drawNews(data: Data): void;
     drawSources(data: Pick<Data, 'sources'>): void;
 }
 export interface AppInterface {
-    controller: AppController;
-    view: AppView;
     start(): void;
 }

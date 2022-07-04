@@ -4,8 +4,8 @@ import { Data } from '../myTypes';
 import { Article, AppViewInterface } from '../myTypes';
 
 export class AppView implements AppViewInterface {
-    news: News;
-    sources: Sources;
+    private news: News;
+    private sources: Sources;
     constructor() {
         this.news = new News();
         this.sources = new Sources();
