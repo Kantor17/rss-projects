@@ -5,6 +5,81 @@
 }
 
 body {
-  color: white;
-  background-color: #000;
+  font-family: 'Poppins';
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.container {
+  max-width: 1440px;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+
+.catalog {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.card {
+  position: relative;
+  width: 220px;
+  font-size: 14px;
+}
+
+.card__language {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.card__image {
+  height: 300px;
+  text-align: center;
+}
+
+.card__image img {
+  width: 100%;
+}
+
+.card__name {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.card__author {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.card__release {
+  margin-bottom: 5px;
+}
+
+.card__order {
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  border-top: solid 1px black;
+}
+
+.card__cart {
+  width: 45px;
+  height: 35px;
 }
