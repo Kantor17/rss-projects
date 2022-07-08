@@ -8,7 +8,7 @@ export default class Catalog {
   }
 
   update(newBooks: BookType[]): void {
-    const cards: HTMLElement[] = newBooks.map((book) => {
+    newBooks.forEach((book) => {
       const card: HTMLElement = document.createElement('div');
       card.className = 'card';
 
@@ -57,9 +57,7 @@ export default class Catalog {
 
       card.append(lang, image, name, author, genre, release, order);
 
-      return card;
+      this.element.append(card);
     });
-
-    this.element.append(...cards);
   }
 }
