@@ -15,7 +15,7 @@ export default class Catalog {
       const lang: HTMLElement = document.createElement('div');
       lang.className = 'card__language';
       const langImg = document.createElement('img');
-      langImg.src = './assets/ukraine-icon.svg';
+      langImg.src = book.language === 'ua' ? './assets/ukraine-icon.svg' : './assets/english-icon.svg';
       langImg.alt = book.language;
       lang.append(langImg);
 
@@ -36,7 +36,7 @@ export default class Catalog {
 
       const genre = document.createElement('p');
       genre.className = 'card__genre';
-      genre.textContent = book.genre;
+      genre.textContent = `Genre: ${book.genre}`;
 
       const release = document.createElement('p');
       genre.className = 'card__release';
@@ -46,7 +46,7 @@ export default class Catalog {
       order.className = 'card__order';
       const amount = document.createElement('p');
       amount.className = 'card__amount';
-      amount.textContent = 'In stock 100 pcs';
+      amount.textContent = `In stock: ${Math.floor(Math.random() * 100) + 1} pcs`;
       const cart = document.createElement('button');
       cart.className = 'card__cart';
       const cartImg = document.createElement('img');
@@ -57,6 +57,15 @@ export default class Catalog {
 
       card.append(lang, image, name, author, genre, release, order);
 
+      if (book.isBestseller) {
+        const badge = document.createElement('div');
+        badge.className = 'card__badge';
+        const bageImg = document.createElement('img');
+        bageImg.src = './assets/best-seller.svg';
+        bageImg.alt = 'Best seller';
+        badge.append(bageImg);
+        card.append(badge);
+      }
       this.element.append(card);
     });
   }
