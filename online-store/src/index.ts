@@ -1,4 +1,6 @@
 import './style.css';
+import Catalog from './components/Catalog';
+import books from './components/books.json';
 
-const greet = 'Hi ts';
-console.log('Hi there', greet);
+const catalog = new Catalog(document.querySelector('.catalog') as HTMLElement);
+catalog.update(books);

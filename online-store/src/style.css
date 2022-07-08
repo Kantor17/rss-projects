@@ -59,6 +59,7 @@ img {
 .card__name {
   font-size: 17px;
   font-weight: 600;
+  height: 75px;
 }
 
 .card__author {
