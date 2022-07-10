@@ -41,6 +41,7 @@ export default class Catalog {
       const release = document.createElement('p');
       genre.className = 'card__release';
       release.textContent = `Released in ${book.releaseDate}`;
+      card.dataset.date = book.releaseDate.toString();
 
       const order = document.createElement('div');
       order.className = 'card__order';
