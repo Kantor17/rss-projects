@@ -7,3 +7,10 @@ export type BookType = {
   isBestseller: boolean;
   posterPath: string;
 }
+
+export type FilterType = {
+  authorFilter: string[];
+  genreFilter: string[];
+  languageFilter: string[];
+  bestsellerFilter: boolean
+}

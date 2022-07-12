@@ -10,6 +10,41 @@
 <body>
   <main class="main">
     <div class="container">
+      <aside id="filters" class="filters">
+        <div class="filter">
+          <h3 class="filter__name">Author</h3>
+          <ul class="filter__list" data-name="authorFilter">
+            <li class="filter__item"><input type="checkbox" data-filter="J.R.R. Tolkien">J.R.R. Tolkien</li>
+            <li class="filter__item"><input type="checkbox" data-filter="J.K. Rowling">J.K. Rowling</li>
+            <li class=filter__item"><input type="checkbox" data-filter="George Orwell">George Orwell</li>
+            <li class="filter__item"><input type="checkbox" data-filter="Stephen King">Stephen King</li>
+            <li class="filter__item"><input type="checkbox" data-filter="Agatha Christie">Agatha Christie</li>
+          </ul>
+        </div>
+        <div class="filter">
+          <h3 class="filter__name">Genre</h3>
+          <ul class="filter__list" data-name="genreFilter">
+            <li class="filter__item"><input type="checkbox" data-filter="autobiography">Autobiography</li>
+            <li class="filter__item"><input type="checkbox" data-filter="detective">Detective</li>
+            <li class=filter__item"><input type="checkbox" data-filter="dystopia">Dystopia</li>
+            <li class="filter__item"><input type="checkbox" data-filter="fantasy">Fantasy</li>
+            <li class="filter__item"><input type="checkbox" data-filter="horror">Horror</li>
+          </ul>
+        </div>
+        <div class="filter">
+          <h3 class="filter__name">Language</h3>
+          <ul class="filter__list" data-name="languageFilter">
+            <li class="filter__item"><input type="checkbox" data-filter="en">English</li>
+            <li class="filter__item"><input type="checkbox" data-filter="ua">Ukrainian</li>
+          </ul>
+        </div>
+        <div class="filter">
+          <h3 class="filter__name">Bestseller</h3>
+          <ul class="filter__list" data-name="bestsellerFilter">
+            <li class="filter__item"><input type="checkbox" data-filter="true">Bestsellers only</li>
+          </ul>
+        </div>
+      </aside>
       <div id="sort" class="sort">
         <button class="sort__option" data-option="nameDesc">Name descending</button>
         <button class="sort__option" data-option="nameAsc">Name ascending</button>

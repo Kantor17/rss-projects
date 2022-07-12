@@ -3,11 +3,12 @@ import { BookType } from './types';
 export default class Catalog {
   element: HTMLElement;
 
-  constructor(element: HTMLElement) {
-    this.element = element;
+  constructor() {
+    this.element = document.querySelector('#catalog') as HTMLElement;
   }
 
   update(newBooks: BookType[]): void {
+    this.element.innerHTML = '';
     newBooks.forEach((book) => {
       const card: HTMLElement = document.createElement('div');
       card.className = 'card';
