@@ -42,13 +42,13 @@ export default class Catalog {
       const release = document.createElement('p');
       genre.className = 'card__release';
       release.textContent = `Released in ${book.releaseDate}`;
-      card.dataset.date = book.releaseDate.toString();
+      card.dataset.date = book.releaseDate;
 
       const order = document.createElement('div');
       order.className = 'card__order';
       const amount = document.createElement('p');
       amount.className = 'card__amount';
-      amount.textContent = `In stock: ${Math.floor(Math.random() * 100) + 1} pcs`;
+      amount.textContent = `In stock: ${book.amount} pcs`;
       const cart = document.createElement('button');
       cart.className = 'card__cart';
       const cartImg = document.createElement('img');

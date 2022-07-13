@@ -2,7 +2,8 @@ export type BookType = {
   name: string,
   author: string,
   genre: string,
-  releaseDate: number,
+  releaseDate: string,
+  amount: string,
   language: string,
   isBestseller: boolean;
   posterPath: string;
@@ -12,5 +13,16 @@ export type FilterType = {
   authorFilter: string[];
   genreFilter: string[];
   languageFilter: string[];
-  bestsellerFilter: boolean
+  bestsellerFilter: boolean;
+  dateFilter: number[];
+  amountFilter: number[];
+}
+
+export enum FilterNames {
+  author = 'authorFilter',
+  genre = 'genreFilter',
+  language = 'languageFilter',
+  bestseller = 'bestsellerFilter',
+  date = 'dateFilter',
+  amount = 'amountFilter',
 }

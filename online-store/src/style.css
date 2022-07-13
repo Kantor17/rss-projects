@@ -1,3 +1,4 @@
+@import '~nouislider';
 * {
   margin: 0;
   padding: 0;
@@ -88,4 +89,9 @@ img {
 .card__cart {
   width: 45px;
   height: 35px;
+}
+
+.slider {
+  width: 250px;
+  margin-bottom: 20px;
 }
