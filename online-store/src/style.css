@@ -6,14 +6,21 @@
 }
 
 body {
+  color: #dddddd;
   font-family: 'Poppins';
+  background-image: url('./assets/books-bg.jpg');
 }
 
 button {
   font-family: inherit;
+  color: inherit;
   border: none;
   background-color: inherit;
   cursor: pointer;
+}
+
+ul {
+  list-style: none;
 }
 
 img {
@@ -25,12 +32,37 @@ img {
   max-width: 1440px;
   padding: 0 10px;
   margin: 0 auto;
+  background-color: #362222;
+}
+
+.main__container {
+  display: grid;
+  grid-template-areas: 
+    "top-bar top-bar top-bar"
+    "aside catalog catalog"
+    "aside catalog catalog";
+  grid-row-gap: 15px;
+  grid-column-gap: 10px;
+  padding-top: 10px;
 }
 
 .catalog {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 15px;
+  grid-area: catalog;
+  padding-bottom: 20px;
+}
+
+.top-bar {
+  grid-area: top-bar;
+}
+
+.filters {
+  grid-area: aside;
+  background-color: #251111;
+  padding: 5px 10px;
 }
 
 .card {
@@ -91,7 +123,40 @@ img {
   height: 35px;
 }
 
+.sort__option {
+  width: 125px;
+  height: 20px;
+  background-color: #5c3d2e;
+}
+
+.filter__name {
+  margin-bottom: 7px;
+}
+
 .slider {
-  width: 250px;
-  margin-bottom: 20px;
+  margin-top: 35px;
+  margin-bottom: 10px;
+  height: 10px;
+  width: 220px;
+  cursor: pointer;
+}
+
+.noUi-connect {
+  background-color: #5c3d2e;
+}
+
+.noUi-handle {
+  width: 10px !important;
+  right: -5px !important;
+  top: -9px !important;
+  cursor: pointer;
+}
+
+.noUi-handle::before, .noUi-handle::after {
+  display: none;
+}
+
+.noUi-tooltip {
+  font-size: 12px;
+  padding: 1px;
 }
