@@ -62,7 +62,7 @@ export default class Filter {
       && (book.isBestseller === true || this.currentFilters.bestsellerFilter === false)
       && (+book.releaseDate >= this.currentFilters.dateFilter[0]
         && +book.releaseDate <= this.currentFilters.dateFilter[1])
-      && (+book.amount > this.currentFilters.amountFilter[0]
+      && (+book.amount >= this.currentFilters.amountFilter[0]
         && +book.amount <= this.currentFilters.amountFilter[1])) {
         return true;
       }
