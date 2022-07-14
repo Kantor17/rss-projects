@@ -9,7 +9,7 @@ export default class Filter {
   currentFilters: FilterType;
 
   constructor() {
-    this.catalog = new Catalog();
+    this.catalog = Catalog.getInstace();
     this.currentFilters = {
       authorFilter: [],
       genreFilter: [],

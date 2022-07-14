@@ -2,32 +2,16 @@ import './style.css';
 import * as noUiSlider from 'nouislider';
 import Catalog from './components/Catalog';
 import books from './components/books.json';
-import Sorter from './components/Sorter';
 import Filter from './components/Filter';
 import { FilterNames } from './components/types';
 import { minFrom, maxFrom, convertToNumbers } from './components/utils';
 
-const catalog = new Catalog();
+const catalog = Catalog.getInstace();
 catalog.update(books);
 
-const sorter = new Sorter();
 (document.querySelector('#sort') as HTMLElement).addEventListener('click', (event: MouseEvent) => {
-  switch ((event.target as HTMLElement).dataset.option) {
-    case 'nameDesc':
-      sorter.nameDescending();
-      break;
-    case 'nameAsc':
-      sorter.nameAscending();
-      break;
-    case 'dateDesc':
-      sorter.dateDescending();
-      break;
-    case 'dateAsc':
-      sorter.dateAscending();
-      break;
-    default:
-      sorter.nameAscending();
-  }
+  catalog.sorter.currentOption = (event.target as HTMLElement).dataset.option as string;
+  catalog.sorter.sort();
 });
 
 const dateSlider = document.querySelector('#date-slider') as noUiSlider.target;
