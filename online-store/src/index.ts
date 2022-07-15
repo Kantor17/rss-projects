@@ -10,8 +10,11 @@ const catalog = Catalog.getInstace();
 catalog.update(books);
 
 (document.querySelector('#sort') as HTMLElement).addEventListener('click', (event: MouseEvent) => {
-  catalog.sorter.currentOption = (event.target as HTMLElement).dataset.option as string;
-  catalog.sorter.sort();
+  const option = (event.target as HTMLElement).dataset.option as string;
+  if (option) {
+    catalog.sorter.currentOption = option;
+    catalog.sorter.sort();
+  }
 });
 
 const dateSlider = document.querySelector('#date-slider') as noUiSlider.target;
