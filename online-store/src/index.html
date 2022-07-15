@@ -13,10 +13,14 @@
       <div class="top-bar">
         <div id="sort" class="top-bar__sort">
           <h3 class="sort__name">Sort by:</h3>
-          <button class="sort__option" data-option="nameDesc">Name ↓</button>
-          <button class="sort__option" data-option="nameAsc">Name ↑</button>
-          <button class="sort__option" data-option="dateDesc">Release date ↓</button>
-          <button class="sort__option" data-option="dateAsc">Release date ↑</button>
+          <button class="sort__option button" data-option="nameDesc">Name ↓</button>
+          <button class="sort__option button" data-option="nameAsc">Name ↑</button>
+          <button class="sort__option button" data-option="dateDesc">Release date ↓</button>
+          <button class="sort__option button" data-option="dateAsc">Release date ↑</button>
+        </div>
+        <div class="top-bar__search search">
+          <input id="search-field" class="search__field" type="search" placeholder="Name of the book" autocomplete="off" autofocus>
+          <button id="search-btn" class="search__button button">Search</button>
         </div>
       </div>
       <aside id="filters" class="filters">

@@ -16,6 +16,7 @@ export type FilterType = {
   bestsellerFilter: boolean;
   dateFilter: number[];
   amountFilter: number[];
+  searchQuerry: string;
 }
 
 export enum FilterNames {

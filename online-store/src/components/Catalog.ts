@@ -22,7 +22,8 @@ export default class Catalog {
 
   update(newBooks: BookType[]): void {
     this.element.innerHTML = '';
-    this.element.append(...createCards(newBooks));
+    const cards = createCards(newBooks);
+    this.element.append(...cards);
     this.sorter.sort();
   }
 }

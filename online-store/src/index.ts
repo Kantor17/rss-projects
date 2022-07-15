@@ -77,3 +77,13 @@ const filter = new Filter();
     filter.filter();
   }
 });
+
+const search = document.querySelector('#search-field') as HTMLInputElement;
+search.addEventListener('search', () => {
+  filter.currentFilters.searchQuerry = search.value.toLowerCase().trim();
+  filter.filter();
+});
+(document.querySelector('#search-btn') as HTMLElement).addEventListener('click', () => {
+  filter.currentFilters.searchQuerry = search.value.toLowerCase().trim();
+  filter.filter();
+});

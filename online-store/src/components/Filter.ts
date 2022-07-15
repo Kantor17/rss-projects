@@ -17,6 +17,7 @@ export default class Filter {
       bestsellerFilter: false,
       dateFilter: [minFrom(books, 'releaseDate'), maxFrom(books, 'releaseDate')],
       amountFilter: [minFrom(books, 'amount'), maxFrom(books, 'amount')],
+      searchQuerry: '',
     };
   }
 
@@ -63,7 +64,8 @@ export default class Filter {
       && (+book.releaseDate >= this.currentFilters.dateFilter[0]
         && +book.releaseDate <= this.currentFilters.dateFilter[1])
       && (+book.amount >= this.currentFilters.amountFilter[0]
-        && +book.amount <= this.currentFilters.amountFilter[1])) {
+        && +book.amount <= this.currentFilters.amountFilter[1])
+      && book.name.toLowerCase().includes(this.currentFilters.searchQuerry)) {
         return true;
       }
       return false;
