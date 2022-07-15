@@ -14,6 +14,8 @@ catalog.update(books);
   if (option) {
     catalog.sorter.currentOption = option;
     catalog.sorter.sort();
+    (event.target as HTMLElement).parentNode?.querySelector('._active')?.classList.remove('_active');
+    (event.target as HTMLElement).classList.add('_active');
   }
 });
 

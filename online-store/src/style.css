@@ -39,8 +39,14 @@ img {
   width: 125px;
   height: 20px;
   background-color: #5c3d2e;
+  transition: .5s;
 }
-
+.button:hover {
+  color: #fff;
+}
+.button._active {
+  background-color: #228b22;
+}
 
 .main__container {
   display: grid;
@@ -68,16 +74,24 @@ img {
   justify-content: space-between;
   align-items: flex-end;
 }
+.search__button {
+  width: 80px;
+}
 
 .filters {
   grid-area: aside;
   background-color: #251111;
   padding: 5px 10px;
 }
-
-.search__button {
-  width: 80px;
+.filter__item label,
+.filter__item input {
+  cursor: pointer;
+  transition: .3s;
 }
+.filter__item:hover {
+  color: #fff;
+}
+
 
 .card {
   position: relative;
@@ -158,6 +172,10 @@ img {
   right: -5px !important;
   top: -9px !important;
   cursor: pointer;
+  transition: .3s;
+}
+.noUi-handle:hover {
+  transform: scale(1.08);
 }
 
 .noUi-handle::before, .noUi-handle::after {
