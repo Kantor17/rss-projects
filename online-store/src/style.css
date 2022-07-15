@@ -50,16 +50,19 @@ img {
 
 .main__container {
   display: grid;
+  grid-template-rows: 48px 1fr;
+  grid-template-columns: 240px 1fr;
   grid-template-areas: 
-    "top-bar top-bar top-bar"
-    "aside catalog catalog"
-    "aside catalog catalog";
+    "top-bar top-bar"
+    "aside catalog"
+    "aside catalog";
   grid-row-gap: 15px;
   grid-column-gap: 10px;
   padding-top: 10px;
 }
 
 .catalog {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -185,4 +188,10 @@ img {
 .noUi-tooltip {
   font-size: 12px;
   padding: 1px;
+}
+
+.empty-message {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }

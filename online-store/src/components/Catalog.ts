@@ -22,7 +22,14 @@ export default class Catalog {
 
   update(newBooks: BookType[]): void {
     const cards = createCards(newBooks);
-    this.element.replaceChildren(...cards);
+    if (cards.length > 0) {
+      this.element.replaceChildren(...cards);
+    } else {
+      const emptyMessage = document.createElement('h2');
+      emptyMessage.className = 'empty-message';
+      emptyMessage.textContent = 'Sorry, no matching books found';
+      this.element.replaceChildren(emptyMessage);
+    }
     this.sorter.sort();
   }
 }
