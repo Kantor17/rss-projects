@@ -1,6 +1,4 @@
-import { BookType } from './types';
 import Sorter from './Sorter';
-import { createCards } from './utils';
 
 export default class Catalog {
   element: HTMLElement;
@@ -20,16 +18,16 @@ export default class Catalog {
     return Catalog.Instance;
   }
 
-  update(newBooks: BookType[]): void {
-    const cards = createCards(newBooks);
-    if (cards.length > 0) {
-      this.element.replaceChildren(...cards);
-    } else {
+  update(isEmpty: boolean): void {
+    if (isEmpty) {
       const emptyMessage = document.createElement('h2');
       emptyMessage.className = 'empty-message';
       emptyMessage.textContent = 'Sorry, no matching books found';
       this.element.replaceChildren(emptyMessage);
+    } else {
+      const emptyMessage = document.querySelector('.empty-message');
+      if (emptyMessage) this.element.removeChild(emptyMessage);
+      this.sorter.sort();
     }
-    this.sorter.sort();
   }
 }

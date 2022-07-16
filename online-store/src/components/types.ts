@@ -1,4 +1,5 @@
 export type BookType = {
+  id: string;
   name: string,
   author: string,
   genre: string,

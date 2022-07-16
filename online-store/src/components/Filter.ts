@@ -1,7 +1,7 @@
 import Catalog from './Catalog';
 import books from './books.json';
 import { FilterType, FilterNames } from './types';
-import { minFrom, maxFrom } from './utils';
+import { minFrom, maxFrom, createCard } from './utils';
 
 export default class Filter {
   catalog: Catalog;
@@ -53,7 +53,10 @@ export default class Filter {
   }
 
   filter() {
-    const filtered = books.filter((book) => {
+    let cardsCount = 0;
+    books.forEach((book) => {
+      const currentCard = Array.from(this.catalog.element.children)
+        .find((item) => ((item as HTMLElement).dataset.id === book.id));
       if ((this.currentFilters.authorFilter.includes(book.author)
         || this.currentFilters.authorFilter.length === 0)
       && (this.currentFilters.genreFilter.includes(book.genre)
@@ -66,10 +69,12 @@ export default class Filter {
       && (+book.amount >= this.currentFilters.amountFilter[0]
         && +book.amount <= this.currentFilters.amountFilter[1])
       && book.name.toLowerCase().includes(this.currentFilters.searchQuerry)) {
-        return true;
-      }
-      return false;
+        cardsCount += 1;
+        if (!currentCard) {
+          this.catalog.element.append(createCard(book));
+        }
+      } else if (currentCard) this.catalog.element.removeChild(currentCard);
     });
-    this.catalog.update(filtered);
+    this.catalog.update(cardsCount < 1);
   }
 }

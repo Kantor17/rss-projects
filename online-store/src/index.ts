@@ -7,8 +7,6 @@ import { FilterNames } from './components/types';
 import { minFrom, maxFrom, convertToNumbers } from './components/utils';
 
 const catalog = Catalog.getInstace();
-catalog.update(books);
-
 (document.querySelector('#sort') as HTMLElement).addEventListener('click', (event: MouseEvent) => {
   const option = (event.target as HTMLElement).dataset.option as string;
   if (option) {
@@ -92,3 +90,5 @@ search.addEventListener('search', () => {
   filter.currentFilters.searchQuerry = search.value.toLowerCase().trim();
   filter.filter();
 });
+
+filter.filter();
