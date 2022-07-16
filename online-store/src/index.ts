@@ -1,10 +1,9 @@
 import './style.css';
-import * as noUiSlider from 'nouislider';
 import Catalog from './components/Catalog';
-import books from './components/books.json';
 import Filter from './components/Filter';
 import { FilterNames } from './components/types';
-import { minFrom, maxFrom, convertToNumbers } from './components/utils';
+import { convertToNumbers } from './components/utils';
+import sliders from './components/sliders';
 
 const catalog = Catalog.getInstace();
 (document.querySelector('#sort') as HTMLElement).addEventListener('click', (event: MouseEvent) => {
@@ -17,51 +16,8 @@ const catalog = Catalog.getInstace();
   }
 });
 
-const dateSlider = document.querySelector('#date-slider') as noUiSlider.target;
-const minDate = minFrom(books, 'releaseDate');
-const maxDate = maxFrom(books, 'releaseDate');
-noUiSlider.create(dateSlider, {
-  start: [minDate, maxDate],
-  connect: true,
-  step: 1,
-  tooltips: true,
-  range: {
-    min: minDate,
-    max: maxDate,
-  },
-  format: {
-    from(value) {
-      return Number(value);
-    },
-    to(value) {
-      return value.toFixed(0);
-    },
-  },
-});
-const amountSlider = document.querySelector('#amount-slider') as noUiSlider.target;
-const minAmount = minFrom(books, 'amount');
-const maxAmount = maxFrom(books, 'amount');
-noUiSlider.create(amountSlider, {
-  start: [minAmount, maxAmount],
-  connect: true,
-  range: {
-    min: minAmount,
-    max: maxAmount,
-  },
-  tooltips: true,
-  format: {
-    from(value) {
-      return Number(value);
-    },
-    to(value) {
-      return value.toFixed(0);
-    },
-  },
-});
-
 const filter = new Filter();
-
-[dateSlider, amountSlider].forEach((slider) => {
+sliders.forEach((slider) => {
   slider.noUiSlider?.on('change', (values) => {
     const filterName = slider.dataset.name as FilterNames;
     filter.addToFilters(filterName, convertToNumbers(values));
