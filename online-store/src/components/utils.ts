@@ -18,6 +18,7 @@ export function createCard(book: BookType): HTMLElement {
   const langImg = document.createElement('img');
   langImg.src = book.language === 'ua' ? './assets/ukraine-icon.svg' : './assets/english-icon.svg';
   langImg.alt = book.language;
+  langImg.title = book.language === 'ua' ? 'Ukrainian' : 'English';
   lang.append(langImg);
 
   const image: HTMLElement = document.createElement('div');
@@ -62,10 +63,11 @@ export function createCard(book: BookType): HTMLElement {
   if (book.isBestseller) {
     const badge = document.createElement('div');
     badge.className = 'card__badge';
-    const bageImg = document.createElement('img');
-    bageImg.src = './assets/best-seller.svg';
-    bageImg.alt = 'Best seller';
-    badge.append(bageImg);
+    const badgeImg = document.createElement('img');
+    badgeImg.src = './assets/best-seller.svg';
+    badgeImg.alt = 'Bestseller';
+    badgeImg.title = 'Bestseller';
+    badge.append(badgeImg);
     card.append(badge);
   }
   return card;
