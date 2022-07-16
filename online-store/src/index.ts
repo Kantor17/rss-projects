@@ -4,6 +4,7 @@ import Filter from './components/Filter';
 import { FilterNames } from './components/types';
 import { convertToNumbers } from './components/utils';
 import sliders from './components/sliders';
+import Cart from './components/Cart';
 
 const catalog = Catalog.getInstace();
 (document.querySelector('#sort') as HTMLElement).addEventListener('click', (event: MouseEvent) => {
@@ -48,3 +49,9 @@ search.addEventListener('search', () => {
 });
 
 filter.filter();
+
+catalog.element.addEventListener('click', (event) => {
+  if ((event.target as HTMLElement).closest('.card__cart')) {
+    Cart.getInstace().updateCart((event.target as HTMLElement).closest('.card') as HTMLElement);
+  }
+});

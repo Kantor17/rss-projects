@@ -48,6 +48,33 @@ img {
   background-color: #228b22;
 }
 
+.header {
+  margin-bottom: 10px;
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.header__cart {
+  position: relative;
+  height: 40px;
+  width: 40px;
+}
+
+.header__counter {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-10%);
+  font-size: 15px;
+  color: 	#dfff00;
+}
+
 .main__container {
   display: grid;
   grid-template-rows: 48px 1fr;
@@ -150,8 +177,25 @@ img {
 }
 
 .card__cart {
+  position: relative;
   width: 45px;
   height: 35px;
+  overflow: hidden;
+}
+.card .card__cart::before {
+  position: absolute;
+  top: 1px;
+  left: 17px;
+  width: 17px;
+  height: 17px;
+  content: '';
+  background-image: url('./assets/done.svg');
+  background-size: cover;
+  transform: translateY(-20px);
+  transition: .5s;
+}
+.card._incart .card__cart::before {
+  transform: translateY(0px);
 }
 
 .filter__name {

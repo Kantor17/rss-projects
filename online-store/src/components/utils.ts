@@ -1,4 +1,5 @@
 import { BookType } from './types';
+import Cart from './Cart';
 
 export function minFrom<T>(source: T[], property: keyof T): number {
   return Math.min(...source.map((item) => Number(item[property])));
@@ -57,6 +58,8 @@ export function createCard(book: BookType): HTMLElement {
   cartImg.alt = 'cart';
   cart.append(cartImg);
   order.append(amount, cart);
+
+  if (Cart.getInstace().incartIds.includes(book.id)) card.classList.add('_incart');
 
   card.append(lang, image, name, author, genre, release, order);
 
