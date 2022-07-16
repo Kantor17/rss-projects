@@ -8,17 +8,19 @@ export default class Filter {
 
   currentFilters: FilterType;
 
+  static defaultSettings = {
+    authorFilter: [],
+    genreFilter: [],
+    languageFilter: [],
+    bestsellerFilter: false,
+    dateFilter: [minFrom(books, 'releaseDate'), maxFrom(books, 'releaseDate')],
+    amountFilter: [minFrom(books, 'amount'), maxFrom(books, 'amount')],
+    searchQuerry: '',
+  };
+
   constructor() {
     this.catalog = Catalog.getInstace();
-    this.currentFilters = {
-      authorFilter: [],
-      genreFilter: [],
-      languageFilter: [],
-      bestsellerFilter: false,
-      dateFilter: [minFrom(books, 'releaseDate'), maxFrom(books, 'releaseDate')],
-      amountFilter: [minFrom(books, 'amount'), maxFrom(books, 'amount')],
-      searchQuerry: '',
-    };
+    this.currentFilters = Filter.defaultSettings;
   }
 
   addToFilters(filterName: FilterNames, value: undefined | string | number[]) {

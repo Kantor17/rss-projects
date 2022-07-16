@@ -5,6 +5,7 @@ import { FilterNames } from './components/types';
 import { convertToNumbers } from './components/utils';
 import sliders from './components/sliders';
 import Cart from './components/Cart';
+import Reseter from './components/Reseter';
 
 const catalog = Catalog.getInstace();
 (document.querySelector('#sort') as HTMLElement).addEventListener('click', (event: MouseEvent) => {
@@ -19,7 +20,7 @@ const catalog = Catalog.getInstace();
 
 const filter = new Filter();
 sliders.forEach((slider) => {
-  slider.noUiSlider?.on('change', (values) => {
+  slider.noUiSlider?.on('set', (values) => {
     const filterName = slider.dataset.name as FilterNames;
     filter.addToFilters(filterName, convertToNumbers(values));
     filter.filter();
@@ -54,4 +55,9 @@ catalog.element.addEventListener('click', (event) => {
   if ((event.target as HTMLElement).closest('.card__cart')) {
     Cart.getInstace().updateCart((event.target as HTMLElement).closest('.card') as HTMLElement);
   }
+});
+
+const reseter = new Reseter();
+document.querySelector('#reset-filters')?.addEventListener('click', () => {
+  reseter.resetFilters();
 });
