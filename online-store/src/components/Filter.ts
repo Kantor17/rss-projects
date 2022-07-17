@@ -6,23 +6,30 @@ import { FilterType, FilterNames } from './types';
 import { minFrom, maxFrom, createCard } from './utils';
 
 export default class Filter {
+  // eslint-disable-next-line no-use-before-define
+  private static Instance: Filter;
+
   catalog: Catalog;
 
   currentFilters: FilterType;
 
-  static defaultSettings = {
-    authorFilter: [],
-    genreFilter: [],
-    languageFilter: [],
-    bestsellerFilter: false,
-    dateFilter: [minFrom(books, 'releaseDate'), maxFrom(books, 'releaseDate')],
-    amountFilter: [minFrom(books, 'amount'), maxFrom(books, 'amount')],
-    searchQuerry: '',
-  };
-
   constructor() {
     this.catalog = Catalog.getInstace();
-    this.currentFilters = localStorage.getItem('filters') ? JSON.parse(localStorage.getItem('filters') as string) : Filter.defaultSettings;
+    this.currentFilters = localStorage.getItem('filters') ? JSON.parse(localStorage.getItem('filters') as string)
+      : {
+        authorFilter: [],
+        genreFilter: [],
+        languageFilter: [],
+        bestsellerFilter: false,
+        dateFilter: [minFrom(books, 'releaseDate'), maxFrom(books, 'releaseDate')],
+        amountFilter: [minFrom(books, 'amount'), maxFrom(books, 'amount')],
+        searchQuerry: '',
+      };
+  }
+
+  static getInstance() {
+    if (!Filter.Instance) Filter.Instance = new Filter();
+    return Filter.Instance;
   }
 
   addToFilters(filterName: FilterNames, value: undefined | string | number[]) {

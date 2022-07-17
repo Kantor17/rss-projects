@@ -16,9 +16,9 @@ const catalog = Catalog.getInstace();
   }
 });
 
-const filter = new Filter();
+const filter = Filter.getInstance();
 sliders.forEach((slider) => {
-  slider.noUiSlider?.on('set', (values) => {
+  slider.noUiSlider?.on('change', (values) => {
     const filterName = slider.dataset.name as FilterNames;
     filter.addToFilters(filterName, convertToNumbers(values));
     filter.filter();

@@ -1,6 +1,8 @@
 import * as noUiSlider from 'nouislider';
 import Filter from './Filter';
 import sliders from './sliders';
+import { minFrom, maxFrom } from './utils';
+import books from './books.json';
 
 export default class {
   checkboxes: NodeListOf<Element>;
@@ -21,15 +23,24 @@ export default class {
   }
 
   resetFilters() {
+    const filter = Filter.getInstance();
+    filter.currentFilters = {
+      authorFilter: [],
+      genreFilter: [],
+      languageFilter: [],
+      bestsellerFilter: false,
+      dateFilter: [minFrom(books, 'releaseDate'), maxFrom(books, 'releaseDate')],
+      amountFilter: [minFrom(books, 'amount'), maxFrom(books, 'amount')],
+      searchQuerry: '',
+    };
     this.checkboxes.forEach((checkbox) => {
-      if ((checkbox as HTMLInputElement).checked) (checkbox as HTMLInputElement).click();
+      // eslint-disable-next-line no-param-reassign
+      if ((checkbox as HTMLInputElement).checked) (checkbox as HTMLInputElement).checked = false;
     });
     this.dateSlider.noUiSlider?.reset();
-    this.dateSlider.noUiSlider?.set(Filter.defaultSettings.dateFilter);
     this.amountSlider.noUiSlider?.reset();
-    this.amountSlider.noUiSlider?.set(Filter.defaultSettings.amountFilter);
     this.searchField.value = '';
-    this.searchBtn.click();
+    filter.filter();
   }
 
   resetSettings() {
