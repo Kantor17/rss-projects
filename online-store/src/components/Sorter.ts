@@ -3,12 +3,23 @@ export default class Sorter {
 
   currentOption: string;
 
+  buttons: NodeListOf<HTMLElement>;
+
   constructor(catalogElem: HTMLElement) {
     this.catalogElem = catalogElem;
-    this.currentOption = 'nameAsc';
+    this.currentOption = localStorage.getItem('sortOption') || 'nameDesc';
+    this.buttons = document.querySelectorAll('.sort__option');
   }
 
   sort(): void {
+    this.buttons.forEach((btn) => {
+      if (btn.dataset.option === this.currentOption) {
+        btn.classList.add('_active');
+      } else {
+        btn.classList.remove('_active');
+      }
+    });
+
     switch (this.currentOption) {
       case 'nameDesc':
         this.nameDescending();
@@ -25,6 +36,7 @@ export default class Sorter {
       default:
         console.error('Unknow sort option');
     }
+    localStorage.sortOption = this.currentOption;
   }
 
   nameDescending(): void {

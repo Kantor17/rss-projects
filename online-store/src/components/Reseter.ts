@@ -31,4 +31,9 @@ export default class {
     this.searchField.value = '';
     this.searchBtn.click();
   }
+
+  resetSettings() {
+    localStorage.clear();
+    document.location.reload();
+  }
 }

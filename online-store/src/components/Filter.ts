@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+import sliders from './sliders';
 import Catalog from './Catalog';
 import books from './books.json';
 import { FilterType, FilterNames } from './types';
@@ -20,7 +22,7 @@ export default class Filter {
 
   constructor() {
     this.catalog = Catalog.getInstace();
-    this.currentFilters = Filter.defaultSettings;
+    this.currentFilters = localStorage.getItem('filters') ? JSON.parse(localStorage.getItem('filters') as string) : Filter.defaultSettings;
   }
 
   addToFilters(filterName: FilterNames, value: undefined | string | number[]) {
@@ -78,5 +80,27 @@ export default class Filter {
       } else if (currentCard) this.catalog.element.removeChild(currentCard);
     });
     this.catalog.update(cardsCount < 1);
+    localStorage.setItem('filters', JSON.stringify(this.currentFilters));
+  }
+
+  initFilters() {
+    (document.querySelectorAll('.filter__item input') as NodeListOf<HTMLInputElement>).forEach(((input) => {
+      const checkboxFilters = [this.currentFilters.authorFilter,
+        this.currentFilters.genreFilter, this.currentFilters.languageFilter];
+      if (checkboxFilters.some((filter) => filter
+        .includes(input.dataset.filter as string))) {
+        input.checked = true;
+      }
+    }));
+
+    if (this.currentFilters.bestsellerFilter) (document.querySelector('#bestseller-input') as HTMLInputElement).checked = true;
+
+    const [dateSlider, amountSlider] = sliders;
+    dateSlider.noUiSlider?.set(this.currentFilters.dateFilter);
+    amountSlider.noUiSlider?.set(this.currentFilters.amountFilter);
+
+    (document.querySelector('#search-field') as HTMLInputElement).value = this.currentFilters.searchQuerry;
+
+    this.filter();
   }
 }

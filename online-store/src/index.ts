@@ -13,8 +13,6 @@ const catalog = Catalog.getInstace();
   if (option) {
     catalog.sorter.currentOption = option;
     catalog.sorter.sort();
-    (event.target as HTMLElement).parentNode?.querySelector('._active')?.classList.remove('_active');
-    (event.target as HTMLElement).classList.add('_active');
   }
 });
 
@@ -49,7 +47,7 @@ document.querySelector('#search-btn')?.addEventListener('click', () => {
   filter.filter();
 });
 
-filter.filter();
+filter.initFilters();
 
 catalog.element.addEventListener('click', (event) => {
   if ((event.target as HTMLElement).closest('.card__cart')) {
@@ -60,4 +58,7 @@ catalog.element.addEventListener('click', (event) => {
 const reseter = new Reseter();
 document.querySelector('#reset-filters')?.addEventListener('click', () => {
   reseter.resetFilters();
+});
+document.querySelector('#reset-settings')?.addEventListener('click', () => {
+  reseter.resetSettings();
 });

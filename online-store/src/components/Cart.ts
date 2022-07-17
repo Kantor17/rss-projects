@@ -8,8 +8,9 @@ export default class Cart {
   counterE: HTMLElement;
 
   constructor() {
-    this.incartIds = [];
+    this.incartIds = localStorage.getItem('incartIds') ? JSON.parse(localStorage.getItem('incartIds') as string) : [];
     this.counterE = document.querySelector('#cart-counter') as HTMLElement;
+    this.updateCounter();
   }
 
   static getInstace() {
@@ -27,6 +28,11 @@ export default class Cart {
       this.incartIds.push(card.dataset.id as string);
       card.classList.add('_incart');
     }
+    this.updateCounter();
+    localStorage.setItem('incartIds', JSON.stringify(this.incartIds));
+  }
+
+  updateCounter() {
     this.counterE.textContent = this.incartIds.length.toString();
   }
 }
