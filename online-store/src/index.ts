@@ -27,7 +27,7 @@ sliders.forEach((slider) => {
   });
 });
 
-(document.querySelector('#filters') as HTMLElement).addEventListener('click', (event) => {
+document.querySelector('#filters')?.addEventListener('click', (event) => {
   if (event.target instanceof HTMLInputElement) {
     const filterName = (event.target.closest('.filter__list') as HTMLElement).dataset.name as FilterNames;
     if (event.target.checked) {
@@ -44,7 +44,7 @@ search.addEventListener('search', () => {
   filter.currentFilters.searchQuerry = search.value.toLowerCase().trim();
   filter.filter();
 });
-(document.querySelector('#search-btn') as HTMLElement).addEventListener('click', () => {
+document.querySelector('#search-btn')?.addEventListener('click', () => {
   filter.currentFilters.searchQuerry = search.value.toLowerCase().trim();
   filter.filter();
 });
