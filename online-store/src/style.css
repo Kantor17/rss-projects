@@ -60,6 +60,12 @@ img {
   padding-bottom: 5px;
 }
 
+.header__right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 25px;
+}
 .header__cart {
   position: relative;
   height: 40px;
@@ -77,7 +83,6 @@ img {
 
 .main__container {
   display: grid;
-  grid-template-rows: 48px 1fr;
   grid-template-columns: 240px 1fr;
   grid-template-areas: 
     "top-bar top-bar"
@@ -104,6 +109,10 @@ img {
   justify-content: space-between;
   align-items: flex-end;
 }
+.search {
+  display: flex;
+  justify-content: flex-end;
+}
 .search__button {
   width: 80px;
 }
@@ -112,7 +121,7 @@ img {
   grid-area: aside;
   background-color: #251111;
   margin-left: -10px;
-  padding: 5px 10px;
+  padding: 10px;
 }
 .filter__item label,
 .filter__item input {
@@ -289,4 +298,14 @@ img {
 .footer__school {
   display: block;
   width: 130px;
+}
+
+@media(max-width: 864px) {
+  .header__title {
+    font-size: 28px;
+  }
+
+  .top-bar__sort {
+    flex-basis: 300px;
+  }
 }
