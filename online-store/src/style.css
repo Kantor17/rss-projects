@@ -111,6 +111,7 @@ img {
 .filters {
   grid-area: aside;
   background-color: #251111;
+  margin-left: -10px;
   padding: 5px 10px;
 }
 .filter__item label,
@@ -262,4 +263,30 @@ img {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.footer__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  background-color: #251111;
+}
+.footer p {
+  font-size: 14px;
+  text-align: center;
+}
+.footer a {
+  color: inherit;
+}
+.footer a:hover {
+  color: white;
+}
+.footer__copyright:before {
+  content: '©';
+}
+.footer__school {
+  display: block;
+  width: 130px;
 }
