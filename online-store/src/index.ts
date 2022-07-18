@@ -49,9 +49,10 @@ document.querySelector('#search-btn')?.addEventListener('click', () => {
 
 filter.initFilters();
 
+const cart = Cart.getInstace();
 catalog.element.addEventListener('click', (event) => {
   if ((event.target as HTMLElement).closest('.card__cart')) {
-    Cart.getInstace().updateCart((event.target as HTMLElement).closest('.card') as HTMLElement);
+    cart.updateCart((event.target as HTMLElement).closest('.card') as HTMLElement);
   }
 });
 
