@@ -42,12 +42,8 @@ export default class Sorter {
   nameDescending(): void {
     for (let i = 0; i < this.catalogElem.children.length - 1; i += 1) {
       for (let j = i + 1; j < this.catalogElem.children.length; j += 1) {
-        const currValue: string | number = (this.catalogElem.children[i]
-          .querySelector('.card__name') as HTMLElement)
-          .textContent as string;
-        const nextValue: string = (this.catalogElem.children[j]
-          .querySelector('.card__name') as HTMLElement)
-          .textContent as string;
+        const currValue = (this.catalogElem.children[i] as HTMLElement).dataset.name as string;
+        const nextValue = (this.catalogElem.children[j] as HTMLElement).dataset.name as string;
         if (currValue < nextValue) {
           const replaced = this.catalogElem.replaceChild(
             this.catalogElem.children[j],
@@ -62,12 +58,8 @@ export default class Sorter {
   nameAscending(): void {
     for (let i = 0; i < this.catalogElem.children.length - 1; i += 1) {
       for (let j = i + 1; j < this.catalogElem.children.length; j += 1) {
-        const currValue: string | number = (this.catalogElem.children[i]
-          .querySelector('.card__name') as HTMLElement)
-          .textContent as string;
-        const nextValue: string = (this.catalogElem.children[j]
-          .querySelector('.card__name') as HTMLElement)
-          .textContent as string;
+        const currValue = (this.catalogElem.children[i] as HTMLElement).dataset.name as string;
+        const nextValue = (this.catalogElem.children[j] as HTMLElement).dataset.name as string;
         if (currValue > nextValue) {
           const replaced = this.catalogElem.replaceChild(
             this.catalogElem.children[j],

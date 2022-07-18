@@ -32,6 +32,7 @@ export function createCard(book: BookType): HTMLElement {
   const name = document.createElement('p');
   name.className = 'card__name';
   name.textContent = book.name;
+  card.dataset.name = book.name;
 
   const author = document.createElement('p');
   author.className = 'card__author';
