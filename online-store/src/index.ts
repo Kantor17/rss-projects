@@ -49,7 +49,8 @@ document.querySelector('#search-btn')?.addEventListener('click', () => {
 
 filter.initFilters();
 
-const cart = Cart.getInstace();
+const cart = Cart.getInstance();
+cart.updateCounter();
 catalog.element.addEventListener('click', (event) => {
   if ((event.target as HTMLElement).closest('.card__cart')) {
     cart.updateCart((event.target as HTMLElement).closest('.card') as HTMLElement);

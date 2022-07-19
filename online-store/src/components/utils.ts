@@ -60,7 +60,7 @@ export function createCard(book: BookType): HTMLElement {
   cart.append(cartImg);
   order.append(amount, cart);
 
-  if (Cart.getInstace().incartIds.includes(book.id)) card.classList.add('_incart');
+  if (Cart.getInstance().incartIds.includes(book.id)) card.classList.add('_incart');
 
   card.append(lang, image, name, author, genre, release, order);
 

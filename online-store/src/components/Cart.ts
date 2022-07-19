@@ -10,10 +10,9 @@ export default class Cart {
   constructor() {
     this.incartIds = localStorage.getItem('incartIds') ? JSON.parse(localStorage.getItem('incartIds') as string) : [];
     this.counterE = document.querySelector('#cart-counter') as HTMLElement;
-    this.updateCounter();
   }
 
-  static getInstace() {
+  static getInstance() {
     if (!Cart.Instance) Cart.Instance = new Cart();
     return Cart.Instance;
   }
