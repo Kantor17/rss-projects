@@ -1,7 +1,7 @@
 import './style.css';
 import Catalog from './components/Catalog';
 import Filter from './components/Filter';
-import { FilterNames } from './components/types';
+import { FilterNames } from './helpers/types';
 import { convertToNumbers } from './helpers/utils';
 import sliders from './components/sliders';
 import Cart from './components/Cart';

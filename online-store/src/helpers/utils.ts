@@ -1,4 +1,4 @@
-import { BookType } from '../components/types';
+import { BookType } from './types';
 import Cart from '../components/Cart';
 
 export function minFrom<T>(source: T[], property: keyof T): number {

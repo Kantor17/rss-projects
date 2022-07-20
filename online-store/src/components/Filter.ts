@@ -2,7 +2,7 @@
 import sliders from './sliders';
 import Catalog from './Catalog';
 import books from '../data/books.json';
-import { FilterType, FilterNames } from './types';
+import { FilterType, FilterNames } from '../helpers/types';
 import { minFrom, maxFrom, createCard } from '../helpers/utils';
 
 export default class Filter {
