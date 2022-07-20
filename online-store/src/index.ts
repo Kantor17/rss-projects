@@ -5,9 +5,9 @@ import { FilterNames } from './components/types';
 import { convertToNumbers } from './components/utils';
 import sliders from './components/sliders';
 import Cart from './components/Cart';
-import Reseter from './components/Reseter';
+import Resetter from './components/Resetter';
 
-const catalog = Catalog.getInstace();
+const catalog = Catalog.getInstance();
 (document.querySelector('#sort') as HTMLElement).addEventListener('click', (event: MouseEvent) => {
   const option = (event.target as HTMLElement).dataset.option as string;
   if (option) {
@@ -39,11 +39,11 @@ document.querySelector('#filters')?.addEventListener('click', (event) => {
 
 const search = document.querySelector('#search-field') as HTMLInputElement;
 search.addEventListener('search', () => {
-  filter.currentFilters.searchQuerry = search.value.toLowerCase().trim();
+  filter.currentFilters.searchQuery = search.value.toLowerCase().trim();
   filter.filter();
 });
 document.querySelector('#search-btn')?.addEventListener('click', () => {
-  filter.currentFilters.searchQuerry = search.value.toLowerCase().trim();
+  filter.currentFilters.searchQuery = search.value.toLowerCase().trim();
   filter.filter();
 });
 
@@ -57,10 +57,10 @@ catalog.element.addEventListener('click', (event) => {
   }
 });
 
-const reseter = new Reseter();
+const resetter = new Resetter();
 document.querySelector('#reset-filters')?.addEventListener('click', () => {
-  reseter.resetFilters();
+  resetter.resetFilters();
 });
 document.querySelector('#reset-settings')?.addEventListener('click', () => {
-  reseter.resetSettings();
+  resetter.resetSettings();
 });

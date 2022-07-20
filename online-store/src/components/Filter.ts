@@ -14,7 +14,7 @@ export default class Filter {
   currentFilters: FilterType;
 
   constructor() {
-    this.catalog = Catalog.getInstace();
+    this.catalog = Catalog.getInstance();
     this.currentFilters = localStorage.getItem('filters') ? JSON.parse(localStorage.getItem('filters') as string)
       : {
         authorFilter: [],
@@ -23,7 +23,7 @@ export default class Filter {
         bestsellerFilter: false,
         dateFilter: [minFrom(books, 'releaseDate'), maxFrom(books, 'releaseDate')],
         amountFilter: [minFrom(books, 'amount'), maxFrom(books, 'amount')],
-        searchQuerry: '',
+        searchQuery: '',
       };
   }
 
@@ -79,7 +79,7 @@ export default class Filter {
         && +book.releaseDate <= this.currentFilters.dateFilter[1])
       && (+book.amount >= this.currentFilters.amountFilter[0]
         && +book.amount <= this.currentFilters.amountFilter[1])
-      && book.name.toLowerCase().includes(this.currentFilters.searchQuerry)) {
+      && book.name.toLowerCase().includes(this.currentFilters.searchQuery)) {
         cardsCount += 1;
         if (!currentCard) {
           this.catalog.element.append(createCard(book));
@@ -106,7 +106,7 @@ export default class Filter {
     dateSlider.noUiSlider?.set(this.currentFilters.dateFilter);
     amountSlider.noUiSlider?.set(this.currentFilters.amountFilter);
 
-    (document.querySelector('#search-field') as HTMLInputElement).value = this.currentFilters.searchQuerry;
+    (document.querySelector('#search-field') as HTMLInputElement).value = this.currentFilters.searchQuery;
 
     this.filter();
   }

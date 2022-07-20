@@ -13,7 +13,7 @@ export default class Catalog {
     this.sorter = new Sorter(this.element);
   }
 
-  static getInstace(): Catalog {
+  static getInstance(): Catalog {
     if (!Catalog.Instance) Catalog.Instance = new Catalog();
     return Catalog.Instance;
   }

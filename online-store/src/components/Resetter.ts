@@ -31,7 +31,7 @@ export default class {
       bestsellerFilter: false,
       dateFilter: [minFrom(books, 'releaseDate'), maxFrom(books, 'releaseDate')],
       amountFilter: [minFrom(books, 'amount'), maxFrom(books, 'amount')],
-      searchQuerry: '',
+      searchQuery: '',
     };
     this.checkboxes.forEach((checkbox) => {
       // eslint-disable-next-line no-param-reassign

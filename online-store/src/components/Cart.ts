@@ -1,6 +1,6 @@
 /* eslint-disable no-alert */
 export default class Cart {
-  incartIds: string[];
+  inCartIds: string[];
 
   // eslint-disable-next-line no-use-before-define
   private static Instance: Cart;
@@ -8,7 +8,7 @@ export default class Cart {
   counterE: HTMLElement;
 
   constructor() {
-    this.incartIds = localStorage.getItem('incartIds') ? JSON.parse(localStorage.getItem('incartIds') as string) : [];
+    this.inCartIds = localStorage.getItem('inCartIds') ? JSON.parse(localStorage.getItem('inCartIds') as string) : [];
     this.counterE = document.querySelector('#cart-counter') as HTMLElement;
   }
 
@@ -18,20 +18,20 @@ export default class Cart {
   }
 
   updateCart(card: HTMLElement) {
-    if (card.classList.contains('_incart')) {
-      this.incartIds.splice(this.incartIds.indexOf(card.dataset.id as string), 1);
-      card.classList.remove('_incart');
-    } else if (this.incartIds.length > 19) {
+    if (card.classList.contains('_inCart')) {
+      this.inCartIds.splice(this.inCartIds.indexOf(card.dataset.id as string), 1);
+      card.classList.remove('_inCart');
+    } else if (this.inCartIds.length > 19) {
       alert('Sorry, all slots are full');
     } else {
-      this.incartIds.push(card.dataset.id as string);
-      card.classList.add('_incart');
+      this.inCartIds.push(card.dataset.id as string);
+      card.classList.add('_inCart');
     }
     this.updateCounter();
-    localStorage.setItem('incartIds', JSON.stringify(this.incartIds));
+    localStorage.setItem('inCartIds', JSON.stringify(this.inCartIds));
   }
 
   updateCounter() {
-    this.counterE.textContent = this.incartIds.length.toString();
+    this.counterE.textContent = this.inCartIds.length.toString();
   }
 }

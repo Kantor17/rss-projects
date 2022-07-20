@@ -34,7 +34,7 @@ export default class Sorter {
         this.dateAscending();
         break;
       default:
-        console.error('Unknow sort option');
+        console.error('Unknown sort option');
     }
     localStorage.sortOption = this.currentOption;
   }

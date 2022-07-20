@@ -238,7 +238,7 @@ img {
   transform: translateY(-20px);
   transition: .5s;
 }
-.card._incart .card__cart::before {
+.card._inCart .card__cart::before {
   transform: translateY(0px);
 }
 
