@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import * as noUiSlider from 'nouislider';
 import Filter from './Filter';
 import sliders from './sliders';
@@ -34,7 +35,6 @@ export default class {
       searchQuery: '',
     };
     this.checkboxes.forEach((checkbox) => {
-      // eslint-disable-next-line no-param-reassign
       if ((checkbox as HTMLInputElement).checked) (checkbox as HTMLInputElement).checked = false;
     });
     this.dateSlider.noUiSlider?.reset();

@@ -5,7 +5,6 @@ export default class Catalog {
 
   sorter: Sorter;
 
-  // eslint-disable-next-line no-use-before-define
   private static Instance: Catalog;
 
   constructor() {

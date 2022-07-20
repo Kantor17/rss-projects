@@ -2,11 +2,10 @@
 import sliders from './sliders';
 import Catalog from './Catalog';
 import books from '../data/books.json';
-import { FilterType, FilterNames } from '../helpers/types';
+import { FilterType, FilterNames } from './types';
 import { minFrom, maxFrom, createCard } from '../helpers/utils';
 
 export default class Filter {
-  // eslint-disable-next-line no-use-before-define
   private static Instance: Filter;
 
   catalog: Catalog;

@@ -1,8 +1,6 @@
-/* eslint-disable no-alert */
 export default class Cart {
   inCartIds: string[];
 
-  // eslint-disable-next-line no-use-before-define
   private static Instance: Cart;
 
   counterE: HTMLElement;

@@ -19,6 +19,8 @@
         "no-console": 0,
         "@typescript-eslint/no-explicit-any": 2,
         "class-methods-use-this": "off",
+        "no-use-before-define": "off",
+        "no-alert":"off",
         "import/extensions": [
             "error",
             "ignorePackages",
