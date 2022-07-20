@@ -1,6 +1,6 @@
 import * as noUiSlider from 'nouislider';
-import { minFrom, maxFrom } from './utils';
-import books from './books.json';
+import { minFrom, maxFrom } from '../helpers/utils';
+import books from '../data/books.json';
 
 const dateSlider = document.querySelector('#date-slider') as noUiSlider.target;
 const minDate = minFrom(books, 'releaseDate');

@@ -1,8 +1,8 @@
 import * as noUiSlider from 'nouislider';
 import Filter from './Filter';
 import sliders from './sliders';
-import { minFrom, maxFrom } from './utils';
-import books from './books.json';
+import { minFrom, maxFrom } from '../helpers/utils';
+import books from '../data/books.json';
 
 export default class {
   checkboxes: NodeListOf<Element>;

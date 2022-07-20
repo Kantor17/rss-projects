@@ -1,6 +1,6 @@
 import {
   minFrom, maxFrom, convertToNumbers, createCard,
-} from '../src/components/utils';
+} from '../src/helpers/utils';
 
 const sourceExample = [{
   name: 'a',

@@ -1,5 +1,5 @@
 import { BookType } from './types';
-import Cart from './Cart';
+import Cart from '../components/Cart';
 
 export function minFrom<T>(source: T[], property: keyof T): number {
   return Math.min(...source.map((item) => Number(item[property])));
