@@ -66,23 +66,38 @@ export default class Filter {
     }
   }
 
+  isFilteredBy<T>(filter: T, value: string | boolean) {
+    if (Array.isArray(filter)) {
+      if (typeof filter[0] === 'number') {
+        return +value >= filter[0] && +value <= filter[1];
+      }
+      return filter.includes(value) || filter.length === 0;
+    }
+    if (typeof filter === 'boolean') {
+      return value === true || filter === false;
+    }
+    if (typeof filter === 'string' && typeof value === 'string') {
+      return value.toLowerCase().includes(filter);
+    }
+    return false;
+  }
+
   filter() {
     let cardsCount = 0;
+    const {
+      authorFilter, genreFilter, languageFilter, bestsellerFilter,
+      dateFilter, amountFilter, searchQuery,
+    } = this.currentFilters;
     books.forEach((book) => {
       const currentCard = Array.from(this.catalog.element.children)
         .find((item) => ((item as HTMLElement).dataset.id === book.id));
-      if ((this.currentFilters.authorFilter.includes(book.author)
-        || this.currentFilters.authorFilter.length === 0)
-      && (this.currentFilters.genreFilter.includes(book.genre)
-        || this.currentFilters.genreFilter.length === 0)
-      && (this.currentFilters.languageFilter.includes(book.language)
-        || this.currentFilters.languageFilter.length === 0)
-      && (book.isBestseller === true || this.currentFilters.bestsellerFilter === false)
-      && (+book.releaseDate >= this.currentFilters.dateFilter[0]
-        && +book.releaseDate <= this.currentFilters.dateFilter[1])
-      && (+book.amount >= this.currentFilters.amountFilter[0]
-        && +book.amount <= this.currentFilters.amountFilter[1])
-      && book.name.toLowerCase().includes(this.currentFilters.searchQuery)) {
+      if (this.isFilteredBy(authorFilter, book.author)
+        && this.isFilteredBy(genreFilter, book.genre)
+        && this.isFilteredBy(languageFilter, book.language)
+        && this.isFilteredBy(bestsellerFilter, book.isBestseller)
+        && this.isFilteredBy(dateFilter, book.releaseDate)
+        && this.isFilteredBy(amountFilter, book.amount)
+        && this.isFilteredBy(searchQuery, book.name)) {
         cardsCount += 1;
         if (!currentCard) {
           this.catalog.element.append(this.cardBuilder.build(book));
