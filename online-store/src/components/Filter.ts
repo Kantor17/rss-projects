@@ -3,7 +3,8 @@ import sliders from './sliders';
 import Catalog from './Catalog';
 import books from '../data/books.json';
 import { FilterType, FilterNames } from '../helpers/types';
-import { minFrom, maxFrom, createCard } from '../helpers/utils';
+import { minFrom, maxFrom } from '../helpers/utils';
+import CardBuilder from './CardBuilder';
 
 export default class Filter {
   private static Instance: Filter;
@@ -12,8 +13,11 @@ export default class Filter {
 
   currentFilters: FilterType;
 
+  cardBuilder: CardBuilder;
+
   constructor() {
     this.catalog = Catalog.getInstance();
+    this.cardBuilder = new CardBuilder();
     this.currentFilters = localStorage.getItem('filters') ? JSON.parse(localStorage.getItem('filters') as string)
       : {
         authorFilter: [],
@@ -81,7 +85,7 @@ export default class Filter {
       && book.name.toLowerCase().includes(this.currentFilters.searchQuery)) {
         cardsCount += 1;
         if (!currentCard) {
-          this.catalog.element.append(createCard(book));
+          this.catalog.element.append(this.cardBuilder.build(book));
         }
       } else if (currentCard) this.catalog.element.removeChild(currentCard);
     });
