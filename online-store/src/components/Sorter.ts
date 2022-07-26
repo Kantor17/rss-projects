@@ -22,16 +22,16 @@ export default class Sorter {
 
     switch (this.currentOption) {
       case 'nameDesc':
-        this.nameDescending();
+        this.sortElements(this.getName, this.descendingCompare);
         break;
       case 'nameAsc':
-        this.nameAscending();
+        this.sortElements(this.getName, this.ascendingCompare);
         break;
       case 'dateDesc':
-        this.dateDescending();
+        this.sortElements(this.getDate, this.descendingCompare);
         break;
       case 'dateAsc':
-        this.dateAscending();
+        this.sortElements(this.getDate, this.ascendingCompare);
         break;
       default:
         console.error('Unknown sort option');
@@ -39,60 +39,29 @@ export default class Sorter {
     localStorage.sortOption = this.currentOption;
   }
 
-  nameDescending(): void {
-    for (let i = 0; i < this.catalogElem.children.length - 1; i += 1) {
-      for (let j = i + 1; j < this.catalogElem.children.length; j += 1) {
-        const currValue = (this.catalogElem.children[i] as HTMLElement).dataset.name as string;
-        const nextValue = (this.catalogElem.children[j] as HTMLElement).dataset.name as string;
-        if (currValue < nextValue) {
-          const replaced = this.catalogElem.replaceChild(
-            this.catalogElem.children[j],
-            this.catalogElem.children[i],
-          );
-          this.catalogElem.children[i].after(replaced);
-        }
-      }
-    }
+  descendingCompare(currValue: string | number, nextValue: string | number) {
+    return currValue < nextValue;
   }
 
-  nameAscending(): void {
-    for (let i = 0; i < this.catalogElem.children.length - 1; i += 1) {
-      for (let j = i + 1; j < this.catalogElem.children.length; j += 1) {
-        const currValue = (this.catalogElem.children[i] as HTMLElement).dataset.name as string;
-        const nextValue = (this.catalogElem.children[j] as HTMLElement).dataset.name as string;
-        if (currValue > nextValue) {
-          const replaced = this.catalogElem.replaceChild(
-            this.catalogElem.children[j],
-            this.catalogElem.children[i],
-          );
-          this.catalogElem.children[i].after(replaced);
-        }
-      }
-    }
+  ascendingCompare(currValue: string | number, nextValue: string | number) {
+    return currValue > nextValue;
   }
 
-  dateDescending(): void {
-    for (let i = 0; i < this.catalogElem.children.length - 1; i += 1) {
-      for (let j = i + 1; j < this.catalogElem.children.length; j += 1) {
-        const currValue = Number((this.catalogElem.children[i] as HTMLElement).dataset.date);
-        const nextValue = Number((this.catalogElem.children[j] as HTMLElement).dataset.date);
-        if (currValue < nextValue) {
-          const replaced = this.catalogElem.replaceChild(
-            this.catalogElem.children[j],
-            this.catalogElem.children[i],
-          );
-          this.catalogElem.children[i].after(replaced);
-        }
-      }
-    }
-  }
+  getName = (idx: number): string => (this.catalogElem.children[idx] as HTMLElement)
+    .dataset.name as string;
 
-  dateAscending(): void {
+  getDate = (idx:number): number => +((this.catalogElem.children[idx] as HTMLElement)
+    .dataset.date as string);
+
+  sortElements(
+    getter: (idx: number) => string | number,
+    compareFunc: (currValue: string | number, nextValue: string | number) => boolean,
+  ): void {
     for (let i = 0; i < this.catalogElem.children.length - 1; i += 1) {
       for (let j = i + 1; j < this.catalogElem.children.length; j += 1) {
-        const currValue = Number((this.catalogElem.children[i] as HTMLElement).dataset.date);
-        const nextValue = Number((this.catalogElem.children[j] as HTMLElement).dataset.date);
-        if (currValue > nextValue) {
+        const currValue = getter(i);
+        const nextValue = getter(j);
+        if (compareFunc(currValue, nextValue)) {
           const replaced = this.catalogElem.replaceChild(
             this.catalogElem.children[j],
             this.catalogElem.children[i],

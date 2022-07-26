@@ -20,22 +20,22 @@ describe('Sorter', () => {
 
   it('should sort by name descending', () => {
     const resultingHTML = '<div data-name="d" data-year="3"></div><div data-name="c" data-year="1"></div><div data-name="b" data-year="4"></div><div data-name="a" data-year="2"></div>';
-    sorter.nameDescending();
+    sorter.sortElements(sorter.getName, sorter.descendingCompare);
     expect(sorter.catalogElem.innerHTML).toBe(resultingHTML);
   });
   it('should sort by name ascending', () => {
     const resultingHTML = '<div data-name="a" data-year="2"></div><div data-name="b" data-year="4"></div><div data-name="c" data-year="1"></div><div data-name="d" data-year="3"></div>';
-    sorter.nameAscending();
+    sorter.sortElements(sorter.getName, sorter.ascendingCompare);
     expect(sorter.catalogElem.innerHTML).toBe(resultingHTML);
   });
   it('should sort by release date descending', () => {
     const resultingHTML = '<div data-name="a" data-year="2"></div><div data-name="b" data-year="4"></div><div data-name="c" data-year="1"></div><div data-name="d" data-year="3"></div>';
-    sorter.dateDescending();
+    sorter.sortElements(sorter.getDate, sorter.descendingCompare);
     expect(sorter.catalogElem.innerHTML).toBe(resultingHTML);
   });
   it('should sort by release date ascending', () => {
     const resultingHTML = '<div data-name="a" data-year="2"></div><div data-name="b" data-year="4"></div><div data-name="c" data-year="1"></div><div data-name="d" data-year="3"></div>';
-    sorter.dateAscending();
+    sorter.sortElements(sorter.getName, sorter.ascendingCompare);
     expect(sorter.catalogElem.innerHTML).toBe(resultingHTML);
   });
 });
