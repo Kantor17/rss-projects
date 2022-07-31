@@ -1,21 +1,28 @@
 import GarageView from '../views/GarageView';
 import WinnersView from '../views/WinnersView';
+import { CarType } from '../utils/types';
+import Communicator from './Communicator';
 
 export default class {
   container: HTMLElement;
 
-  garageView: HTMLElement;
+  garageView: GarageView;
 
-  winnersView: HTMLElement;
+  winnersView: WinnersView;
+
+  communicator: Communicator;
 
   constructor() {
     this.container = document.createElement('div');
-    this.garageView = new GarageView().createView();
-    this.winnersView = new WinnersView().createView();
+    this.garageView = new GarageView();
+    this.winnersView = new WinnersView();
+    this.communicator = new Communicator();
   }
 
-  run() {
+  async run() {
     this.renderStartPage();
+    const cars = await this.communicator.getCars();
+    this.renderCars(cars);
   }
 
   renderStartPage() {
@@ -31,17 +38,23 @@ export default class {
     nav.querySelector('.winners-btn')?.addEventListener('click', () => this.goToWinners());
 
     this.container.append(nav.children[0]);
-    this.container.append(this.garageView, this.winnersView);
+    this.container.append(this.garageView.viewE, this.winnersView.viewE);
     document.body.append(this.container);
   }
 
+  renderCars(cars: CarType[]) {
+    cars.forEach((car) => {
+      this.garageView.renderCar(car);
+    });
+  }
+
   goToGarage() {
-    this.winnersView.style.display = 'none';
-    this.garageView.style.display = 'block';
+    this.winnersView.viewE.style.display = 'none';
+    this.garageView.viewE.style.display = 'block';
   }
 
   goToWinners() {
-    this.garageView.style.display = 'none';
-    this.winnersView.style.display = 'block';
+    this.garageView.viewE.style.display = 'none';
+    this.winnersView.viewE.style.display = 'block';
   }
 }

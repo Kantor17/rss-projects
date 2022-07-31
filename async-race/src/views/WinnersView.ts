@@ -1,6 +1,13 @@
 import Template from './Template';
 
-export default class extends Template {
+export default class WinnersView extends Template {
+  viewE: HTMLElement;
+
+  constructor() {
+    super();
+    this.viewE = this.createView();
+  }
+
   createView() {
     const view = document.createElement('div');
     view.className = 'winners-view';
