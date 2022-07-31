@@ -13,4 +13,14 @@ export default class {
     pageCounter.innerHTML = `<h2 class="page-counter">Page #${count.toString()}</h2>`;
     return pageCounter.children[0];
   }
+
+  createPagination() {
+    const pagination = document.createElement('div');
+    pagination.innerHTML = `
+    <div class="pagination">
+      <button class="prev-btn btn-primary">Previous</button>
+      <button class="next-btn btn-primary">Next</button>
+    </div>`;
+    return pagination.children[0];
+  }
 }

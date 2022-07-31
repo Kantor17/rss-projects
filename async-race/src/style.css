@@ -1,9 +1,121 @@
 * {
-  margin: 0;
-  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background-color: black;
-  color: #ccc;
+  background-color: #3b669c;
+  color: #e6e6e6;
+  font-family: 'Short Stack';
+  font-weight: 400;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+button {
+  background-color: #bd4291;
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  height: 25px;
+  width: 80px;
+  font-family: cursive;
+  font-size: 14px;
+}
+
+button.btn-primary {
+  background-color: #37e2d5;
+}
+
+button.btn-long {
+  width: 120px;
+}
+
+button.btn-disabled {
+  background-color: #ababab;
+  color: #444;
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1920px;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+
+.winners-view {
+  display: none;
+}
+
+.cars {
+  margin-bottom: 60px;
+}
+
+.car button {
+  font-size: 13px;
+}
+
+.car-color {
+  height: 22px;
+}
+
+.car-name {
+  margin-bottom: 5px;
+}
+
+.car-tools {
+  margin-bottom: 5px;
+}
+
+.car-start {
+  background-color: #53Bf9d;
+}
+
+.car-stop {
+  background-color: #f94c66;
+}
+
+.car-track {
+  border-bottom: dashed white 2px;
+  display: flex;
+  justify-content: space-between; 
+  align-items: flex-end;
+}
+
+.car-model {
+  transform: translateY(15px);
+  margin-bottom: 0;
+  max-width: 80px;
+}
+
+.finish {
+  height: 60px;
+  width: 60px;
+}
+
+.winners-table {
+  margin-bottom: 60px;
+}
+
+.winners-table
+th,
+td {
+  border: 1px solid grey;
+  padding: 8px;
+}
+
+.winners-table img {
+  width: 40px;
+}
+
+.winners-table {
+  counter-reset: counter; 
+}
+
+.winners-table tr td:first-child:before {
+  position: relative;
+  counter-increment: counter;
+  content: counter(counter);
 }

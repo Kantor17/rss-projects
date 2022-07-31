@@ -2,43 +2,42 @@ import GarageView from '../views/GarageView';
 import WinnersView from '../views/WinnersView';
 
 export default class {
+  container: HTMLElement;
+
   garageView: HTMLElement;
 
   winnersView: HTMLElement;
 
   constructor() {
+    this.container = document.createElement('div');
     this.garageView = new GarageView().createView();
     this.winnersView = new WinnersView().createView();
   }
 
   run() {
-    this.renderNavigation();
-    this.winnersView.style.display = 'none';
-    document.body.append(this.garageView, this.winnersView);
+    this.renderStartPage();
   }
 
-  renderNavigation() {
-    const nav = document.createElement('nav');
-    nav.className = 'nav';
+  renderStartPage() {
+    this.container.className = 'container';
 
-    const garageButton = document.createElement('button');
-    garageButton.className = 'garage-button';
-    garageButton.textContent = 'Garage';
-    garageButton.addEventListener('click', () => this.goToGarage());
+    const nav = document.createElement('div');
+    nav.innerHTML = `
+    <div class="nav">
+      <button class="garage-btn btn-primary">Garage</button>
+      <button class="winners-btn btn-primary">Winners</button>
+    </div>`;
+    nav.querySelector('.garage-btn')?.addEventListener('click', () => this.goToGarage());
+    nav.querySelector('.winners-btn')?.addEventListener('click', () => this.goToWinners());
 
-    const winnersButton = document.createElement('button');
-    winnersButton.textContent = 'Winners';
-    winnersButton.className = 'winners-button';
-    winnersButton.addEventListener('click', () => this.goToWinners());
-    nav.append(garageButton, winnersButton);
-
-    document.body.append(nav);
+    this.container.append(nav.children[0]);
+    this.container.append(this.garageView, this.winnersView);
+    document.body.append(this.container);
   }
 
   goToGarage() {
     this.winnersView.style.display = 'none';
     this.garageView.style.display = 'block';
-    console.log(this.winnersView);
   }
 
   goToWinners() {
