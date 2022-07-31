@@ -6,13 +6,13 @@ enum Paths {
 }
 
 export default class Communicator {
-  async getCars() {
+  async getCars(): Promise<CarType[]> {
     const response = await fetch(`${Paths.baseURL}${Paths.cars}`);
     const data = response.json();
     return data;
   }
 
-  async addCar(car: CarType) {
+  async addCar(car: CarType): Promise<CarType> {
     const response = await fetch(`${Paths.baseURL}${Paths.cars}`, {
       method: 'POST',
       headers: {

@@ -7,6 +7,11 @@ export default class {
     this.communicator = new Communicator();
   }
 
+  async handleReading() {
+    const cars = await this.communicator.getCars();
+    return cars;
+  }
+
   async handleCreation(name: string, color: string) {
     if (name.trim()) {
       const car = {

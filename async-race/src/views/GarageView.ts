@@ -96,6 +96,11 @@ export default class GarageView extends Template {
     return carsWrapper;
   }
 
+  async stuffCarsWrapper() {
+    const cars = await this.handler.handleReading();
+    cars.forEach((car: CarType) => this.renderCar(car));
+  }
+
   renderCar(car: CarType) {
     const { name, color } = car;
     const carE = document.createElement('div');

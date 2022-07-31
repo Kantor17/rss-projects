@@ -1,6 +1,5 @@
 import GarageView from '../views/GarageView';
 import WinnersView from '../views/WinnersView';
-import { CarType } from '../utils/types';
 import Communicator from './Communicator';
 
 export default class {
@@ -21,8 +20,7 @@ export default class {
 
   async run() {
     this.renderStartPage();
-    const cars = await this.communicator.getCars();
-    this.renderCars(cars);
+    await this.garageView.stuffCarsWrapper();
   }
 
   renderStartPage() {
@@ -40,12 +38,6 @@ export default class {
     this.container.append(nav.children[0]);
     this.container.append(this.garageView.viewE, this.winnersView.viewE);
     document.body.append(this.container);
-  }
-
-  renderCars(cars: CarType[]) {
-    cars.forEach((car) => {
-      this.garageView.renderCar(car);
-    });
   }
 
   goToGarage() {
