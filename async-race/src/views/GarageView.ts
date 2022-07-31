@@ -53,7 +53,11 @@ export default class GarageView extends Template {
     creationBtn.textContent = 'Create';
     creationBtn.addEventListener('click', async () => {
       const car = await this.handler.handleCreation(carName.value, carColor.value);
-      if (car) this.renderCar(car);
+      if (car) {
+        this.renderCar(car);
+        carColor.value = 'ffffff';
+        carName.value = '';
+      }
     });
 
     carCreator.append(carName, carColor, creationBtn);
