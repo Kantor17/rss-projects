@@ -23,4 +23,10 @@ export default class Communicator {
     const resultCar = await response.json();
     return resultCar;
   }
+
+  async removeCar(id: string) {
+    await fetch(`${Paths.baseURL}${Paths.cars}/${id}`, {
+      method: 'DELETE',
+    });
+  }
 }

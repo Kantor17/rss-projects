@@ -106,10 +106,10 @@ export default class GarageView extends Template {
   }
 
   renderCar(car: CarType) {
-    const { name, color } = car;
+    const { name, color, id } = car;
     const carE = document.createElement('div');
     carE.innerHTML = `
-    <div class="car">
+    <div class="car" data-id="${id}">
       <h3 class="car-name">${name}</h3>
       <div class="car-tools">
         <button class="car-select">Select</button>
@@ -128,7 +128,16 @@ export default class GarageView extends Template {
         </div>
       </div>
     </div>`;
+    this.removingListen(carE.querySelector('.car-remove') as HTMLInputElement);
     this.carsWrapper.append(carE.children[0]);
+  }
+
+  removingListen(btn: HTMLInputElement) {
+    btn.addEventListener('click', () => {
+      const carE = btn.closest('.car') as HTMLElement;
+      this.handler.handleDeletion(carE.dataset.id as string);
+      carE.remove();
+    });
   }
 
   createImage(color: string) {

@@ -24,4 +24,8 @@ export default class {
     alert('Please enter some name for a car');
     return null;
   }
+
+  async handleDeletion(id: string) {
+    this.communicator.removeCar(id);
+  }
 }
