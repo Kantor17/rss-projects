@@ -50,8 +50,27 @@ button.btn-disabled {
   margin: 0 auto;
 }
 
+.cars-updater.disabled {
+  pointer-events: none;
+}
+.cars-updater.disabled button,
+.cars-updater.disabled input {
+  background-color: #ababab;
+  color: #444;
+}
+
 .cars-wrapper {
   margin-bottom: 60px;
+}
+
+.car.selected .car-name {
+  animation-name: pulse;
+  animation-duration: .5s;
+  animation-iteration-count: infinite;
+}
+
+.car.selected .car-select {
+  color: white;
 }
 
 .car button {
@@ -118,4 +137,16 @@ td {
   position: relative;
   counter-increment: counter;
   content: counter(counter);
+}
+
+@keyframes pulse {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }

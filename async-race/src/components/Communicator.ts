@@ -1,4 +1,4 @@
-import { CarType } from '../utils/types';
+import { CarType, CarParams } from '../utils/types';
 
 enum Paths {
   cars = '/garage',
@@ -12,13 +12,13 @@ export default class Communicator {
     return data;
   }
 
-  async addCar(car: CarType): Promise<CarType> {
+  async addCar(params: CarParams): Promise<CarType> {
     const response = await fetch(`${Paths.baseURL}${Paths.cars}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(car),
+      body: JSON.stringify(params),
     });
     const resultCar = await response.json();
     return resultCar;
@@ -27,6 +27,16 @@ export default class Communicator {
   async removeCar(id: string) {
     await fetch(`${Paths.baseURL}${Paths.cars}/${id}`, {
       method: 'DELETE',
+    });
+  }
+
+  async updateCar(id: string, params: CarParams) {
+    await fetch(`${Paths.baseURL}${Paths.cars}/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(params),
     });
   }
 }

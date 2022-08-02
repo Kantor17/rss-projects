@@ -10,6 +10,8 @@ export default class GarageView extends View {
 
   communicator = new Communicator();
 
+  selectedCar: HTMLElement | null = null;
+
   createView() {
     const view = this.createElement('div', 'garage-view');
     view.append(
@@ -25,7 +27,7 @@ export default class GarageView extends View {
 
   createCarsManager() {
     const carsManager = this.createElement('div', 'cars-manager');
-    carsManager.append(this.createCarCreator(), this.createCarUpdater());
+    carsManager.append(this.createCarCreator(), this.createCarsUpdater());
     return carsManager;
   }
 
@@ -44,8 +46,8 @@ export default class GarageView extends View {
     return carCreator;
   }
 
-  createCarUpdater() {
-    const carUpdater = this.createElement('div', 'cars-updater');
+  createCarsUpdater() {
+    const carUpdater = this.createElement('div', 'cars-updater disabled');
 
     const carName = this.createElement('input', 'car-name') as HTMLInputElement;
 
@@ -54,6 +56,7 @@ export default class GarageView extends View {
 
     const updateBtn = this.createElement('button', 'update-btn');
     updateBtn.textContent = 'Update';
+    updateBtn.addEventListener('click', () => this.handleCarUpdating(carName, carColor));
 
     carUpdater.append(carName, carColor, updateBtn);
     return carUpdater;
@@ -100,7 +103,9 @@ export default class GarageView extends View {
       </div>
     </div>`);
     const removeBtn = carE.querySelector('.car-remove');
-    removeBtn?.addEventListener('click', () => this.handleCarRemoving(removeBtn?.closest('.car') as HTMLElement));
+    removeBtn?.addEventListener('click', () => this.handleCarRemoving(carE as HTMLElement));
+    const selectBtn = carE.querySelector('.car-select');
+    selectBtn?.addEventListener('click', () => this.handleCarSelection(carE as HTMLElement));
     this.carsWrapper.append(carE);
   }
 
@@ -121,11 +126,11 @@ export default class GarageView extends View {
     const name = carNameE.value;
     if (name.trim()) {
       const color = carColorE.value;
-      const car = {
+      const params = {
         name,
         color,
       };
-      this.renderCar(await this.communicator.addCar(car));
+      this.renderCar(await this.communicator.addCar(params));
       carNameE.value = '';
       carColorE.value = '#000000';
     } else {
@@ -136,5 +141,62 @@ export default class GarageView extends View {
   async handleCarRemoving(carE: HTMLElement) {
     this.communicator.removeCar(carE.dataset.id as string);
     carE.remove();
+    this.removeFromSelected(carE);
+  }
+
+  async handleCarSelection(carE: HTMLElement) {
+    if (this.selectedCar === carE) {
+      this.removeFromSelected(carE);
+    } else {
+      this.removeFromSelected(this.selectedCar);
+      this.addToSelected(carE);
+    }
+  }
+
+  addToSelected(carE: HTMLElement) {
+    const { carsUpdater, carName, carColor } = this.getUpdatingControls();
+    carsUpdater?.classList.remove('disabled');
+
+    carName.value = carE.querySelector('.car-name')?.textContent as string;
+    carColor.value = carE.querySelector('.car-model svg')?.getAttribute('fill') as string;
+    this.selectedCar = carE;
+    carE.classList.add('selected');
+  }
+
+  removeFromSelected(carE: HTMLElement | null) {
+    const { carsUpdater, carName, carColor } = this.getUpdatingControls();
+    carsUpdater?.classList.add('disabled');
+    if (this.selectedCar === carE) {
+      this.selectedCar = null;
+      carName.value = '';
+      carColor.value = '#000000';
+    }
+    carE?.classList.remove('selected');
+  }
+
+  getUpdatingControls() {
+    const carsUpdater = this.viewE.querySelector('.cars-updater');
+    return {
+      carsUpdater,
+      carName: carsUpdater?.querySelector('.car-name') as HTMLInputElement,
+      carColor: carsUpdater?.querySelector('.car-color') as HTMLInputElement,
+    };
+  }
+
+  async handleCarUpdating(
+    carNameE: HTMLInputElement,
+    carColorE: HTMLInputElement,
+  ) {
+    const name = carNameE.value;
+    if (name.trim()) {
+      const color = carColorE.value;
+      this.communicator.updateCar(this.selectedCar?.dataset.id as string, { name, color });
+
+      (this.selectedCar?.querySelector('.car-name') as HTMLElement).textContent = name;
+      this.selectedCar?.querySelector('.car-model svg')?.setAttribute('fill', color);
+      this.removeFromSelected(this.selectedCar);
+    } else {
+      alert('Please enter some name for a car');
+    }
   }
 }
