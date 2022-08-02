@@ -39,14 +39,15 @@ button.btn-disabled {
   pointer-events: none;
 }
 
+.garage-view.hidden,
+.winners-view.hidden {
+  display: none;
+}
+
 .container {
   max-width: 1920px;
   padding: 0 10px;
   margin: 0 auto;
-}
-
-.winners-view {
-  display: none;
 }
 
 .cars-wrapper {

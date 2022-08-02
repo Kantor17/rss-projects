@@ -33,13 +33,21 @@ export default class {
     document.body.append(this.container);
   }
 
+  hide(elem: HTMLElement) {
+    elem.classList.add('hidden');
+  }
+
+  show(elem: HTMLElement) {
+    elem.classList.remove('hidden');
+  }
+
   goToGarage() {
-    this.winnersView.viewE.style.display = 'none';
-    this.garageView.viewE.style.display = 'block';
+    this.hide(this.winnersView.viewE);
+    this.show(this.garageView.viewE);
   }
 
   goToWinners() {
-    this.garageView.viewE.style.display = 'none';
-    this.winnersView.viewE.style.display = 'block';
+    this.hide(this.garageView.viewE);
+    this.show(this.winnersView.viewE);
   }
 }

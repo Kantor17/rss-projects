@@ -5,7 +5,7 @@ export default class WinnersView extends Template {
 
   createView() {
     const view = document.createElement('div');
-    view.className = 'winners-view';
+    view.className = 'winners-view hidden';
     view.append(
       this.createTitle('Winners'),
       this.createPageCounter(),
