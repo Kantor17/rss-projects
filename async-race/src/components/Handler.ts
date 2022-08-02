@@ -1,11 +1,7 @@
 import Communicator from './Communicator';
 
 export default class {
-  communicator: Communicator;
-
-  constructor() {
-    this.communicator = new Communicator();
-  }
+  communicator = new Communicator();
 
   async handleReading() {
     const cars = await this.communicator.getCars();

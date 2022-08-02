@@ -3,18 +3,11 @@ import { CarType } from '../utils/types';
 import Template from './Template';
 
 export default class GarageView extends Template {
-  carsWrapper: HTMLElement;
+  carsWrapper = this.createCarsWrapper();
 
-  viewE: HTMLElement;
+  viewE = this.createView();
 
-  handler: Handler;
-
-  constructor() {
-    super();
-    this.carsWrapper = this.createCarsWrapper();
-    this.viewE = this.createView();
-    this.handler = new Handler();
-  }
+  handler = new Handler();
 
   createView() {
     const view = document.createElement('div');

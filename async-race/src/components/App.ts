@@ -3,20 +3,13 @@ import WinnersView from '../views/WinnersView';
 import Communicator from './Communicator';
 
 export default class {
-  container: HTMLElement;
+  container = document.createElement('div');
 
-  garageView: GarageView;
+  garageView = new GarageView();
 
-  winnersView: WinnersView;
+  winnersView = new WinnersView();
 
-  communicator: Communicator;
-
-  constructor() {
-    this.container = document.createElement('div');
-    this.garageView = new GarageView();
-    this.winnersView = new WinnersView();
-    this.communicator = new Communicator();
-  }
+  communicator = new Communicator();
 
   async run() {
     this.renderStartPage();
