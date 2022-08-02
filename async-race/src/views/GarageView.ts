@@ -80,6 +80,11 @@ export default class GarageView extends View {
     cars.forEach((car: CarType) => this.renderCar(car));
   }
 
+  async updateItemsCounter() {
+    (this.viewE.querySelector('.total-counter') as HTMLElement)
+      .textContent = await this.communicator.getTotalItems() as string;
+  }
+
   renderCar(car: CarType) {
     const { name, color, id } = car;
     const carE = this.createElementFromMarkup(`
@@ -133,15 +138,18 @@ export default class GarageView extends View {
       this.renderCar(await this.communicator.addCar(params));
       carNameE.value = '';
       carColorE.value = '#000000';
+
+      await this.updateItemsCounter();
     } else {
       alert('Please enter some name for a car');
     }
   }
 
   async handleCarRemoving(carE: HTMLElement) {
-    this.communicator.removeCar(carE.dataset.id as string);
     carE.remove();
     this.removeFromSelected(carE);
+    await this.communicator.removeCar(carE.dataset.id as string);
+    await this.updateItemsCounter();
   }
 
   async handleCarSelection(carE: HTMLElement) {

@@ -3,6 +3,7 @@ import { CarType, CarParams } from '../utils/types';
 enum Paths {
   cars = '/garage',
   baseURL = 'http://127.0.0.1:3000',
+  limit = '_limit=',
 }
 
 export default class Communicator {
@@ -38,5 +39,10 @@ export default class Communicator {
       },
       body: JSON.stringify(params),
     });
+  }
+
+  async getTotalItems() {
+    const response = await fetch(`${Paths.baseURL}${Paths.cars}?${Paths.limit}999`);
+    return response.headers.get('X-Total-Count');
   }
 }

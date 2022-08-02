@@ -1,8 +1,8 @@
 export default class {
-  createTitle(name: string, count = 0) {
+  createTitle(name: string) {
     return this.createElementFromMarkup(`
     <h1 class="title">
-      ${name}<span class="total-counter">(${count.toString()})</span>
+      ${name}(<span class="total-counter">0</span>)
     </h1>`);
   }
 

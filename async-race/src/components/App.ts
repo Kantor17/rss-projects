@@ -14,6 +14,7 @@ export default class {
   async run() {
     this.renderStartPage();
     await this.garageView.stuffCarsWrapper();
+    await this.garageView.updateItemsCounter();
   }
 
   renderStartPage() {
