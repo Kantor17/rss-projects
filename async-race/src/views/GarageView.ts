@@ -1,4 +1,5 @@
-import Handler from '../components/Handler';
+/* eslint-disable no-param-reassign */
+import Communicator from '../components/Communicator';
 import { CarType } from '../utils/types';
 import View from './View';
 
@@ -7,7 +8,7 @@ export default class GarageView extends View {
 
   viewE = this.createView();
 
-  handler = new Handler();
+  communicator = new Communicator();
 
   createView() {
     const view = this.createElement('div', 'garage-view');
@@ -37,14 +38,7 @@ export default class GarageView extends View {
 
     const creationBtn = this.createElement('button', 'creation-btn');
     creationBtn.textContent = 'Create';
-    creationBtn.addEventListener('click', async () => {
-      const car = await this.handler.handleCreation(carName.value, carColor.value);
-      if (car) {
-        this.renderCar(car);
-        carColor.value = 'ffffff';
-        carName.value = '';
-      }
-    });
+    creationBtn.addEventListener('click', async () => this.handleCarAdding(carName, carColor));
 
     carCreator.append(carName, carColor, creationBtn);
     return carCreator;
@@ -79,7 +73,7 @@ export default class GarageView extends View {
   }
 
   async stuffCarsWrapper() {
-    const cars = await this.handler.handleReading();
+    const cars = await this.communicator.getCars();
     cars.forEach((car: CarType) => this.renderCar(car));
   }
 
@@ -105,16 +99,9 @@ export default class GarageView extends View {
         </div>
       </div>
     </div>`);
-    this.removingListen(carE.querySelector('.car-remove') as HTMLInputElement);
+    const removeBtn = carE.querySelector('.car-remove');
+    removeBtn?.addEventListener('click', () => this.handleCarRemoving(removeBtn?.closest('.car') as HTMLElement));
     this.carsWrapper.append(carE);
-  }
-
-  removingListen(btn: HTMLInputElement) {
-    btn.addEventListener('click', () => {
-      const carE = btn.closest('.car') as HTMLElement;
-      this.handler.handleDeletion(carE.dataset.id as string);
-      carE.remove();
-    });
   }
 
   createImage(color: string) {
@@ -128,5 +115,26 @@ export default class GarageView extends View {
     </g>
   </svg>
     `;
+  }
+
+  async handleCarAdding(carNameE: HTMLInputElement, carColorE: HTMLInputElement) {
+    const name = carNameE.value;
+    if (name.trim()) {
+      const color = carColorE.value;
+      const car = {
+        name,
+        color,
+      };
+      this.renderCar(await this.communicator.addCar(car));
+      carNameE.value = '';
+      carColorE.value = '#000000';
+    } else {
+      alert('Please enter some name for a car');
+    }
+  }
+
+  async handleCarRemoving(carE: HTMLElement) {
+    this.communicator.removeCar(carE.dataset.id as string);
+    carE.remove();
   }
 }
