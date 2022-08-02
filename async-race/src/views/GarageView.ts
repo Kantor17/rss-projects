@@ -1,8 +1,8 @@
 import Handler from '../components/Handler';
 import { CarType } from '../utils/types';
-import Template from './Template';
+import View from './View';
 
-export default class GarageView extends Template {
+export default class GarageView extends View {
   carsWrapper = this.createCarsWrapper();
 
   viewE = this.createView();
@@ -10,8 +10,7 @@ export default class GarageView extends Template {
   handler = new Handler();
 
   createView() {
-    const view = document.createElement('div');
-    view.className = 'garage-view';
+    const view = this.createElement('div', 'garage-view');
     view.append(
       this.createTitle('Garage'),
       this.createCarsManager(),
@@ -24,25 +23,19 @@ export default class GarageView extends Template {
   }
 
   createCarsManager() {
-    const carsManager = document.createElement('div');
-    carsManager.className = 'cars-manager';
+    const carsManager = this.createElement('div', 'cars-manager');
     carsManager.append(this.createCarCreator(), this.createCarUpdater());
     return carsManager;
   }
 
   createCarCreator() {
-    const carCreator = document.createElement('div');
-    carCreator.className = 'car-creator';
+    const carCreator = this.createElement('div', 'car-creator');
+    const carName = this.createElement('input', 'car-name') as HTMLInputElement;
 
-    const carName = document.createElement('input');
-    carName.className = 'car-name';
-
-    const carColor = document.createElement('input');
+    const carColor = this.createElement('input', 'car-color') as HTMLInputElement;
     carColor.type = 'color';
-    carColor.className = 'car-color';
 
-    const creationBtn = document.createElement('button');
-    creationBtn.className = 'creation-btn';
+    const creationBtn = this.createElement('button', 'creation-btn');
     creationBtn.textContent = 'Create';
     creationBtn.addEventListener('click', async () => {
       const car = await this.handler.handleCreation(carName.value, carColor.value);
@@ -58,18 +51,14 @@ export default class GarageView extends Template {
   }
 
   createCarUpdater() {
-    const carUpdater = document.createElement('div');
-    carUpdater.className = 'cars-updater';
+    const carUpdater = this.createElement('div', 'cars-updater');
 
-    const carName = document.createElement('input');
-    carName.className = 'car-name';
+    const carName = this.createElement('input', 'car-name') as HTMLInputElement;
 
-    const carColor = document.createElement('input');
+    const carColor = this.createElement('input', 'car-color') as HTMLInputElement;
     carColor.type = 'color';
-    carColor.className = 'car-color';
 
-    const updateBtn = document.createElement('button');
-    updateBtn.className = 'update-btn';
+    const updateBtn = this.createElement('button', 'update-btn');
     updateBtn.textContent = 'Update';
 
     carUpdater.append(carName, carColor, updateBtn);
@@ -77,20 +66,16 @@ export default class GarageView extends Template {
   }
 
   createControls() {
-    const controls = document.createElement('div');
-    controls.innerHTML = `
+    return this.createElementFromMarkup(`
     <div class="controls">
       <button class="race-btn btn-primary">Race</button>
       <button class="reset-btn btn-primary">Reset</button>
       <button class="generate-btn btn-long">Generate cars</button>
-    </div>`;
-    return controls.children[0];
+    </div>`);
   }
 
   createCarsWrapper() {
-    const carsWrapper = document.createElement('div');
-    carsWrapper.className = 'cars-wrapper';
-    return carsWrapper;
+    return this.createElement('div', 'cars-wrapper');
   }
 
   async stuffCarsWrapper() {
@@ -100,8 +85,7 @@ export default class GarageView extends Template {
 
   renderCar(car: CarType) {
     const { name, color, id } = car;
-    const carE = document.createElement('div');
-    carE.innerHTML = `
+    const carE = this.createElementFromMarkup(`
     <div class="car" data-id="${id}">
       <h3 class="car-name">${name}</h3>
       <div class="car-tools">
@@ -120,9 +104,9 @@ export default class GarageView extends Template {
           <img src="../assets/finish-flag.svg" alt="finish">
         </div>
       </div>
-    </div>`;
+    </div>`);
     this.removingListen(carE.querySelector('.car-remove') as HTMLInputElement);
-    this.carsWrapper.append(carE.children[0]);
+    this.carsWrapper.append(carE);
   }
 
   removingListen(btn: HTMLInputElement) {

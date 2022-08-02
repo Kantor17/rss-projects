@@ -1,11 +1,10 @@
-import Template from './Template';
+import View from './View';
 
-export default class WinnersView extends Template {
+export default class WinnersView extends View {
   viewE = this.createView();
 
   createView() {
-    const view = document.createElement('div');
-    view.className = 'winners-view hidden';
+    const view = this.createElement('div', 'winners-view hidden');
     view.append(
       this.createTitle('Winners'),
       this.createPageCounter(),
@@ -16,8 +15,7 @@ export default class WinnersView extends Template {
   }
 
   createTable() {
-    const table = document.createElement('div');
-    table.innerHTML = `
+    return this.createElementFromMarkup(`
   <table class="winners-table">
     <thead>
       <tr>
@@ -51,7 +49,6 @@ export default class WinnersView extends Template {
         <td>10s</td>
       </tr>
     </tbody>
-  </table>`;
-    return table.children[0];
+  </table>`);
   }
 }
