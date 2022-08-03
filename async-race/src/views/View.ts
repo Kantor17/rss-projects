@@ -6,8 +6,8 @@ export default class {
     </h1>`);
   }
 
-  createPageCounter(count = 0) {
-    return this.createElementFromMarkup(`<h2 class="page-counter">Page #${count.toString()}</h2>`);
+  createPageCounter() {
+    return this.createElementFromMarkup('<h2 class="page-counter">Page #<span class="page-num">1</span></h2>');
   }
 
   createPagination() {

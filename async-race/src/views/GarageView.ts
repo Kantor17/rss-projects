@@ -1,16 +1,31 @@
 /* eslint-disable no-param-reassign */
 import Communicator from '../components/Communicator';
+import Paginator from '../components/Paginator';
 import { CarType } from '../utils/types';
 import View from './View';
+import { CARS_PER_PAGE } from '../utils/constants';
 
 export default class GarageView extends View {
+  static Instance: GarageView;
+
+  paginator = new Paginator();
+
+  communicator = new Communicator();
+
   carsWrapper = this.createCarsWrapper();
 
   viewE = this.createView();
 
-  communicator = new Communicator();
-
   selectedCar: HTMLElement | null = null;
+
+  totalItems = 0;
+
+  pageCount = 1;
+
+  static getInstance() {
+    if (!GarageView.Instance) GarageView.Instance = new GarageView();
+    return GarageView.Instance;
+  }
 
   createView() {
     const view = this.createElement('div', 'garage-view');
@@ -71,21 +86,67 @@ export default class GarageView extends View {
     </div>`);
   }
 
+  createPagination() {
+    const pagination = super.createPagination();
+    (pagination.querySelector('.prev-btn') as HTMLElement).addEventListener('click', () => {
+      this.paginator.prevPage();
+    });
+    (pagination.querySelector('.next-btn') as HTMLElement).addEventListener('click', () => {
+      this.paginator.nextPage();
+    });
+    return pagination;
+  }
+
   createCarsWrapper() {
     return this.createElement('div', 'cars-wrapper');
   }
 
   async stuffCarsWrapper() {
-    const cars = await this.communicator.getCars();
-    cars.forEach((car: CarType) => this.renderCar(car));
+    const cars = await this.communicator.getCars(this.pageCount, CARS_PER_PAGE);
+    cars.forEach((car: CarType) => this.appendCar(this.createCarE(car)));
+  }
+
+  async updatePage(cars: CarType[]) {
+    await this.replaceCars(cars);
+    this.updatePageCounter();
+    this.checkPaginationButtons();
+    this.removeFromSelected(this.selectedCar);
+  }
+
+  async replaceCars(cars: CarType[]) {
+    const newCars = cars.map((car) => this.createCarE(car));
+    this.carsWrapper.replaceChildren(...newCars);
+  }
+
+  updatePageCounter() {
+    (this.viewE.querySelector('.page-num') as HTMLElement)
+      .textContent = this.pageCount.toString();
+  }
+
+  checkPaginationButtons() {
+    const prevBtn = this.viewE.querySelector('.prev-btn') as HTMLElement;
+    if (this.pageCount < 2) {
+      prevBtn.classList.add('btn-disabled');
+    } else {
+      prevBtn.classList.remove('btn-disabled');
+    }
+
+    const nextBtn = this.viewE.querySelector('.next-btn') as HTMLElement;
+    if (this.totalItems <= this.pageCount * CARS_PER_PAGE) {
+      nextBtn.classList.add('btn-disabled');
+    } else {
+      nextBtn.classList.remove('btn-disabled');
+    }
   }
 
   async updateItemsCounter() {
-    (this.viewE.querySelector('.total-counter') as HTMLElement)
-      .textContent = await this.communicator.getTotalItems() as string;
+    const totalItems = await this.communicator.getTotalItems() as string;
+    (this.viewE.querySelector('.total-counter') as HTMLElement).textContent = totalItems;
+    this.totalItems = +totalItems;
+    this.checkPaginationButtons();
   }
 
-  renderCar(car: CarType) {
+  createCarE(car: CarType) {
     const { name, color, id } = car;
     const carE = this.createElementFromMarkup(`
     <div class="car" data-id="${id}">
@@ -111,7 +172,11 @@ export default class GarageView extends View {
     removeBtn?.addEventListener('click', () => this.handleCarRemoving(carE as HTMLElement));
     const selectBtn = carE.querySelector('.car-select');
     selectBtn?.addEventListener('click', () => this.handleCarSelection(carE as HTMLElement));
-    this.carsWrapper.append(carE);
+    return carE;
+  }
+
+  appendCar(car: Element) {
+    this.carsWrapper.append(car);
   }
 
   createImage(color: string) {
@@ -135,7 +200,12 @@ export default class GarageView extends View {
         name,
         color,
       };
-      this.renderCar(await this.communicator.addCar(params));
+
+      const car = await this.communicator.addCar(params);
+      if (this.carsWrapper.childNodes.length < CARS_PER_PAGE) {
+        this.appendCar(this.createCarE(car));
+      }
+
       carNameE.value = '';
       carColorE.value = '#000000';
 
@@ -146,10 +216,13 @@ export default class GarageView extends View {
   }
 
   async handleCarRemoving(carE: HTMLElement) {
-    carE.remove();
     this.removeFromSelected(carE);
     await this.communicator.removeCar(carE.dataset.id as string);
     await this.updateItemsCounter();
+    const newCars = await this.communicator.getCars(this.pageCount, CARS_PER_PAGE);
+    const lastNewCar = newCars[CARS_PER_PAGE - 1];
+    carE.remove();
+    if (lastNewCar) this.appendCar(this.createCarE(lastNewCar));
   }
 
   async handleCarSelection(carE: HTMLElement) {

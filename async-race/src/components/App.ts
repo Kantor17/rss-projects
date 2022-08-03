@@ -5,7 +5,7 @@ import Communicator from './Communicator';
 export default class {
   container = document.createElement('div');
 
-  garageView = new GarageView();
+  garageView = GarageView.getInstance();
 
   winnersView = new WinnersView();
 

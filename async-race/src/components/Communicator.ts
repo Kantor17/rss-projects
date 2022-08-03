@@ -3,12 +3,13 @@ import { CarType, CarParams } from '../utils/types';
 enum Paths {
   cars = '/garage',
   baseURL = 'http://127.0.0.1:3000',
+  page = '_page=',
   limit = '_limit=',
 }
 
 export default class Communicator {
-  async getCars(): Promise<CarType[]> {
-    const response = await fetch(`${Paths.baseURL}${Paths.cars}`);
+  async getCars(page: number, limit: number): Promise<CarType[]> {
+    const response = await fetch(`${Paths.baseURL}${Paths.cars}?${Paths.page}${page}&${Paths.limit}${limit}`);
     const data = response.json();
     return data;
   }
@@ -42,7 +43,7 @@ export default class Communicator {
   }
 
   async getTotalItems() {
-    const response = await fetch(`${Paths.baseURL}${Paths.cars}?${Paths.limit}999`);
+    const response = await fetch(`${Paths.baseURL}${Paths.cars}?${Paths.limit}0`);
     return response.headers.get('X-Total-Count');
   }
 }
