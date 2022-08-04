@@ -41,7 +41,7 @@ export default class GarageHandler {
 
   async handleCarRemoving(carE: HTMLElement) {
     const garage = GarageView.getInstance();
-    this.removeFromSelected(carE);
+    if (carE === this.selectedCar) this.removeFromSelected(carE);
     await this.communicator.removeCar(carE.dataset.id as string);
     await this.updateItemsCounter();
     const newCars = await this.communicator.getCars(garage.pageCount, CARS_PER_PAGE);
@@ -64,11 +64,9 @@ export default class GarageHandler {
   removeFromSelected(carE = this.selectedCar) {
     const { carsUpdater, carName, carColor } = this.getUpdatingControls();
     carsUpdater?.classList.add('disabled');
-    if (this.selectedCar === carE) {
-      this.selectedCar = null;
-      carName.value = '';
-      carColor.value = '#000000';
-    }
+    this.selectedCar = null;
+    carName.value = '';
+    carColor.value = '#000000';
     carE?.classList.remove('selected');
   }
 
