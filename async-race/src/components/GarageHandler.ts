@@ -44,11 +44,16 @@ export default class GarageHandler {
     if (carE === this.selectedCar) this.removeFromSelected(carE);
     await this.communicator.removeCar(carE.dataset.id as string);
     await this.updateItemsCounter();
+
     const newCars = await this.communicator.getCars(garage.pageCount, CARS_PER_PAGE);
     const lastNewCar = newCars[CARS_PER_PAGE - 1];
     carE.remove();
     if (lastNewCar) {
       garage.appendCar(garage.createCarE(lastNewCar));
+    }
+
+    if (garage.carsWrapper.childNodes.length < 1 && garage.pageCount > 1) {
+      garage.paginator.prevPage();
     }
   }
 

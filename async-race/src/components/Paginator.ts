@@ -6,8 +6,6 @@ import GarageView from '../views/GarageView';
 export default class Paginator {
   communicator = new Communicator();
 
-  currentPage = 1;
-
   handler = new GarageHandler();
 
   async prevPage() {
