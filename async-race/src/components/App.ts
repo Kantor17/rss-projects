@@ -1,11 +1,14 @@
 import GarageView from '../views/GarageView';
 import WinnersView from '../views/WinnersView';
 import Communicator from './Communicator';
+import GarageHandler from './GarageHandler';
 
 export default class {
   container = document.createElement('div');
 
   garageView = GarageView.getInstance();
+
+  garageHandler = new GarageHandler();
 
   winnersView = new WinnersView();
 
@@ -13,8 +16,8 @@ export default class {
 
   async run() {
     this.renderStartPage();
-    await this.garageView.stuffCarsWrapper();
-    await this.garageView.updateItemsCounter();
+    await this.garageHandler.stuffCarsWrapper();
+    await this.garageHandler.updateItemsCounter();
   }
 
   renderStartPage() {
