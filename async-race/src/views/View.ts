@@ -18,9 +18,10 @@ export default class {
       </div>`);
   }
 
-  createElement(tagName: string, className: string) {
+  createElement(tagName: string, className: string, textContent = '') {
     const elem = document.createElement(tagName);
     elem.className = className;
+    elem.textContent = textContent;
     return elem;
   }
 

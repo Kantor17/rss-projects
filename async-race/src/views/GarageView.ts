@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import Paginator from '../components/Paginator';
 import { CarType } from '../utils/types';
 import View from './View';
@@ -50,8 +49,7 @@ export default class GarageView extends View {
     const carColor = this.createElement('input', 'car-color') as HTMLInputElement;
     carColor.type = 'color';
 
-    const creationBtn = this.createElement('button', 'creation-btn');
-    creationBtn.textContent = 'Create';
+    const creationBtn = this.createElement('button', 'creation-btn', 'Create');
     creationBtn.addEventListener('click', async () => this.handler.handleCarAdding(carName, carColor));
 
     carCreator.append(carName, carColor, creationBtn);
@@ -66,8 +64,7 @@ export default class GarageView extends View {
     const carColor = this.createElement('input', 'car-color') as HTMLInputElement;
     carColor.type = 'color';
 
-    const updateBtn = this.createElement('button', 'update-btn');
-    updateBtn.textContent = 'Update';
+    const updateBtn = this.createElement('button', 'update-btn', 'Update');
     updateBtn.addEventListener('click', () => this.handler.handleCarUpdating(carName, carColor));
 
     carUpdater.append(carName, carColor, updateBtn);
@@ -75,12 +72,13 @@ export default class GarageView extends View {
   }
 
   createControls() {
-    return this.createElementFromMarkup(`
-    <div class="controls">
-      <button class="race-btn btn-primary">Race</button>
-      <button class="reset-btn btn-primary">Reset</button>
-      <button class="generate-btn btn-long">Generate cars</button>
-    </div>`);
+    const controls = this.createElement('div', 'controls');
+    const raceBtn = this.createElement('button', 'race-btn btn-primary', 'Race');
+    const resetBtn = this.createElement('button', 'reset-btn btn-primary', 'Reset');
+    const generateBtn = this.createElement('button', 'generate-btn btn-long', 'Generate cars');
+    generateBtn.addEventListener('click', () => this.handler.generateCars());
+    controls.append(raceBtn, resetBtn, generateBtn);
+    return controls;
   }
 
   createPagination() {

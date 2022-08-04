@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { CARS_PER_PAGE } from '../utils/constants';
+import { generateCarName, generateCarColor } from '../utils/paramsGenerator';
 import { CarType } from '../utils/types';
 import GarageView from '../views/GarageView';
 import Communicator from './Communicator';
@@ -18,24 +19,30 @@ export default class GarageHandler {
   async handleCarAdding(carNameE: HTMLInputElement, carColorE: HTMLInputElement) {
     const name = carNameE.value;
     if (name.trim()) {
-      const color = carColorE.value;
-      const params = {
-        name,
-        color,
-      };
-
-      const car = await this.communicator.addCar(params);
-      const garage = GarageView.getInstance();
-      if (garage.carsWrapper.childNodes.length < CARS_PER_PAGE) {
-        garage.appendCar(garage.createCarE(car));
-      }
-
+      await this.addCar(carNameE.value, carColorE.value);
       carNameE.value = '';
       carColorE.value = '#000000';
-
-      await this.updateItemsCounter();
     } else {
       alert('Please enter some name for a car');
+    }
+  }
+
+  async addCar(name: string, color: string) {
+    const params = {
+      name,
+      color,
+    };
+    const car = await this.communicator.addCar(params);
+    const garage = GarageView.getInstance();
+    if (garage.carsWrapper.childNodes.length < CARS_PER_PAGE) {
+      garage.appendCar(garage.createCarE(car));
+    }
+    await this.updateItemsCounter();
+  }
+
+  generateCars() {
+    for (let i = 0; i < 100; i += 1) {
+      this.addCar(generateCarName(), generateCarColor());
     }
   }
 
