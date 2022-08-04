@@ -16,6 +16,11 @@ export default class GarageHandler {
     cars.forEach((car: CarType) => garage.appendCar(garage.createCarE(car)));
   }
 
+  async initItemCounter() {
+    const total = await this.communicator.getTotalItems() as string;
+    this.updateItemsCounter(+total);
+  }
+
   async handleCarAdding(carNameE: HTMLInputElement, carColorE: HTMLInputElement) {
     const name = carNameE.value;
     if (name.trim()) {
@@ -37,7 +42,7 @@ export default class GarageHandler {
     if (garage.carsWrapper.childNodes.length < CARS_PER_PAGE) {
       garage.appendCar(garage.createCarE(car));
     }
-    await this.updateItemsCounter();
+    this.updateItemsCounter(garage.itemsCount += 1);
   }
 
   generateCars() {
@@ -50,7 +55,7 @@ export default class GarageHandler {
     const garage = GarageView.getInstance();
     if (carE === this.selectedCar) this.removeFromSelected(carE);
     await this.communicator.removeCar(carE.dataset.id as string);
-    await this.updateItemsCounter();
+    this.updateItemsCounter(garage.itemsCount -= 1);
 
     const newCars = await this.communicator.getCars(garage.pageCount, CARS_PER_PAGE);
     const lastNewCar = newCars[CARS_PER_PAGE - 1];
@@ -149,11 +154,10 @@ export default class GarageHandler {
     }
   }
 
-  async updateItemsCounter() {
+  updateItemsCounter(value = 0) {
     const { viewE } = GarageView.getInstance();
-    const totalItems = await this.communicator.getTotalItems() as string;
-    (viewE.querySelector('.total-counter') as HTMLElement).textContent = totalItems;
-    GarageView.getInstance().itemsCount = +totalItems;
+    (viewE.querySelector('.total-counter') as HTMLElement).textContent = value.toString();
+    GarageView.getInstance().itemsCount = value;
     this.checkPaginationButtons();
   }
 }

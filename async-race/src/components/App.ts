@@ -1,6 +1,5 @@
 import GarageView from '../views/GarageView';
 import WinnersView from '../views/WinnersView';
-import Communicator from './Communicator';
 import GarageHandler from './GarageHandler';
 
 export default class {
@@ -12,12 +11,10 @@ export default class {
 
   winnersView = new WinnersView();
 
-  communicator = new Communicator();
-
   async run() {
     this.renderStartPage();
     await this.garageHandler.stuffCarsWrapper();
-    await this.garageHandler.updateItemsCounter();
+    await this.garageHandler.initItemCounter();
   }
 
   renderStartPage() {
