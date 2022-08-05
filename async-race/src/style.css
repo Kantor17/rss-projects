@@ -39,6 +39,11 @@ button.btn-disabled {
   pointer-events: none;
 }
 
+button.waiting {
+  background-color: #006fd6;
+  pointer-events: none;
+}
+
 .garage-view.hidden,
 .winners-view.hidden {
   display: none;
@@ -93,8 +98,8 @@ button.btn-disabled {
   background-color: #53Bf9d;
 }
 
-.car-stop {
-  background-color: #f94c66;
+.car-return {
+  background-color: #eb4038;
 }
 
 .car-track {
@@ -105,13 +110,17 @@ button.btn-disabled {
 }
 
 .car-model {
-  transform: translateY(11px);
   width: 50px;
+}
+
+.car-model svg {
+  transform: translateY(11px);
 }
 
 .finish {
   height: 60px;
   width: 60px;
+  margin-right: 30px;
 }
 
 .winners-table {

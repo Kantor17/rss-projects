@@ -2,6 +2,7 @@ import Paginator from '../components/Paginator';
 import { CarType } from '../utils/types';
 import View from './View';
 import GarageHandler from '../components/GarageHandler';
+import Driving from '../components/Driving';
 
 export default class GarageView extends View {
   static Instance: GarageView;
@@ -9,6 +10,8 @@ export default class GarageView extends View {
   paginator = new Paginator();
 
   handler = new GarageHandler();
+
+  driving = new Driving();
 
   carsWrapper = this.createCarsWrapper();
 
@@ -112,7 +115,7 @@ export default class GarageView extends View {
       </div>
       <div class="car-controls">
         <button class="car-start">Start</button>
-        <button class="car-stop btn-disabled">Stop</button>
+        <button class="car-return btn-disabled">Return</button>
       </div>
       <div class="car-track">
         <div class="car-model">
@@ -123,10 +126,9 @@ export default class GarageView extends View {
         </div>
       </div>
     </div>`);
-    const removeBtn = carE.querySelector('.car-remove');
-    removeBtn?.addEventListener('click', () => this.handler.handleCarRemoving(carE as HTMLElement));
-    const selectBtn = carE.querySelector('.car-select');
-    selectBtn?.addEventListener('click', () => this.handler.handleCarSelection(carE as HTMLElement));
+    carE.querySelector('.car-remove')?.addEventListener('click', () => this.handler.handleCarRemoving(carE as HTMLElement));
+    carE.querySelector('.car-select')?.addEventListener('click', () => this.handler.handleCarSelection(carE as HTMLElement));
+    carE.querySelector('.car-start')?.addEventListener('click', () => this.driving.startEngine(carE as HTMLElement));
     return carE;
   }
 

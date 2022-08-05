@@ -5,6 +5,7 @@ enum Paths {
   baseURL = 'http://127.0.0.1:3000',
   page = '_page=',
   limit = '_limit=',
+  engine = '/engine',
 }
 
 export default class Communicator {
@@ -45,5 +46,28 @@ export default class Communicator {
   async getTotalItems() {
     const response = await fetch(`${Paths.baseURL}${Paths.cars}?${Paths.limit}0`);
     return response.headers.get('X-Total-Count');
+  }
+
+  async startEngine(id: string) {
+    const response = await fetch(`${Paths.baseURL}${Paths.engine}?id=${id}&status=started`, {
+      method: 'PATCH',
+    });
+    const params = await response.json();
+    return params;
+  }
+
+  async stopEngine(id: string) {
+    const response = await fetch(`${Paths.baseURL}${Paths.engine}?id=${id}&status=stopped`, {
+      method: 'PATCH',
+    });
+    const params = await response.json();
+    return params;
+  }
+
+  async driveEngine(id: string) {
+    const response = await fetch(`${Paths.baseURL}${Paths.engine}?id=${id}&status=drive`, {
+      method: 'PATCH',
+    });
+    return response;
   }
 }
