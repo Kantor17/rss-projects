@@ -142,7 +142,13 @@ export default class GarageView extends View {
     </div>`);
     carE.querySelector('.car-remove')?.addEventListener('click', () => this.handler.handleCarRemoving(carE as HTMLElement));
     carE.querySelector('.car-select')?.addEventListener('click', () => this.handler.handleCarSelection(carE as HTMLElement));
-    carE.querySelector('.car-start')?.addEventListener('click', () => this.driving.startEngine(carE as HTMLElement));
+    carE.querySelector('.car-start')?.addEventListener('click', async () => {
+      try {
+        await this.driving.startEngine(carE as HTMLElement);
+      } catch {
+        console.log(`${carE.querySelector('.car-name')?.textContent} was unable to complete the ride`);
+      }
+    });
     return carE;
   }
 
