@@ -121,7 +121,7 @@ export default class GarageView extends View {
   createCarE(car: CarType) {
     const { name, color, id } = car;
     const carE = this.createElementFromMarkup(`
-    <div class="car" data-id="${id}" data-name="${name}">
+    <div class="car" data-id="${id}">
       <h3 class="car-name">${name}</h3>
       <div class="car-tools">
         <button class="car-select">Select</button>

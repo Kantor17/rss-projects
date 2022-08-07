@@ -90,7 +90,7 @@ export default class {
   makeWinner(carE: HTMLElement | null) {
     const winnerMessage = GarageView.getInstance().createElement('div', 'winner-message');
     if (carE) {
-      winnerMessage.textContent = `${carE.dataset.name} is Winner!`;
+      winnerMessage.textContent = `${carE.querySelector('.car-name')?.textContent} is Winner!`;
     } else {
       winnerMessage.textContent = 'There are no winner';
     }
