@@ -44,6 +44,10 @@ button.waiting {
   pointer-events: none;
 }
 
+.garage-view {
+  position: relative;
+}
+
 .garage-view.hidden,
 .winners-view.hidden {
   display: none;
@@ -121,6 +125,15 @@ button.waiting {
   height: 60px;
   width: 60px;
   margin-right: 30px;
+}
+
+.winner-message {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%);
+  font-size: 20px;
+  background-color: red;
 }
 
 .winners-table {

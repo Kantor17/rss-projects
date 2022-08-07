@@ -77,9 +77,23 @@ export default class GarageView extends View {
   createControls() {
     const controls = this.createElement('div', 'controls');
     const raceBtn = this.createElement('button', 'race-btn btn-primary', 'Race');
-    const resetBtn = this.createElement('button', 'reset-btn btn-primary', 'Reset');
+    const resetBtn = this.createElement('button', 'reset-btn btn-primary btn-disabled', 'Reset');
     const generateBtn = this.createElement('button', 'generate-btn btn-long', 'Generate cars');
     generateBtn.addEventListener('click', () => this.handler.generateCars());
+    raceBtn.addEventListener(
+      'click',
+      () => this.driving.startRace(
+        Array.from(this.carsWrapper.childNodes) as HTMLElement[],
+        raceBtn,
+      ),
+    );
+    resetBtn.addEventListener(
+      'click',
+      () => this.driving.resetRace(
+        Array.from(this.carsWrapper.querySelectorAll('.onDrive')),
+        resetBtn,
+      ),
+    );
     controls.append(raceBtn, resetBtn, generateBtn);
     return controls;
   }
@@ -107,7 +121,7 @@ export default class GarageView extends View {
   createCarE(car: CarType) {
     const { name, color, id } = car;
     const carE = this.createElementFromMarkup(`
-    <div class="car" data-id="${id}">
+    <div class="car" data-id="${id}" data-name="${name}">
       <h3 class="car-name">${name}</h3>
       <div class="car-tools">
         <button class="car-select">Select</button>
@@ -147,5 +161,9 @@ export default class GarageView extends View {
     </g>
   </svg>
     `;
+  }
+
+  checkForDrivingCars() {
+    return ((Array.from(this.carsWrapper.childNodes) as HTMLElement[]).some((car) => car.classList.contains('onDrive')));
   }
 }

@@ -52,6 +52,7 @@ export default class GarageHandler {
   }
 
   async handleCarRemoving(carE: HTMLElement) {
+    carE.remove();
     const garage = GarageView.getInstance();
     if (carE === this.selectedCar) this.removeFromSelected(carE);
     await this.communicator.removeCar(carE.dataset.id as string);
@@ -59,7 +60,6 @@ export default class GarageHandler {
 
     const newCars = await this.communicator.getCars(garage.pageCount, CARS_PER_PAGE);
     const lastNewCar = newCars[CARS_PER_PAGE - 1];
-    carE.remove();
     if (lastNewCar) {
       garage.appendCar(garage.createCarE(lastNewCar));
     }

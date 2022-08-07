@@ -65,9 +65,11 @@ export default class Communicator {
   }
 
   async driveEngine(id: string) {
-    const response = await fetch(`${Paths.baseURL}${Paths.engine}?id=${id}&status=drive`, {
-      method: 'PATCH',
-    });
-    return response;
+    try {
+      const response = await fetch(`${Paths.baseURL}${Paths.engine}?id=${id}&status=drive`, { method: 'PATCH' });
+      return await response.json();
+    } catch (err) {
+      return { success: false };
+    }
   }
 }
