@@ -11,13 +11,6 @@ export type Finisher = {
   time: number,
 };
 
-export type Winner = {
-  id: number,
-  image: HTMLElement,
-  name: string,
-  time: number,
-};
-
 export type WinnerParams = {
   id: number,
   wins: number,

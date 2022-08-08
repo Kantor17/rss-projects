@@ -12,8 +12,12 @@ enum Paths {
 export default class Communicator {
   async getCars(page: number, limit: number): Promise<CarType[]> {
     const response = await fetch(`${Paths.baseURL}${Paths.cars}?${Paths.page}${page}&${Paths.limit}${limit}`);
-    const data = response.json();
-    return data;
+    return response.json();
+  }
+
+  async getCar(id: string | number) {
+    const response = await fetch(`${Paths.baseURL}${Paths.cars}/${id}`);
+    return response.json();
   }
 
   async addCar(params: CarParams): Promise<CarType> {

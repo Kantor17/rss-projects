@@ -1,13 +1,11 @@
-import { Winner, WinnerParams } from '../utils/types';
+import { WinnerParams } from '../utils/types';
+import WinnersView from '../views/WinnersView';
 import Communicator from './Communicator';
 
 export default class {
   communicator = new Communicator();
 
-  async makeWinner(winner: Winner) {
-    const {
-      id, image, name, time,
-    } = winner;
+  async makeWinner(id: number, time: number) {
     const allWinners = await this.communicator.getWinners();
     if (allWinners.some((item) => item.id === id)) {
       const car = await this.communicator.getWinner(id);
@@ -31,7 +29,19 @@ export default class {
     this.communicator.createWinner(params);
   }
 
-  async updateWinners(params: WinnerParams) {
+  async updateWinner(params: WinnerParams) {
     this.communicator.updateWinner(params);
+  }
+
+  async updateTable() {
+    const view = WinnersView.getInstance();
+    view.body.innerHTML = '';
+    const winners = await this.communicator.getWinners();
+    winners.forEach(async (winner) => {
+      const { id, wins, time } = winner;
+      const { color, name } = await this.communicator.getCar(id);
+      const elem = view.createWinnerRow(color, name, wins, time);
+      view.body.append(elem);
+    });
   }
 }

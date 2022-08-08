@@ -98,12 +98,7 @@ export default class {
       const seconds = +(finisher.time / 1000).toFixed(2);
       const name = finisher.car.querySelector('.car-name')?.textContent as string;
       winnerMessage.textContent = `${name} finished first in ${seconds}s.`;
-      this.winnersHandler.makeWinner({
-        id: +(finisher.car.dataset.id as string),
-        image: finisher.car.querySelector('.car-model') as HTMLElement,
-        name,
-        time: seconds,
-      });
+      this.winnersHandler.makeWinner(+(finisher.car.dataset.id as string), seconds);
     } else {
       winnerMessage.textContent = 'There are no winner';
     }

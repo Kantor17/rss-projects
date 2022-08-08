@@ -1,7 +1,19 @@
+import WinnersHandler from '../components/WinnersHandler';
 import View from './View';
 
 export default class WinnersView extends View {
   viewE = this.createView();
+
+  body = this.viewE.querySelector('tbody') as HTMLElement;
+
+  handler = new WinnersHandler();
+
+  static Instance: WinnersView;
+
+  static getInstance() {
+    if (!WinnersView.Instance) WinnersView.Instance = new WinnersView();
+    return WinnersView.Instance;
+  }
 
   createView() {
     const view = this.createElement('div', 'winners-view hidden');
@@ -27,28 +39,20 @@ export default class WinnersView extends View {
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td></td>
-        <td><img src="../assets/car.svg" alt="car"></td>
-        <td>Tesla</td>
-        <td>1</td>
-        <td>10s</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><img src="../assets/car.svg" alt="car"></td>
-        <td>Tesla</td>
-        <td>1</td>
-        <td>10s</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><img src="../assets/car.svg" alt="car"></td>
-        <td>Tesla</td>
-        <td>1</td>
-        <td>10s</td>
-      </tr>
     </tbody>
   </table>`);
+  }
+
+  createWinnerRow(color: string, name: string, wins: number, time: number) {
+    const rowE = document.createElement('tbody');
+    rowE.innerHTML = `
+    <tr>
+      <td></td>
+      <td>${this.createImage(color)}</td>
+      <td>${name}</td>
+      <td>${wins}</td>
+      <td>${time}s</td>
+    </tr>`;
+    return rowE.children[0];
   }
 }
