@@ -1,9 +1,12 @@
 import Communicator from './Communicator';
 import GarageView from '../views/GarageView';
 import { Finisher } from '../utils/types';
+import WinnersHandler from './WinnersHandler';
 
 export default class {
   communicator = new Communicator();
+
+  winnersHandler = new WinnersHandler();
 
   async startEngine(carE: HTMLElement) {
     carE.classList.add('onDrive');
@@ -92,8 +95,15 @@ export default class {
   makeWinner(finisher: Finisher | null) {
     const winnerMessage = GarageView.getInstance().createElement('div', 'winner-message');
     if (finisher) {
-      const seconds = (finisher.time / 1000).toFixed(2);
-      winnerMessage.textContent = `${finisher.car.querySelector('.car-name')?.textContent} finished first in ${seconds}s.`;
+      const seconds = +(finisher.time / 1000).toFixed(2);
+      const name = finisher.car.querySelector('.car-name')?.textContent as string;
+      winnerMessage.textContent = `${name} finished first in ${seconds}s.`;
+      this.winnersHandler.makeWinner({
+        id: +(finisher.car.dataset.id as string),
+        image: finisher.car.querySelector('.car-model') as HTMLElement,
+        name,
+        time: seconds,
+      });
     } else {
       winnerMessage.textContent = 'There are no winner';
     }

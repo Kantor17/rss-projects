@@ -10,3 +10,16 @@ export type Finisher = {
   car: HTMLElement,
   time: number,
 };
+
+export type Winner = {
+  id: number,
+  image: HTMLElement,
+  name: string,
+  time: number,
+};
+
+export type WinnerParams = {
+  id: number,
+  wins: number,
+  time: number,
+};

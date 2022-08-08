@@ -1,4 +1,4 @@
-import { CarType, CarParams } from '../utils/types';
+import { CarType, CarParams, WinnerParams } from '../utils/types';
 
 enum Paths {
   cars = '/garage',
@@ -6,6 +6,7 @@ enum Paths {
   page = '_page=',
   limit = '_limit=',
   engine = '/engine',
+  winners = '/winners',
 }
 
 export default class Communicator {
@@ -71,5 +72,38 @@ export default class Communicator {
     } catch (err) {
       return { success: false };
     }
+  }
+
+  async getWinners(): Promise<WinnerParams[]> {
+    const response = await fetch(`${Paths.baseURL}${Paths.winners}`);
+    return response.json();
+  }
+
+  async getWinner(id: string | number): Promise<WinnerParams> {
+    const response = await fetch(`${Paths.baseURL}${Paths.winners}/${id}`);
+    return response.json();
+  }
+
+  async createWinner(params: WinnerParams) {
+    const response = await fetch(`${Paths.baseURL}${Paths.winners}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(params),
+    });
+    return response;
+  }
+
+  async updateWinner(params: WinnerParams) {
+    const { id, wins, time } = params;
+    const response = await fetch(`${Paths.baseURL}${Paths.winners}/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ wins, time }),
+    });
+    return response;
   }
 }
