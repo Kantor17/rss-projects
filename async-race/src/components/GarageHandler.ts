@@ -13,7 +13,10 @@ export default class GarageHandler {
   async stuffCarsWrapper() {
     const garage = GarageView.getInstance();
     const cars = await this.communicator.getCars(garage.pageCount, CARS_PER_PAGE);
-    cars.forEach((car: CarType) => garage.appendCar(garage.createCarE(car)));
+    cars.forEach((car: CarType) => {
+      this.communicator.stopEngine(car.id);
+      garage.appendCar(garage.createCarE(car));
+    });
   }
 
   async initItemCounter() {

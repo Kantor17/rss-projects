@@ -56,7 +56,7 @@ export default class Communicator {
     return params;
   }
 
-  async stopEngine(id: string) {
+  async stopEngine(id: string | number) {
     const response = await fetch(`${Paths.baseURL}${Paths.engine}?id=${id}&status=stopped`, {
       method: 'PATCH',
     });
