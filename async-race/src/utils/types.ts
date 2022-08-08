@@ -5,3 +5,8 @@ export type CarType = {
 };
 
 export type CarParams = Omit<CarType, 'id'>;
+
+export type Finisher = {
+  car: HTMLElement,
+  time: number,
+};

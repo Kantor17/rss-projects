@@ -1,5 +1,6 @@
 import Communicator from './Communicator';
 import GarageView from '../views/GarageView';
+import { Finisher } from '../utils/types';
 
 export default class {
   communicator = new Communicator();
@@ -12,8 +13,9 @@ export default class {
     startBtn.className = 'car-start btn-disabled';
     const returnBtn = carE.querySelector('.car-return') as HTMLElement;
     returnBtn.classList.remove('btn-disabled');
-    const finisher = await this.startDriving(distance / velocity, carE);
-    if (finisher) return finisher;
+    const time = distance / velocity;
+    const car = await this.startDriving(time, carE);
+    if (car) return { car, time };
     return Promise.reject(new Error('Unsuccessful drive'));
   }
 
@@ -87,10 +89,11 @@ export default class {
     }
   }
 
-  makeWinner(carE: HTMLElement | null) {
+  makeWinner(finisher: Finisher | null) {
     const winnerMessage = GarageView.getInstance().createElement('div', 'winner-message');
-    if (carE) {
-      winnerMessage.textContent = `${carE.querySelector('.car-name')?.textContent} is Winner!`;
+    if (finisher) {
+      const seconds = (finisher.time / 1000).toFixed(2);
+      winnerMessage.textContent = `${finisher.car.querySelector('.car-name')?.textContent} finished first in ${seconds}s.`;
     } else {
       winnerMessage.textContent = 'There are no winner';
     }
