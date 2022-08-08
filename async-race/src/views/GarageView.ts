@@ -124,7 +124,7 @@ export default class GarageView extends View {
           ${this.createImage(color)}
         </div>
         <div class="finish">
-          <img src="../assets/finish-flag.svg" alt="finish">
+          <img src="./assets/finish-flag.svg" alt="finish">
         </div>
       </div>
     </div>`);
