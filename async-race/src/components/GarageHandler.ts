@@ -56,7 +56,9 @@ export default class GarageHandler {
     carE.remove();
     const garage = GarageView.getInstance();
     if (carE === this.selectedCar) this.removeFromSelected(carE);
-    await this.communicator.removeCar(carE.dataset.id as string);
+    const id = carE.dataset.id as string;
+    await this.communicator.removeWinner(id);
+    await this.communicator.removeCar(id);
     this.updateItemsCounter(garage.itemsCount -= 1);
 
     const newCars = await this.communicator.getCars(garage.pageCount, garage.LIMIT);

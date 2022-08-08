@@ -110,4 +110,10 @@ export default class Communicator {
     });
     return response;
   }
+
+  async removeWinner(id: string | number) {
+    await fetch(`${Paths.baseURL}${Paths.winners}/${id}`, {
+      method: 'DELETE',
+    });
+  }
 }
