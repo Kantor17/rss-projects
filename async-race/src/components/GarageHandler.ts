@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-import { CARS_PER_PAGE } from '../utils/constants';
 import { generateCarName, generateCarColor } from '../utils/paramsGenerator';
 import { CarType } from '../utils/types';
 import GarageView from '../views/GarageView';
@@ -12,7 +10,7 @@ export default class GarageHandler {
 
   async stuffCarsWrapper() {
     const garage = GarageView.getInstance();
-    const cars = await this.communicator.getCars(garage.pageCount, CARS_PER_PAGE);
+    const cars = await this.communicator.getCars(garage.pageCount, garage.LIMIT);
     cars.forEach((car: CarType) => {
       this.communicator.stopEngine(car.id);
       garage.appendCar(garage.createCarE(car));
@@ -42,7 +40,7 @@ export default class GarageHandler {
     };
     const car = await this.communicator.addCar(params);
     const garage = GarageView.getInstance();
-    if (garage.carsWrapper.childNodes.length < CARS_PER_PAGE) {
+    if (garage.carsWrapper.childNodes.length < garage.LIMIT) {
       garage.appendCar(garage.createCarE(car));
     }
     this.updateItemsCounter(garage.itemsCount += 1);
@@ -61,14 +59,14 @@ export default class GarageHandler {
     await this.communicator.removeCar(carE.dataset.id as string);
     this.updateItemsCounter(garage.itemsCount -= 1);
 
-    const newCars = await this.communicator.getCars(garage.pageCount, CARS_PER_PAGE);
-    const lastNewCar = newCars[CARS_PER_PAGE - 1];
+    const newCars = await this.communicator.getCars(garage.pageCount, garage.LIMIT);
+    const lastNewCar = newCars[garage.LIMIT - 1];
     if (lastNewCar) {
       garage.appendCar(garage.createCarE(lastNewCar));
     }
 
     if (garage.carsWrapper.childNodes.length < 1 && garage.pageCount > 1) {
-      garage.paginator.prevPage();
+      this.updatePage(garage.pageCount -= 1);
     }
   }
 
@@ -126,10 +124,12 @@ export default class GarageHandler {
     }
   }
 
-  async updatePage(cars: CarType[]) {
+  async updatePage(page: number) {
+    const garage = GarageView.getInstance();
+    const cars = await this.communicator.getCars(page, garage.LIMIT);
     GarageView.getInstance().replaceCars(cars);
     this.updatePageCounter();
-    this.checkPaginationButtons();
+    garage.checkPaginationButtons(garage);
     this.removeFromSelected();
   }
 
@@ -139,28 +139,11 @@ export default class GarageHandler {
       .textContent = pageCount.toString();
   }
 
-  checkPaginationButtons() {
-    const { viewE, pageCount, itemsCount } = GarageView.getInstance();
-
-    const prevBtn = viewE.querySelector('.prev-btn') as HTMLElement;
-    if (pageCount < 2) {
-      prevBtn.classList.add('btn-disabled');
-    } else {
-      prevBtn.classList.remove('btn-disabled');
-    }
-
-    const nextBtn = viewE.querySelector('.next-btn') as HTMLElement;
-    if (itemsCount <= pageCount * CARS_PER_PAGE) {
-      nextBtn.classList.add('btn-disabled');
-    } else {
-      nextBtn.classList.remove('btn-disabled');
-    }
-  }
-
   updateItemsCounter(value = 0) {
     const { viewE } = GarageView.getInstance();
     (viewE.querySelector('.total-counter') as HTMLElement).textContent = value.toString();
-    GarageView.getInstance().itemsCount = value;
-    this.checkPaginationButtons();
+    const garage = GarageView.getInstance();
+    garage.itemsCount = value;
+    garage.checkPaginationButtons(garage);
   }
 }

@@ -2,7 +2,7 @@ import { WinnerParams } from '../utils/types';
 import WinnersView from '../views/WinnersView';
 import Communicator from './Communicator';
 
-export default class {
+export default class GarageHandler {
   communicator = new Communicator();
 
   async makeWinner(id: number, time: number) {
@@ -43,5 +43,9 @@ export default class {
       const elem = view.createWinnerRow(color, name, wins, time);
       view.body.append(elem);
     });
+  }
+
+  updatePage(page: number) {
+    console.log(`updating winners page to ${page}`);
   }
 }

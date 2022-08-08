@@ -1,3 +1,6 @@
+import GarageView from './GarageView';
+import WinnersView from './WinnersView';
+
 export default class {
   createTitle(name: string) {
     return this.createElementFromMarkup(`
@@ -8,14 +11,6 @@ export default class {
 
   createPageCounter() {
     return this.createElementFromMarkup('<h2 class="page-counter">Page #<span class="page-num">1</span></h2>');
-  }
-
-  createPagination() {
-    return this.createElementFromMarkup(`
-      <div class="pagination">
-        <button class="prev-btn btn-primary">Previous</button>
-        <button class="next-btn btn-primary">Next</button>
-      </div>`);
   }
 
   createImage(color: string) {
@@ -42,5 +37,36 @@ export default class {
     const elem = document.createElement('div');
     elem.innerHTML = markup;
     return elem.children[0];
+  }
+
+  createPagination(view: GarageView | WinnersView) {
+    const pagination = this.createElementFromMarkup(`
+    <div class="pagination">
+      <button class="prev-btn btn-primary">Previous</button>
+      <button class="next-btn btn-primary">Next</button>
+    </div>`);
+    (pagination.querySelector('.prev-btn') as HTMLElement).addEventListener('click', () => {
+      view.handler.updatePage(view.pageCount -= 1);
+    });
+    (pagination.querySelector('.next-btn') as HTMLElement).addEventListener('click', () => {
+      view.handler.updatePage(view.pageCount += 1);
+    });
+    return pagination;
+  }
+
+  checkPaginationButtons(view: GarageView | WinnersView) {
+    const prevBtn = view.viewE.querySelector('.prev-btn') as HTMLElement;
+    if (view.pageCount < 2) {
+      prevBtn.classList.add('btn-disabled');
+    } else {
+      prevBtn.classList.remove('btn-disabled');
+    }
+
+    const nextBtn = view.viewE.querySelector('.next-btn') as HTMLElement;
+    if (view.itemsCount <= view.pageCount * view.LIMIT) {
+      nextBtn.classList.add('btn-disabled');
+    } else {
+      nextBtn.classList.remove('btn-disabled');
+    }
   }
 }

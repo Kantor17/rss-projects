@@ -2,11 +2,17 @@ import WinnersHandler from '../components/WinnersHandler';
 import View from './View';
 
 export default class WinnersView extends View {
+  LIMIT = 10;
+
   viewE = this.createView();
 
   body = this.viewE.querySelector('tbody') as HTMLElement;
 
   handler = new WinnersHandler();
+
+  itemsCount = 0;
+
+  pageCount = 1;
 
   static Instance: WinnersView;
 
@@ -21,7 +27,7 @@ export default class WinnersView extends View {
       this.createTitle('Winners'),
       this.createPageCounter(),
       this.createTable(),
-      this.createPagination(),
+      this.createPagination(this),
     );
     return view;
   }

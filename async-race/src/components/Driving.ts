@@ -109,7 +109,8 @@ export default class {
 
   resetRace(cars: HTMLElement[], resetBtn: HTMLElement) {
     resetBtn.classList.add('btn-disabled');
-    const view = GarageView.getInstance().viewE;
+    const garage = GarageView.getInstance();
+    const view = garage.viewE;
     view.querySelector('.winner-message')?.remove();
     for (let i = 0; i < cars.length; i += 1) {
       this.returnCar(
@@ -118,5 +119,6 @@ export default class {
       );
     }
     view.querySelector('.race-btn')?.classList.remove('btn-disabled');
+    garage.checkPaginationButtons(garage);
   }
 }

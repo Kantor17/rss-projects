@@ -18,6 +18,7 @@
       "no-console": 0,
       "@typescript-eslint/no-explicit-any": 2,
       "class-methods-use-this": "off",
-      "import/no-cycle": "off"
+      "import/no-cycle": "off",
+      "no-param-reassign": "off"
     }
   }

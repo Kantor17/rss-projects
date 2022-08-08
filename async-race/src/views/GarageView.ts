@@ -1,4 +1,3 @@
-import Paginator from '../components/Paginator';
 import { CarType } from '../utils/types';
 import View from './View';
 import GarageHandler from '../components/GarageHandler';
@@ -7,7 +6,7 @@ import Driving from '../components/Driving';
 export default class GarageView extends View {
   static Instance: GarageView;
 
-  paginator = new Paginator();
+  LIMIT = 7;
 
   handler = new GarageHandler();
 
@@ -34,7 +33,7 @@ export default class GarageView extends View {
       this.createPageCounter(),
       this.createControls(),
       this.carsWrapper,
-      this.createPagination(),
+      this.createPagination(this),
     );
     return view;
   }
@@ -96,17 +95,6 @@ export default class GarageView extends View {
     );
     controls.append(raceBtn, resetBtn, generateBtn);
     return controls;
-  }
-
-  createPagination() {
-    const pagination = super.createPagination();
-    (pagination.querySelector('.prev-btn') as HTMLElement).addEventListener('click', () => {
-      this.paginator.prevPage();
-    });
-    (pagination.querySelector('.next-btn') as HTMLElement).addEventListener('click', () => {
-      this.paginator.nextPage();
-    });
-    return pagination;
   }
 
   createCarsWrapper() {
