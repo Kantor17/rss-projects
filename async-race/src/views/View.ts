@@ -1,7 +1,7 @@
 import GarageView from './GarageView';
 import WinnersView from './WinnersView';
 
-export default class {
+export default class View {
   createTitle(name: string) {
     return this.createElementFromMarkup(`
     <h1 class="title">
@@ -68,5 +68,11 @@ export default class {
     } else {
       nextBtn.classList.remove('btn-disabled');
     }
+  }
+
+  updatePageCounter(view: GarageView | WinnersView) {
+    const { viewE, pageCount } = view;
+    (viewE.querySelector('.page-num') as HTMLElement)
+      .textContent = pageCount.toString();
   }
 }

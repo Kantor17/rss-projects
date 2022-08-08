@@ -130,15 +130,9 @@ export default class GarageHandler {
     const garage = GarageView.getInstance();
     const cars = await this.communicator.getCars(page, garage.LIMIT);
     GarageView.getInstance().replaceCars(cars);
-    this.updatePageCounter();
+    garage.updatePageCounter(garage);
     garage.checkPaginationButtons(garage);
     this.removeFromSelected();
-  }
-
-  updatePageCounter() {
-    const { viewE, pageCount } = GarageView.getInstance();
-    (viewE.querySelector('.page-num') as HTMLElement)
-      .textContent = pageCount.toString();
   }
 
   updateItemsCounter(value = 0) {

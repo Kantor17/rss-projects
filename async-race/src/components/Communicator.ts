@@ -7,6 +7,8 @@ enum Paths {
   limit = '_limit=',
   engine = '/engine',
   winners = '/winners',
+  sort = '_sort=',
+  order = '_order=',
 }
 
 export default class Communicator {
@@ -78,9 +80,16 @@ export default class Communicator {
     }
   }
 
-  async getWinners(): Promise<WinnerParams[]> {
-    const response = await fetch(`${Paths.baseURL}${Paths.winners}`);
-    return response.json();
+  async getWinners(
+    page?: number,
+    limit?: number,
+    sort?: 'wins' | 'time',
+    order?: 'ASC' | 'DESC',
+  ): Promise<{ winners: Promise<WinnerParams[]>; count: string | null; }> {
+    const response = await fetch(`${Paths.baseURL}${Paths.winners}?${Paths.page}${page}&${Paths.limit}${limit}&${Paths.sort}${sort}${Paths.order}${order}`);
+    const winners = response.json();
+    const count = response.headers.get('X-Total-Count');
+    return { winners, count };
   }
 
   async getWinner(id: string | number): Promise<WinnerParams> {
