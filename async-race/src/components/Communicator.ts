@@ -86,8 +86,8 @@ export default class Communicator {
     sort?: 'wins' | 'time',
     order?: 'ASC' | 'DESC',
   ): Promise<{ winners: Promise<WinnerParams[]>; count: string | null; }> {
-    const response = await fetch(`${Paths.baseURL}${Paths.winners}?${Paths.page}${page}&${Paths.limit}${limit}&${Paths.sort}${sort}${Paths.order}${order}`);
-    const winners = response.json();
+    const response = await fetch(`${Paths.baseURL}${Paths.winners}?${Paths.page}${page}&${Paths.limit}${limit}&${Paths.sort}${sort}&${Paths.order}${order}`);
+    const winners = await response.json();
     const count = response.headers.get('X-Total-Count');
     return { winners, count };
   }

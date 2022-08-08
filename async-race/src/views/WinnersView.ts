@@ -14,6 +14,10 @@ export default class WinnersView extends View {
 
   pageCount = 1;
 
+  currentSort?: 'wins' | 'time';
+
+  currentOrder?: 'ASC' | 'DESC';
+
   static Instance: WinnersView;
 
   static getInstance() {
@@ -33,20 +37,29 @@ export default class WinnersView extends View {
   }
 
   createTable() {
-    return this.createElementFromMarkup(`
+    const table = this.createElementFromMarkup(`
   <table class="winners-table">
     <thead>
       <tr>
         <th>Number</th>
         <th>Car</th>
         <th>Name</th>
-        <th>Wins</th>
-        <Th>Best time</Th>
+        <th class="wins-sort sort-btn">Wins</th>
+        <th class="time-sort sort-btn">Best time</th>
       </tr>
     </thead>
     <tbody>
     </tbody>
   </table>`);
+    const winsSort = table.querySelector('.wins-sort') as HTMLElement;
+    const timeSort = table.querySelector('.time-sort') as HTMLElement;
+    winsSort.addEventListener('click', () => {
+      this.handler.sort('wins', winsSort, timeSort);
+    });
+    timeSort.addEventListener('click', () => {
+      this.handler.sort('time', timeSort, winsSort);
+    });
+    return table;
   }
 
   createWinnerRow(color: string, name: string, wins: number, time: number) {

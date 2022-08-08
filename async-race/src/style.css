@@ -172,3 +172,14 @@ td {
     transform: translateY(0);
   }
 }
+
+.sort-btn {
+  cursor: pointer;
+}
+
+.sort-btn.sorted-asc::after {
+  content: '↑'
+}
+.sort-btn.sorted-desc::after {
+  content: '↓'
+}

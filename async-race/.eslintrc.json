@@ -19,6 +19,7 @@
       "@typescript-eslint/no-explicit-any": 2,
       "class-methods-use-this": "off",
       "import/no-cycle": "off",
-      "no-param-reassign": "off"
+      "no-param-reassign": "off",
+      "no-alert": "off"
     }
   }

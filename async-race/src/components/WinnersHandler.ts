@@ -36,8 +36,8 @@ export default class GarageHandler {
   async updateTable(
     page = WinnersView.getInstance().pageCount,
     limit = WinnersView.getInstance().LIMIT,
-    sort?: 'wins' | 'time',
-    order?: 'ASC' | 'DESC',
+    sort = WinnersView.getInstance().currentSort,
+    order = WinnersView.getInstance().currentOrder,
   ) {
     const view = WinnersView.getInstance();
     view.body.innerHTML = '';
@@ -57,5 +57,22 @@ export default class GarageHandler {
     const view = WinnersView.getInstance();
     this.updateTable(view.pageCount = page);
     view.updatePageCounter(view);
+  }
+
+  sort(type: 'wins' | 'time', btn: HTMLElement, otherBtn: HTMLElement) {
+    let order: 'ASC' | 'DESC';
+    otherBtn.className = 'sort-btn';
+    if (btn.classList.contains('sorted-asc')) {
+      btn.classList.remove('sorted-asc');
+      btn.classList.add('sorted-desc');
+      order = 'DESC';
+    } else {
+      btn.classList.remove('sorted-desc');
+      btn.classList.add('sorted-asc');
+      order = 'ASC';
+    }
+    WinnersView.getInstance().currentSort = type;
+    WinnersView.getInstance().currentOrder = order;
+    this.updateTable(undefined, undefined, type, order);
   }
 }
