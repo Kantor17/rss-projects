@@ -17,7 +17,7 @@ export default class Communicator {
     return response.json();
   }
 
-  async getCar(id: string | number) {
+  async getCar(id: string | number):Promise <CarType> {
     const response = await fetch(`${Paths.baseURL}${Paths.cars}/${id}`);
     return response.json();
   }
@@ -50,12 +50,12 @@ export default class Communicator {
     });
   }
 
-  async getTotalItems() {
+  async getTotalItems(): Promise<string | null> {
     const response = await fetch(`${Paths.baseURL}${Paths.cars}?${Paths.limit}0`);
     return response.headers.get('X-Total-Count');
   }
 
-  async startEngine(id: string) {
+  async startEngine(id: string): Promise<{ velocity: number, distance: number }> {
     const response = await fetch(`${Paths.baseURL}${Paths.engine}?id=${id}&status=started`, {
       method: 'PATCH',
     });
@@ -63,7 +63,7 @@ export default class Communicator {
     return params;
   }
 
-  async stopEngine(id: string | number) {
+  async stopEngine(id: string | number): Promise<CarType> {
     const response = await fetch(`${Paths.baseURL}${Paths.engine}?id=${id}&status=stopped`, {
       method: 'PATCH',
     });
