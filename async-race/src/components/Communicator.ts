@@ -58,10 +58,10 @@ export default class Communicator {
     }).then((response) => response.json());
   }
 
-  stopEngine(id: string | number): Promise<CarType> {
+  stopEngine(id: string | number): Promise<Response> {
     return fetch(`${Paths.baseURL}${Paths.engine}?id=${id}&status=stopped`, {
       method: 'PATCH',
-    }).then((response) => response.json());
+    });
   }
 
   driveEngine(id: string): Promise<{ success: boolean }> {

@@ -52,7 +52,7 @@ export default class GarageView extends View {
     carColor.type = 'color';
 
     const creationBtn = this.createElement('button', 'creation-btn', 'Create');
-    creationBtn.addEventListener('click', async () => this.handler.handleCarAdding(carName, carColor));
+    creationBtn.addEventListener('click', () => this.handler.handleCarAdding(carName, carColor));
 
     carCreator.append(carName, carColor, creationBtn);
     return carCreator;

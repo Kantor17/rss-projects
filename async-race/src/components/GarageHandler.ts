@@ -22,10 +22,10 @@ export default class GarageHandler {
     this.updateItemsCounter(+total);
   }
 
-  async handleCarAdding(carNameE: HTMLInputElement, carColorE: HTMLInputElement) {
+  handleCarAdding(carNameE: HTMLInputElement, carColorE: HTMLInputElement) {
     const name = carNameE.value;
     if (name.trim()) {
-      await this.addCar(carNameE.value, carColorE.value);
+      this.addCar(carNameE.value, carColorE.value);
       carNameE.value = '';
       carColorE.value = '#000000';
     } else {
@@ -57,8 +57,8 @@ export default class GarageHandler {
     const garage = GarageView.getInstance();
     if (carE === this.selectedCar) this.removeFromSelected(carE);
     const id = carE.dataset.id as string;
-    await this.communicator.removeWinner(id);
-    await this.communicator.removeCar(id);
+    this.communicator.removeWinner(id);
+    this.communicator.removeCar(id);
     this.updateItemsCounter(garage.itemsCount -= 1);
 
     const newCars = await this.communicator.getCars(garage.pageCount, garage.LIMIT);
@@ -72,7 +72,7 @@ export default class GarageHandler {
     }
   }
 
-  async handleCarSelection(carE: HTMLElement) {
+  handleCarSelection(carE: HTMLElement) {
     if (this.selectedCar === carE) {
       this.removeFromSelected(carE);
     } else {
@@ -109,7 +109,7 @@ export default class GarageHandler {
     };
   }
 
-  async handleCarUpdating(
+  handleCarUpdating(
     carNameE: HTMLInputElement,
     carColorE: HTMLInputElement,
   ) {

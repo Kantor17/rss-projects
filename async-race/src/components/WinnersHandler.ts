@@ -25,11 +25,11 @@ export default class GarageHandler {
     }
   }
 
-  async createWinner(params: WinnerParams) {
+  createWinner(params: WinnerParams) {
     this.communicator.createWinner(params);
   }
 
-  async updateWinner(params: WinnerParams) {
+  updateWinner(params: WinnerParams) {
     this.communicator.updateWinner(params);
   }
 
