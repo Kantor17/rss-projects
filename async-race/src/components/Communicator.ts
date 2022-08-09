@@ -12,26 +12,23 @@ enum Paths {
 }
 
 export default class Communicator {
-  async getCars(page: number, limit: number): Promise<CarType[]> {
-    const response = await fetch(`${Paths.baseURL}${Paths.cars}?${Paths.page}${page}&${Paths.limit}${limit}`);
-    return response.json();
+  getCars(page: number, limit: number): Promise<CarType[]> {
+    return fetch(`${Paths.baseURL}${Paths.cars}?${Paths.page}${page}&${Paths.limit}${limit}`)
+      .then((response) => response.json());
   }
 
-  async getCar(id: string | number):Promise <CarType> {
-    const response = await fetch(`${Paths.baseURL}${Paths.cars}/${id}`);
-    return response.json();
+  getCar(id: string | number):Promise <CarType> {
+    return fetch(`${Paths.baseURL}${Paths.cars}/${id}`).then((response) => response.json());
   }
 
-  async addCar(params: CarParams): Promise<CarType> {
-    const response = await fetch(`${Paths.baseURL}${Paths.cars}`, {
+  addCar(params: CarParams): Promise<CarType> {
+    return fetch(`${Paths.baseURL}${Paths.cars}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(params),
-    });
-    const resultCar = await response.json();
-    return resultCar;
+    }).then((response) => response.json());
   }
 
   async removeCar(id: string) {
@@ -50,34 +47,27 @@ export default class Communicator {
     });
   }
 
-  async getTotalItems(): Promise<string | null> {
-    const response = await fetch(`${Paths.baseURL}${Paths.cars}?${Paths.limit}0`);
-    return response.headers.get('X-Total-Count');
+  getTotalItems(): Promise<string | null> {
+    return fetch(`${Paths.baseURL}${Paths.cars}?${Paths.limit}0`)
+      .then((response) => response.headers.get('X-Total-Count'));
   }
 
-  async startEngine(id: string): Promise<{ velocity: number, distance: number }> {
-    const response = await fetch(`${Paths.baseURL}${Paths.engine}?id=${id}&status=started`, {
+  startEngine(id: string): Promise<{ velocity: number, distance: number }> {
+    return fetch(`${Paths.baseURL}${Paths.engine}?id=${id}&status=started`, {
       method: 'PATCH',
-    });
-    const params = await response.json();
-    return params;
+    }).then((response) => response.json());
   }
 
-  async stopEngine(id: string | number): Promise<CarType> {
-    const response = await fetch(`${Paths.baseURL}${Paths.engine}?id=${id}&status=stopped`, {
+  stopEngine(id: string | number): Promise<CarType> {
+    return fetch(`${Paths.baseURL}${Paths.engine}?id=${id}&status=stopped`, {
       method: 'PATCH',
-    });
-    const params = await response.json();
-    return params;
+    }).then((response) => response.json());
   }
 
-  async driveEngine(id: string) {
-    try {
-      const response = await fetch(`${Paths.baseURL}${Paths.engine}?id=${id}&status=drive`, { method: 'PATCH' });
-      return await response.json();
-    } catch (err) {
-      return { success: false };
-    }
+  driveEngine(id: string): Promise<{ success: boolean }> {
+    return fetch(`${Paths.baseURL}${Paths.engine}?id=${id}&status=drive`, { method: 'PATCH' })
+      .then((response) => response.json())
+      .catch(() => ({ success: false }));
   }
 
   async getWinners(
@@ -85,39 +75,36 @@ export default class Communicator {
     limit?: number,
     sort?: 'wins' | 'time',
     order?: 'ASC' | 'DESC',
-  ): Promise<{ winners: Promise<WinnerParams[]>; count: string | null; }> {
+  ): Promise<{ winners: Promise<WinnerParams[]>, count: string | null }> {
     const response = await fetch(`${Paths.baseURL}${Paths.winners}?${Paths.page}${page}&${Paths.limit}${limit}&${Paths.sort}${sort}&${Paths.order}${order}`);
     const winners = await response.json();
     const count = response.headers.get('X-Total-Count');
     return { winners, count };
   }
 
-  async getWinner(id: string | number): Promise<WinnerParams> {
-    const response = await fetch(`${Paths.baseURL}${Paths.winners}/${id}`);
-    return response.json();
+  getWinner(id: string | number): Promise<WinnerParams> {
+    return fetch(`${Paths.baseURL}${Paths.winners}/${id}`).then((response) => response.json());
   }
 
-  async createWinner(params: WinnerParams) {
-    const response = await fetch(`${Paths.baseURL}${Paths.winners}`, {
+  createWinner(params: WinnerParams) {
+    return fetch(`${Paths.baseURL}${Paths.winners}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(params),
     });
-    return response;
   }
 
-  async updateWinner(params: WinnerParams) {
+  updateWinner(params: WinnerParams) {
     const { id, wins, time } = params;
-    const response = await fetch(`${Paths.baseURL}${Paths.winners}/${id}`, {
+    return fetch(`${Paths.baseURL}${Paths.winners}/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ wins, time }),
     });
-    return response;
   }
 
   async removeWinner(id: string | number) {
