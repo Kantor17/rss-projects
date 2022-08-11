@@ -1,4 +1,6 @@
-import { CarType, CarParams, WinnerParams } from '../utils/types';
+import {
+  CarType, CarParams, WinnerParams, OrderType, SortType,
+} from '../utils/types';
 
 enum Paths {
   cars = '/garage',
@@ -12,6 +14,10 @@ enum Paths {
 }
 
 export default class Communicator {
+  defaultHeaders = {
+    'Content-Type': 'application/json',
+  };
+
   getCars(page: number, limit: number): Promise<CarType[]> {
     return fetch(`${Paths.baseURL}${Paths.cars}?${Paths.page}${page}&${Paths.limit}${limit}`)
       .then((response) => response.json());
@@ -24,9 +30,7 @@ export default class Communicator {
   addCar(params: CarParams): Promise<CarType> {
     return fetch(`${Paths.baseURL}${Paths.cars}`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: this.defaultHeaders,
       body: JSON.stringify(params),
     }).then((response) => response.json());
   }
@@ -40,9 +44,7 @@ export default class Communicator {
   async updateCar(id: string, params: CarParams) {
     await fetch(`${Paths.baseURL}${Paths.cars}/${id}`, {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: this.defaultHeaders,
       body: JSON.stringify(params),
     });
   }
@@ -73,8 +75,8 @@ export default class Communicator {
   async getWinners(
     page?: number,
     limit?: number,
-    sort?: 'wins' | 'time',
-    order?: 'ASC' | 'DESC',
+    sort?: SortType,
+    order?: OrderType,
   ): Promise<{ winners: Promise<WinnerParams[]>, count: string | null }> {
     const response = await fetch(`${Paths.baseURL}${Paths.winners}?${Paths.page}${page}&${Paths.limit}${limit}&${Paths.sort}${sort}&${Paths.order}${order}`);
     const winners = await response.json();
@@ -89,9 +91,7 @@ export default class Communicator {
   createWinner(params: WinnerParams) {
     return fetch(`${Paths.baseURL}${Paths.winners}`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: this.defaultHeaders,
       body: JSON.stringify(params),
     });
   }
@@ -100,9 +100,7 @@ export default class Communicator {
     const { id, wins, time } = params;
     return fetch(`${Paths.baseURL}${Paths.winners}/${id}`, {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: this.defaultHeaders,
       body: JSON.stringify({ wins, time }),
     });
   }

@@ -8,6 +8,12 @@ export default class GarageHandler {
 
   selectedCar: HTMLElement | null = null;
 
+  DEFAULT_COLOR = '#000000';
+
+  EMPTY_NAME_MESSAGE = 'Please enter some name for a car';
+
+  CARS_PER_CLICK = 100;
+
   async stuffCarsWrapper() {
     const garage = GarageView.getInstance();
     const cars = await this.communicator.getCars(garage.pageCount, garage.LIMIT);
@@ -27,9 +33,9 @@ export default class GarageHandler {
     if (name.trim()) {
       this.addCar(carNameE.value, carColorE.value);
       carNameE.value = '';
-      carColorE.value = '#000000';
+      carColorE.value = this.DEFAULT_COLOR;
     } else {
-      alert('Please enter some name for a car');
+      alert(this.EMPTY_NAME_MESSAGE);
     }
   }
 
@@ -47,7 +53,7 @@ export default class GarageHandler {
   }
 
   generateCars() {
-    for (let i = 0; i < 100; i += 1) {
+    for (let i = 0; i < this.CARS_PER_CLICK; i += 1) {
       this.addCar(generateCarName(), generateCarColor());
     }
   }
@@ -86,7 +92,7 @@ export default class GarageHandler {
     carsUpdater?.classList.add('disabled');
     this.selectedCar = null;
     carName.value = '';
-    carColor.value = '#000000';
+    carColor.value = this.DEFAULT_COLOR;
     carE?.classList.remove('selected');
   }
 
@@ -122,7 +128,7 @@ export default class GarageHandler {
       this.selectedCar?.querySelector('.car-model svg')?.setAttribute('fill', color);
       this.removeFromSelected(this.selectedCar);
     } else {
-      alert('Please enter some name for a car');
+      alert(this.EMPTY_NAME_MESSAGE);
     }
   }
 

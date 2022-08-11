@@ -1,4 +1,4 @@
-import { WinnerParams } from '../utils/types';
+import { SortType, OrderType, WinnerParams } from '../utils/types';
 import WinnersView from '../views/WinnersView';
 import Communicator from './Communicator';
 
@@ -59,8 +59,8 @@ export default class GarageHandler {
     view.updatePageCounter(view);
   }
 
-  sort(type: 'wins' | 'time', btn: HTMLElement, otherBtn: HTMLElement) {
-    let order: 'ASC' | 'DESC';
+  sort(type: SortType, btn: HTMLElement, otherBtn: HTMLElement) {
+    let order: OrderType;
     otherBtn.className = 'sort-btn';
     if (btn.classList.contains('sorted-asc')) {
       btn.classList.remove('sorted-asc');

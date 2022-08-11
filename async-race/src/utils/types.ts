@@ -16,3 +16,6 @@ export type WinnerParams = {
   wins: number,
   time: number,
 };
+
+export type SortType = 'wins' | 'time';
+export type OrderType = 'ASC' | 'DESC';

@@ -68,7 +68,9 @@ export default class {
   getAnimationParams(carE: HTMLElement, duration: number) {
     const model = carE.querySelector('.car-model') as HTMLElement;
     const trackWidth = (carE.querySelector('.car-track') as HTMLElement).offsetWidth - model.offsetWidth;
-    const framesCount = (duration / 1000) * 60;
+    const durationInSec = duration / 1000;
+    const FRAMES_PER_SECOND = 60;
+    const framesCount = durationInSec * FRAMES_PER_SECOND;
     const step = trackWidth / framesCount;
     return { model, trackWidth, step };
   }

@@ -1,5 +1,6 @@
 import WinnersHandler from '../components/WinnersHandler';
 import View from './View';
+import { SortType, OrderType } from '../utils/types';
 
 export default class WinnersView extends View {
   LIMIT = 10;
@@ -14,9 +15,9 @@ export default class WinnersView extends View {
 
   pageCount = 1;
 
-  currentSort?: 'wins' | 'time';
+  currentSort?: SortType;
 
-  currentOrder?: 'ASC' | 'DESC';
+  currentOrder?: OrderType;
 
   static Instance: WinnersView;
 
