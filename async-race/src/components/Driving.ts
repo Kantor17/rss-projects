@@ -114,12 +114,10 @@ export default class {
     const garage = GarageView.getInstance();
     const view = garage.viewE;
     view.querySelector('.winner-message')?.remove();
-    for (let i = 0; i < cars.length; i += 1) {
-      this.returnCar(
-        cars[i] as HTMLElement,
-        +((cars[i] as HTMLElement).dataset.animationId as string),
-      );
-    }
+    cars.forEach((car) => {
+      const carAnimationId = +(car.dataset.animationId as string);
+      this.returnCar(car, carAnimationId);
+    });
     view.querySelector('.race-btn')?.classList.remove('btn-disabled');
     garage.checkPaginationButtons(garage);
   }

@@ -40,11 +40,7 @@ export default class GarageHandler {
   }
 
   async addCar(name: string, color: string) {
-    const params = {
-      name,
-      color,
-    };
-    const car = await this.communicator.addCar(params);
+    const car = await this.communicator.addCar({ name, color });
     const garage = GarageView.getInstance();
     if (garage.carsWrapper.childNodes.length < garage.LIMIT) {
       garage.appendCar(garage.createCarE(car));
