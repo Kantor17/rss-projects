@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="reveal-files/reset.css">
+		<link rel="stylesheet" href="reveal-files/reveal.css">
+		<link rel="stylesheet" href="reveal-files/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section><h2>Machine Learning(overview)</h2></section>
+				<section>
+					<section><h2>What is Machine Learning?</h2></section>
+					<section>
+						<blockquote cite="https://en.wikipedia.org/wiki/Machine_learning">
+							“Machine learning (ML) is a field of inquiry devoted to understanding and building methods that 'learn',
+							 that is, methods that leverage data to improve performance on some set of tasks” - Wiki
+						</blockquote>
+					</section>
+				</section>
+				<section>
+					<section><h2>The Brief History of Machine Learning</h2></section>
+					<section>
+						1949 - "The Organization of Behavior" book by Donald Hebb - an entry point for Machine Learning studies.
+						<img height="320" src="./images/The_Organization_of_Behavior.jpg" alt="The organization of Behavior book">
+						<img height="320" src="./images/hebb.jpg" alt="Donald Hebb">
+					</section>
+					<section>
+						1950 - Alan turing's paper "Computing Machinery And Intelligence" - first introduction of the Turing Test(The Imitation Game).
+						<img height="400" src="./images/turing.jpg" alt="Alan Turing">
+					</section>
+					<section>
+						1952 - Arthur Samuel developed the first self-learning computer program, for playing checkers.
+						<img height="400" src="./images/arthur-samuel.jpeg" alt="Arthur Samuel">
+					</section>
+					<section>
+						1957 - Frank Rosenblatt designed “The Perceptron” - a computer model, which simulated the thought process of the human brain. 
+						<img height="400" src="./images/rosenblatt.jpg" alt="Frank Rosenblatt">
+					</section>
+					<section>
+						1997 - IBM's computer Deep Blue beats the world champion Harry Kasparov in the game of chess.
+						<img height="400" src="./images/deep-blue.jpg" alt="Deep Blue beats Kasparov">
+						<p class="fragment">Later, humans also got beaten up in Jeopardy, Go, all Atari games, Poker, StarCraft and Dota2.</p>
+					</section>
+					<section>
+						2014 - Facebook developed DeepFace - a software algorithm, capable of recognizing and identifying human's faces
+							in digital images with 97 percent accuracy.
+						<img height="450" src="./images/deep-face.jpg" alt="depp face">
+					</section>
+					<section>
+						2015 - Amazon launches Amazon Machine Learning, Google launches Distributed Learning Machine Toolkit.
+						<img height="275" src="./images/amazon.jpg" alt="Amazon ML platform">
+						<img height="275" src="./images/dmtk.jpg" alt="Google ML platform">
+					</section>
+					<section>
+						Present days - Machine Learning is EVERYWHERE -  in software development, business analysis, advertising, education, healthcare.
+						<img src="./images/present-days.jpg" alt="ML in present days">
+					</section>
+					<section>
+						"typical RSS frontend student" → DeepAi → Me
+						<img height="600" src="./images/deep-ai.jpg" alt="DeepAi image generator">
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Examples of Machine Learning in our daily life</h2>
+					</section>
+					<section>
+						<h3>Chatbots</h3>
+						<div class="fragment">
+							<p>Went from this</p> 
+							<img height="150" src="./images/primitive-robot.jpg" alt="primitive robot">
+						</div>
+						<div class="fragment">
+							<p>To this</p>
+							<img height="200" src="./images/advanced-robot.jpg" alt="advanced robot">
+						</div>
+					</section>
+					<section>
+						<h3>Advertising/product recommendation</h3>
+						<img class="fragment" src="./images/reccomendations.jpg" alt="product recommendation meme">
+					</section>
+					<section>
+						<h3>Inappropriate content filtering</h3>
+						<img src="./images/content-filtering.jpg" alt="content filtering scheme">
+					</section>
+				</section>
+				<section>
+					<h2>That's it. Thanks for your attention</h2>
+					<img src="./images/tesla.jpg" alt="tesla runs over a child">
+				</section>
+			</div>
+		</div>
+
+		<script src="reveal-files/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
