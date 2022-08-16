@@ -1,9 +1,9 @@
 import { generateCarName, generateCarColor } from '../utils/paramsGenerator';
 import { CarType } from '../utils/types';
-import GarageView from '../views/GarageView';
+import { instance as garageView } from '../views/GarageView';
 import Communicator from './Communicator';
 
-export default class GarageHandler {
+class GarageHandler {
   communicator = new Communicator();
 
   selectedCar: HTMLElement | null = null;
@@ -15,11 +15,10 @@ export default class GarageHandler {
   CARS_PER_CLICK = 100;
 
   async stuffCarsWrapper() {
-    const garage = GarageView.getInstance();
-    const cars = await this.communicator.getCars(garage.pageCount, garage.LIMIT);
+    const cars = await this.communicator.getCars(garageView.pageCount, garageView.LIMIT);
     cars.forEach((car: CarType) => {
       this.communicator.stopEngine(car.id);
-      garage.appendCar(garage.createCarE(car));
+      garageView.appendCar(garageView.createCarE(car));
     });
   }
 
@@ -41,11 +40,10 @@ export default class GarageHandler {
 
   async addCar(name: string, color: string) {
     const car = await this.communicator.addCar({ name, color });
-    const garage = GarageView.getInstance();
-    if (garage.carsWrapper.childNodes.length < garage.LIMIT) {
-      garage.appendCar(garage.createCarE(car));
+    if (garageView.carsWrapper.childNodes.length < garageView.LIMIT) {
+      garageView.appendCar(garageView.createCarE(car));
     }
-    this.updateItemsCounter(garage.itemsCount += 1);
+    this.updateItemsCounter(garageView.itemsCount += 1);
   }
 
   generateCars() {
@@ -56,21 +54,20 @@ export default class GarageHandler {
 
   async handleCarRemoving(carE: HTMLElement) {
     carE.remove();
-    const garage = GarageView.getInstance();
     if (carE === this.selectedCar) this.removeFromSelected(carE);
     const id = carE.dataset.id as string;
     this.communicator.removeWinner(id);
     this.communicator.removeCar(id);
-    this.updateItemsCounter(garage.itemsCount -= 1);
+    this.updateItemsCounter(garageView.itemsCount -= 1);
 
-    const newCars = await this.communicator.getCars(garage.pageCount, garage.LIMIT);
-    const lastNewCar = newCars[garage.LIMIT - 1];
+    const newCars = await this.communicator.getCars(garageView.pageCount, garageView.LIMIT);
+    const lastNewCar = newCars[garageView.LIMIT - 1];
     if (lastNewCar) {
-      garage.appendCar(garage.createCarE(lastNewCar));
+      garageView.appendCar(garageView.createCarE(lastNewCar));
     }
 
-    if (garage.carsWrapper.childNodes.length < 1 && garage.pageCount > 1) {
-      this.updatePage(garage.pageCount -= 1);
+    if (garageView.carsWrapper.childNodes.length < 1 && garageView.pageCount > 1) {
+      this.updatePage(garageView.pageCount -= 1);
     }
   }
 
@@ -103,7 +100,7 @@ export default class GarageHandler {
   }
 
   getUpdatingControls() {
-    const carsUpdater = GarageView.getInstance().viewE.querySelector('.cars-updater');
+    const carsUpdater = garageView.viewE.querySelector('.cars-updater');
     return {
       carsUpdater,
       carName: carsUpdater?.querySelector('.car-name') as HTMLInputElement,
@@ -129,19 +126,18 @@ export default class GarageHandler {
   }
 
   async updatePage(page: number) {
-    const garage = GarageView.getInstance();
-    const cars = await this.communicator.getCars(page, garage.LIMIT);
-    GarageView.getInstance().replaceCars(cars);
-    garage.updatePageCounter(garage);
-    garage.checkPaginationButtons(garage);
+    const cars = await this.communicator.getCars(page, garageView.LIMIT);
+    garageView.replaceCars(cars);
+    garageView.updatePageCounter(garageView);
+    garageView.checkPaginationButtons(garageView);
     this.removeFromSelected();
   }
 
   updateItemsCounter(value = 0) {
-    const { viewE } = GarageView.getInstance();
-    (viewE.querySelector('.total-counter') as HTMLElement).textContent = value.toString();
-    const garage = GarageView.getInstance();
-    garage.itemsCount = value;
-    garage.checkPaginationButtons(garage);
+    (garageView.viewE.querySelector('.total-counter') as HTMLElement).textContent = value.toString();
+    garageView.itemsCount = value;
+    garageView.checkPaginationButtons(garageView);
   }
 }
+
+export default new GarageHandler();

@@ -1,24 +1,16 @@
-import GarageView from '../views/GarageView';
-import WinnersView from '../views/WinnersView';
-import GarageHandler from './GarageHandler';
-import WinnersHandler from './WinnersHandler';
+import { instance as garageView } from '../views/GarageView';
+import { instance as winnersView } from '../views/WinnersView';
+import garageHandler from './GarageHandler';
+import winnersHandler from './WinnersHandler';
 
 export default class {
   container = document.createElement('div');
 
-  garageView = GarageView.getInstance();
-
-  garageHandler = new GarageHandler();
-
-  winnersView = WinnersView.getInstance();
-
-  winnerHandler = new WinnersHandler();
-
   async run() {
     this.renderStartPage();
-    await this.garageHandler.stuffCarsWrapper();
-    await this.garageHandler.initItemCounter();
-    await this.winnerHandler.updateTable();
+    await garageHandler.stuffCarsWrapper();
+    await garageHandler.initItemCounter();
+    await winnersHandler.updateTable();
   }
 
   renderStartPage() {
@@ -34,7 +26,7 @@ export default class {
     nav.querySelector('.winners-btn')?.addEventListener('click', () => this.goToWinners());
 
     this.container.append(nav.children[0]);
-    this.container.append(this.garageView.viewE, this.winnersView.viewE);
+    this.container.append(garageView.viewE, winnersView.viewE);
     document.body.append(this.container);
   }
 
@@ -47,13 +39,13 @@ export default class {
   }
 
   goToGarage() {
-    this.hide(this.winnersView.viewE);
-    this.show(this.garageView.viewE);
+    this.hide(winnersView.viewE);
+    this.show(garageView.viewE);
   }
 
   async goToWinners() {
-    await this.winnerHandler.updateTable();
-    this.hide(this.garageView.viewE);
-    this.show(this.winnersView.viewE);
+    await winnersHandler.updateTable();
+    this.hide(garageView.viewE);
+    this.show(winnersView.viewE);
   }
 }

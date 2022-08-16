@@ -1,12 +1,12 @@
 import Communicator from './Communicator';
-import GarageView from '../views/GarageView';
+import { instance as garageView } from '../views/GarageView';
 import { Finisher } from '../utils/types';
-import WinnersHandler from './WinnersHandler';
+import winnersHandler from './WinnersHandler';
 
 export default class {
   communicator = new Communicator();
 
-  winnersHandler = new WinnersHandler();
+  winnersHandler = winnersHandler;
 
   async startEngine(carE: HTMLElement) {
     carE.classList.add('onDrive');
@@ -76,15 +76,15 @@ export default class {
   }
 
   async startRace(cars: HTMLElement[], raceBtn: HTMLElement) {
-    if (GarageView.getInstance().checkForDrivingCars()) {
+    if (garageView.checkForDrivingCars()) {
       alert('You need to return all cars to their initial place in order to start a race');
     } else {
       raceBtn.classList.add('btn-disabled');
-      const view = GarageView.getInstance().viewE;
-      view.querySelectorAll('.pagination > *').forEach((btn) => {
+      const { viewE } = garageView;
+      viewE.querySelectorAll('.pagination > *').forEach((btn) => {
         btn.classList.add('btn-disabled');
       });
-      view.querySelector('.reset-btn')?.classList.add('btn-disabled');
+      viewE.querySelector('.reset-btn')?.classList.add('btn-disabled');
       const promises = cars.map((car) => this.startEngine(car));
       try {
         this.makeWinner(await Promise.any(promises));
@@ -95,7 +95,7 @@ export default class {
   }
 
   makeWinner(finisher: Finisher | null) {
-    const winnerMessage = GarageView.getInstance().createElement('div', 'winner-message');
+    const winnerMessage = garageView.createElement('div', 'winner-message');
     if (finisher) {
       const seconds = +(finisher.time / 1000).toFixed(2);
       const name = finisher.car.querySelector('.car-name')?.textContent as string;
@@ -104,21 +104,20 @@ export default class {
     } else {
       winnerMessage.textContent = 'There are no winner';
     }
-    const view = GarageView.getInstance().viewE;
-    view.append(winnerMessage);
-    view.querySelector('.reset-btn')?.classList.remove('btn-disabled');
+    const { viewE } = garageView;
+    viewE.append(winnerMessage);
+    viewE.querySelector('.reset-btn')?.classList.remove('btn-disabled');
   }
 
   resetRace(cars: HTMLElement[], resetBtn: HTMLElement) {
     resetBtn.classList.add('btn-disabled');
-    const garage = GarageView.getInstance();
-    const view = garage.viewE;
-    view.querySelector('.winner-message')?.remove();
+    const { viewE } = garageView;
+    viewE.querySelector('.winner-message')?.remove();
     cars.forEach((car) => {
       const carAnimationId = +(car.dataset.animationId as string);
       this.returnCar(car, carAnimationId);
     });
-    view.querySelector('.race-btn')?.classList.remove('btn-disabled');
-    garage.checkPaginationButtons(garage);
+    viewE.querySelector('.race-btn')?.classList.remove('btn-disabled');
+    garageView.checkPaginationButtons(garageView);
   }
 }

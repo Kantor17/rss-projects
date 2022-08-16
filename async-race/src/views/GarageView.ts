@@ -1,6 +1,6 @@
 import { CarType } from '../utils/types';
 import View from './View';
-import GarageHandler from '../components/GarageHandler';
+import garageHandler from '../components/GarageHandler';
 import Driving from '../components/Driving';
 
 export default class GarageView extends View {
@@ -8,7 +8,7 @@ export default class GarageView extends View {
 
   LIMIT = 7;
 
-  handler = new GarageHandler();
+  handler = garageHandler;
 
   driving = new Driving();
 
@@ -148,3 +148,5 @@ export default class GarageView extends View {
     return ((Array.from(this.carsWrapper.childNodes) as HTMLElement[]).some((car) => car.classList.contains('onDrive')));
   }
 }
+
+export const instance = GarageView.getInstance();

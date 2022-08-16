@@ -1,8 +1,8 @@
 import { SortType, OrderType, WinnerParams } from '../utils/types';
-import WinnersView from '../views/WinnersView';
+import { instance as winnersView } from '../views/WinnersView';
 import Communicator from './Communicator';
 
-export default class GarageHandler {
+class WinnersHandler {
   communicator = new Communicator();
 
   async makeWinner(id: number, time: number) {
@@ -34,29 +34,27 @@ export default class GarageHandler {
   }
 
   async updateTable(
-    page = WinnersView.getInstance().pageCount,
-    limit = WinnersView.getInstance().LIMIT,
-    sort = WinnersView.getInstance().currentSort,
-    order = WinnersView.getInstance().currentOrder,
+    page = winnersView.pageCount,
+    limit = winnersView.LIMIT,
+    sort = winnersView.currentSort,
+    order = winnersView.currentOrder,
   ) {
-    const view = WinnersView.getInstance();
-    view.body.innerHTML = '';
+    winnersView.body.innerHTML = '';
     const { winners, count } = await this.communicator.getWinners(page, limit, sort, order);
-    view.itemsCount = +(count as string);
-    (view.viewE.querySelector('.total-counter') as HTMLElement).textContent = count;
+    winnersView.itemsCount = +(count as string);
+    (winnersView.viewE.querySelector('.total-counter') as HTMLElement).textContent = count;
     (await winners).forEach(async (winner) => {
       const { id, wins, time } = winner;
       const { color, name } = await this.communicator.getCar(id);
-      const elem = view.createWinnerRow(color, name, wins, time);
-      view.body.append(elem);
+      const elem = winnersView.createWinnerRow(color, name, wins, time);
+      winnersView.body.append(elem);
     });
-    view.checkPaginationButtons(view);
+    winnersView.checkPaginationButtons(winnersView);
   }
 
   updatePage(page: number) {
-    const view = WinnersView.getInstance();
-    this.updateTable(view.pageCount = page);
-    view.updatePageCounter(view);
+    this.updateTable(winnersView.pageCount = page);
+    winnersView.updatePageCounter(winnersView);
   }
 
   sort(type: SortType, btn: HTMLElement, otherBtn: HTMLElement) {
@@ -71,8 +69,10 @@ export default class GarageHandler {
       btn.classList.add('sorted-asc');
       order = 'ASC';
     }
-    WinnersView.getInstance().currentSort = type;
-    WinnersView.getInstance().currentOrder = order;
+    winnersView.currentSort = type;
+    winnersView.currentOrder = order;
     this.updateTable(undefined, undefined, type, order);
   }
 }
+
+export default new WinnersHandler();

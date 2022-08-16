@@ -1,4 +1,4 @@
-import WinnersHandler from '../components/WinnersHandler';
+import winnersHandler from '../components/WinnersHandler';
 import View from './View';
 import { SortType, OrderType } from '../utils/types';
 
@@ -9,7 +9,7 @@ export default class WinnersView extends View {
 
   body = this.viewE.querySelector('tbody') as HTMLElement;
 
-  handler = new WinnersHandler();
+  handler = winnersHandler;
 
   itemsCount = 0;
 
@@ -76,3 +76,5 @@ export default class WinnersView extends View {
     return rowE.children[0];
   }
 }
+
+export const instance = WinnersView.getInstance();
